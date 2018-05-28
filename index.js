@@ -1,6 +1,6 @@
-const {slack} = require('config/env.json');
-const {SpeedTest} = require('modules/speedtest/index');
-const {Slack} = require('modules/slack/index');
+const {slack} = require('env.json');
+const {SpeedTest} = require('speedtest');
+const {Slack} = require('slack');
 const datas = [{
     icon_emoji: ":email:",
     username: "Speed",

@@ -1,6 +1,6 @@
 'use strict';
-const {App} = require('modules/common/index');
-const {Shell} = require('modules/shell/index');
+const {App} = require('common');
+const {Shell} = require('shell');
 class SpeedTest extends App {
     constructor() {
         super();

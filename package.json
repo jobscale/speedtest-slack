@@ -12,7 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "NODE_PATH=./app node index",
+    "start": "NODE_PATH=./app/config:./app/modules node index",
     "test": "node fetch"
   },
   "repository": {

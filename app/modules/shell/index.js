@@ -1,5 +1,5 @@
 'use strict';
-const {App} = require('modules/common/index');
+const {App} = require('common');
 const shell = require('child_process');
 class Shell extends App {
     constructor() {

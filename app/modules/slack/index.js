@@ -1,5 +1,5 @@
 'use strict';
-const {App} = require('modules/common/index');
+const {App} = require('common');
 const _ = require('lodash');
 class Slack extends App {
     constructor(env) {
