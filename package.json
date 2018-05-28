@@ -1,0 +1,29 @@
+{
+  "name": "speedtest-slack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fetch.js",
+  "dependencies": {
+    "form-data": "^2.3.2",
+    "http-proxy-agent": "^2.1.0",
+    "https-proxy-agent": "^2.2.1",
+    "lodash": "^4.17.10",
+    "node-fetch": "^2.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "NODE_PATH=./app node index",
+    "test": "node fetch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jobscale/speedtest-slack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jobscale/speedtest-slack/issues"
+  },
+  "homepage": "https://github.com/jobscale/speedtest-slack#readme"
+}
