@@ -13,7 +13,8 @@
   "devDependencies": {},
   "scripts": {
     "start": "NODE_PATH=./app/config:./app/modules node index",
-    "test": "node fetch"
+    "channel:clear": "NODE_PATH=./app/config:./app/modules node clear-channel",
+    "test": "NODE_PATH=./app/config:./app/modules node fetch"
   },
   "repository": {
     "type": "git",

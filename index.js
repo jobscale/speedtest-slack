@@ -1,6 +1,7 @@
 const {slack} = require('env.json');
 const {SpeedTest} = require('speedtest');
 const {Slack} = require('slack');
+const _ = require("lodash");
 const datas = [{
     icon_emoji: ":email:",
     username: "Speed",
@@ -8,7 +9,7 @@ const datas = [{
         fallback: ""
     }]
 }];
-let data = datas[0];
+let data = _.cloneDeep(datas[0]);
 const getUrls = (text) => {
     const search = /((h?)(ttps?:\/\/[a-zA-Z0-9.\-_@:/~?%&;=+#',()*!]+))/g;
     return text.match(search);
