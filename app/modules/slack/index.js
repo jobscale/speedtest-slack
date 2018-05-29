@@ -10,12 +10,13 @@ class Slack extends App {
     }
     send(param) {
         let url = `https://hooks.slack.com/services/${this.env.access}`;
-        return this.fetch(url, {method: this.method, body: JSON.stringify(param)})
+        let body = JSON.stringify(param, null, 2);
+        return this.fetch(url, {method: this.method, body: body})
         .then((response) => {
             if (!response.ok) {
                 throw new Error(response.statusText);
             }
-            return response.json();
+            return body;
         })
         .catch(e => e.message);
     }
