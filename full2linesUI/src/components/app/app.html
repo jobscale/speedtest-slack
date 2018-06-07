@@ -1,0 +1,11 @@
+<v-ons-page id="app">
+  <v-ons-splitter>
+    <v-ons-splitter-side swipeable collapse width="250px" :animation="$ons.platform.isAndroid() ? 'overlay' : 'reveal'" :open.sync="menuIsOpen">
+      <main-menu @click-menu-item="clickMenuItem" />
+    </v-ons-splitter-side>
+
+    <v-ons-splitter-content>
+      <main-navigator-a :next-page="nextPage" />
+    </v-ons-splitter-content>
+  </v-ons-splitter>
+</v-ons-page>

@@ -1,0 +1,9 @@
+<v-ons-page id="MainMenu">
+  <v-ons-toolbar modifier="transparent"></v-ons-toolbar>
+
+  <v-ons-list>
+    <v-ons-list-item modifier="chevron" v-for="item in menuList" @click="clickMenu(item.page)" :key="item.label">
+      <div class="center">{{ item.label }}</div>
+    </v-ons-list-item>
+  </v-ons-list>
+</v-ons-page>
