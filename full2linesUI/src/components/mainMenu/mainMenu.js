@@ -6,7 +6,7 @@ export default {
     return {
       menuList: [
         {
-          label: 'Directive',
+          label: 'エリンギ',
           page: HomePage
         }
       ]
@@ -18,6 +18,7 @@ export default {
      * @param {VueComponent} page 遷移先のぺーず
      */
     clickMenu (page) {
+      console.log("click-menu-item");
       this.$emit('click-menu-item', page);
     }
   }

@@ -5,6 +5,7 @@
     </div>
     <div class="center">{{title}}</div>
   </v-ons-toolbar>
+
   <v-ons-list>
     <v-ons-list-item>
       <div class="center">
@@ -17,5 +18,12 @@
         Hello {{ name || 'anonymous' }}!
       </div>
     </v-ons-list-item>
+    <v-ons-list-item>
+      <div>
+        {{listItemTitle}}
+      </div>
+    </v-ons-list-item>
   </v-ons-list>
+  <br/>
+  <v-ons-button modifier="large" style="margin: 6px 0" @click="clickButton">{{nextButtonTitle}}</v-ons-button>
 </v-ons-page>

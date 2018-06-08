@@ -6,14 +6,17 @@ export default {
   data() {
     return {
       title: 'Main Page - タイトル',
+      name: '',
+      nextButtonTitle: 'しいたけ入力',
+      listItemTitle: 'えのき茸'
     }
   },
   created: function () {
     // 初期化処理
   },
   methods: {
-    // clickNextBtn() {
-    //   this.$emit('push-page', Page1)
-    // },
+    clickButton() {
+      this.name = 'しいたけ';
+    },
   }
 }
