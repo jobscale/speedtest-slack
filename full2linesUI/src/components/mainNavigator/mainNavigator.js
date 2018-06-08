@@ -1,12 +1,12 @@
-// import pageTest1 from '../pageTestHome/TestPageHome'
-import pageTest1 from '../HomePage/HomePageA'
+import pageTestHome from '../pageTestHome/TestPageHome'
+// import pageTest1 from '../HomePage/HomePageA'
 
 export default {
   name: 'MainNavigator',
   props: ['nextPage'],
   data () {
     return {
-    pageStack: [pageTest1]
+      pageStack: [pageTestHome]
     }
   },
   methods: {
@@ -17,6 +17,6 @@ export default {
     }
   },
   components: {
-    pageTest1
+    pageTestHome
   }
 }
