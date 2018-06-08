@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/t.arai/Documents/SVN/フル２線/git/full2linesUI/platforms/android/CordovaLib/assets"/><source path="/Users/t.arai/Documents/SVN/フル２線/git/full2linesUI/platforms/android/CordovaLib/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/Users/t.arai/Documents/SVN/フル２線/git/full2linesUI/platforms/android/CordovaLib/src/debug/assets"/></dataSet></merger>
