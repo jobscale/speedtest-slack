@@ -45,7 +45,7 @@ ons.ready(() => {
         },
         methods: {
             goNext() {
-                app.movePage('/pages/second/second.html');
+                app.movePage('pages/second/second.html');
             }
         }
     });

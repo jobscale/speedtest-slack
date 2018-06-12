@@ -49,7 +49,7 @@ ons.ready(() => {
         },
         methods: {
             goFirst() {
-                app.movePage('/pages/first/first.html');
+                app.movePage('pages/first/first.html');
             }
         }
     };
