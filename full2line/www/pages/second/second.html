@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <meta http-equiv=Content-Security-Policy
+          content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>full2linesui</title>
+    <link href='vendor/css/onsenui.css' rel='stylesheet'>
+    <link href='vendor/css/onsen-css-components.css' rel='stylesheet'>
+    <link href='css/index.css' rel='stylesheet'>
+    <base href="../..">
+</head>
+<body>
+<template id="main">
+    <v-ons-page>
+        <v-ons-toolbar>
+            <div class="center">Toasts ({{date}})</div>
+        </v-ons-toolbar>
+        <p>
+            <v-ons-button
+                @click="$ons.notification.toast('Hi there!', { timeout: 1000, animation: 'fall' })">
+                Queue notification toast (top)
+            </v-ons-button>
+            <br><br>
+            <v-ons-button @click="toastVisible = !toastVisible">Toggle element toast (bottom)</v-ons-button>
+        </p>
+        <v-ons-fab position="bottom right">+</v-ons-fab>
+        <v-ons-toast :visible.sync="toastVisible" animation="ascend">
+            FABs up!
+            <button @click="toastVisible = false">ok</button>
+        </v-ons-toast>
+        <v-ons-toolbar>
+            <div class="center"><a href="index.html">TOP</a></div>
+        </v-ons-toolbar>
+    </v-ons-page>
+</template>
+<div id="app"></div>
+<script src=cordova.js></script>
+<script type='text/javascript' src='vendor/js/vue.js'></script>
+<script type='text/javascript' src='vendor/js/onsenui.js'></script>
+<script type='text/javascript' src='vendor/js/vue-onsenui.js'></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="pages/second/second.js"></script>
+</body>
+</html>
