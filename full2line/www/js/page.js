@@ -4,9 +4,15 @@
 class Page {
     constructor() {
         ons.platform.select('ios');
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('pause', this.onPause, false);
+        document.addEventListener('resume', this.onResume, false);
     }
     onDeviceReady() {
+    }
+    onPause() {
+    }
+    onResume() {
     }
     getDate(...argv) {
         return new Date(...argv).toLocaleDateString();
