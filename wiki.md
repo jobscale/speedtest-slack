@@ -25,6 +25,6 @@
 
 ## Markdown
 
-- [docs.gitlab.com](https://docs.gitlab.com/ee/user/markdown.html)
+- [sample](markdown.md)
 
 ## [Other link](other.md)
