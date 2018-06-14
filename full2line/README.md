@@ -1,8 +1,8 @@
 # vue-onsenui-cordova-iphonex
 
-> An example Cordova project supporting iPhone X using [Onsen UI](https://onsen.io/vue/).
+> An example Cordova project supporting OnsenUI, Vue
 
-![Screenshot](/screenshot.gif)
+![Screenshot](res/android/xxxhdpi.png)
 
 ## Build Setup
 
@@ -21,7 +21,7 @@ npm run build --report
 
 # run on iPhone X or its simulator
 cordova platform add ios
-npm run build && cordova run ios --target="iPhone-X"
+npm run build
+cordova run ios --target="iPhone-X"
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
