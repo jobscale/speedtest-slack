@@ -1,13 +1,15 @@
+var strings = require('../../common/strings.json');
+
 export default {
   name: 'HomePageA',
   components: {
   },
   data() {
     return {
-      title: 'Main Page - タイトル',
+      title: strings["main_title"],
       name: '',
-      nextButtonTitle: 'しいたけ入力',
-      listItemTitle: 'えのき茸'
+      nextButtonTitle: strings["input"],
+      listItemTitle: strings["enoki"]
     }
   },
   created() {
@@ -15,7 +17,7 @@ export default {
   },
   methods: {
     clickButton() {
-      this.name = 'しいたけ';
+      this.name = strings["shiitake"];
     }
   }
 };
