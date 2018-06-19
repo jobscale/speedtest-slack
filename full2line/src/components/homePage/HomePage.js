@@ -1,4 +1,4 @@
-var strings = require('../../common/strings.json');
+const strings = require('../../common/strings.json');
 
 export default {
   name: 'HomePageA',
