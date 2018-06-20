@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>vue-onsenui-cordova-iphonex</name>
+    <name>full2linesPlus</name>
     <description>
-      Vue.js + Onsen UI + Cordova sample app
+        full2linsPlus remote setup application and utility.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-      Vue.js + Onsen UI + Cordova teams
+    <author email="support@kk.jp.panasonic.com" href="https://www.persol-avct.co.jp">
+        support persol avct development team.
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -17,6 +17,24 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <allow-intent href="market:*" />
+        <icon density="ldpi" src="res/android/ldpi.png" />
+        <icon density="mdpi" src="res/android/mdpi.png" />
+        <icon density="hdpi" src="res/android/hdpi.png" />
+        <icon density="xhdpi" src="res/android/xhdpi.png" />
+        <icon density="xxhdpi" src="res/android/xxhdpi.png" />
+        <icon density="xxxhdpi" src="res/android/xxxhdpi.png" />
+        <splash density="land-hdpi" src="res/screen/android/logo-hdpi.9.png" />
+        <splash density="land-ldpi" src="res/screen/android/logo-ldpi.9.png" />
+        <splash density="land-mdpi" src="res/screen/android/logo-mdpi.9.png" />
+        <splash density="land-xhdpi" src="res/screen/android/logo-xhdpi.9.png" />
+        <splash density="port-hdpi" src="res/screen/android/logo-hdpi.9.png" />
+        <splash density="port-ldpi" src="res/screen/android/logo-ldpi.9.png" />
+        <splash density="port-mdpi" src="res/screen/android/logo-mdpi.9.png" />
+        <splash density="port-xhdpi" src="res/screen/android/logo-xhdpi.9.png" />
+        <preference name="AutoHideSplashScreen" value="true" />
+        <preference name="ShowSplashScreenSpinner" value="false" />
+        <preference name="SplashScreenDelay" value="3000" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
