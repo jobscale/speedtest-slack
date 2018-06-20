@@ -1,3 +1,4 @@
+mkdir www
 npm install
 cordova platform add android@6.2.3
 cordova platform add ios
