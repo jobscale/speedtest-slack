@@ -1,6 +1,4 @@
-# vue-onsenui-cordova-iphonex
-
-> An example Cordova project supporting OnsenUI, Vue
+# フル２線PLUS設定スマートフォンアプリ
 
 ![Screenshot](res/android/xxxhdpi.png)
 
@@ -8,7 +6,7 @@
 
 ``` bash
 # install dependencies
-npm install
+start.sh
 
 # serve with hot reload at localhost:8080
 npm run dev
