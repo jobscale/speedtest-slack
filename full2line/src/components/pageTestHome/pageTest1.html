@@ -10,5 +10,12 @@
   
   <br/>
   <v-ons-button modifier="large" style="margin: 6px 0" @click="clickNextButton">{{nextButtonTitle}}</v-ons-button>
-  <div>hsrgeoifahjlfhliaweuhfaw</div>
+  <div>{{bleTitle}}{{targetDeviceName}}</div>
+  <v-ons-button modifier="large" style="margin: 6px 0" @click="clickScanButton">{{scanButtonTitle}}</v-ons-button>
+  <v-ons-button modifier="large" style="margin: 6px 0" @click="clickConnectButton">{{connectButtonTitle}}</v-ons-button>
+  <v-ons-button modifier="large" style="margin: 6px 0" @click="clickDisconnectButton">{{disconnectButtonTitle}}</v-ons-button>
+  <v-ons-dialog cancelable :visible.sync="dialogVisible">
+  <p style="text-align: center">{{dialogMessage}}</p>
+  <p style="text-align: center"><v-ons-button @click="dialogVisible = false">OK</v-ons-button></p>
+  </v-ons-dialog>
 </v-ons-page>
