@@ -1,12 +1,14 @@
+const strings = require('../../common/strings.json');
 import HomePage from '../homePage/HomePageA';
+
 export default {
   name: 'pageTestHome',
   components: {
   },
   data() {
     return {
-      title: "タイトル",
-      nextButtonTitle: "しめじを取りに行く",
+      title: strings.pagetest1.title,
+      nextButtonTitle: strings.pagetest1.buttontitle,
       bleTitle: "BLE 接続先のデバイス名:",
       scanButtonTitle: "スキャン",
       connectButtonTitle: "接続",
