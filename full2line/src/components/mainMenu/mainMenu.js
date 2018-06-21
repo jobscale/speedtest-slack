@@ -1,11 +1,13 @@
+const strings = require('../../common/strings.json');
 import HomePage from '../homePage/HomePageA';
+
 export default {
   name: 'MainMenu',
   data() {
     return {
       menuList: [
         {
-          label: 'エリンギ',
+          label: strings.mainmenu.eringi,
           page: HomePage
         }
       ]

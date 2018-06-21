@@ -6,10 +6,11 @@ export default {
   },
   data() {
     return {
-      title: strings["main_title"],
+      title: strings.homepage.main_title,
       name: '',
-      nextButtonTitle: strings["input"],
-      listItemTitle: strings["enoki"]
+      backButtonTitle: strings.common.backButton,
+      nextButtonTitle: strings.homepage.input,
+      listItemTitle: strings.homepage.enoki
     }
   },
   created() {
@@ -17,7 +18,7 @@ export default {
   },
   methods: {
     clickButton() {
-      this.name = strings["shiitake"];
+      this.name = strings.homepage.shiitake;
     }
   }
 };
