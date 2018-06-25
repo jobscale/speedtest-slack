@@ -10,8 +10,8 @@ export default {
       title: strings.pagetest1.title,
       nextButtonTitle: strings.pagetest1.buttontitle,
       serviceUuid: "d37b0820-34ef-4f73-9b1d-c1c9882c1f45",
-      readCharacteristicUuid: "c3cf560a-ab94-4ac2-9051-a266104568ad",
-      writeCharacteristicUuid: "cc363ec4-2184-4281-b091-8e557fd9b9a2",
+      readCharacteristicUuid: "c3988d7e-9695-4e82-8d36-6b7fefd63f77",
+      writeCharacteristicUuid: "c3988d7e-9695-4e82-8d36-6b7fefd63f77",
       bleTitle: "BLE 動作確認",
       scanButtonTitle: "スキャン",
       connectButtonTitle: "接続",
@@ -20,7 +20,7 @@ export default {
       writeButtonTitle: "書き込み",
       devices: [],
       selectedDevice: null,
-      sizes: [20,21,185,186],
+      sizes: [20,21,160,170,181,182,183,184,185,186],
       selectedSize: 20,
       dialogVisible: false,
       dialogMessage: "",
@@ -31,7 +31,7 @@ export default {
       connectionFailureMessage: "接続に失敗しました。",
       disconnectionSuccessfulMessage: "切断に成功しました。",
       disconnectionFailureMessage: "切断に失敗しました。",
-      readSuccessfulMessage: "読み込みに成功しました。",
+      readSuccessfulMessage: "読み込みに成功しました。読み込みバイト数：",
       readFailureMessage: "読み込みに失敗しました。",
       writeSuccessfulMessage: "書き込みに成功しました。",
       writeFailureMessage: "書き込みに失敗しました。",
@@ -59,7 +59,7 @@ export default {
     },
     clickReadButton() {
       console.log("clickReadButton");
-      this.bleRead(this.selectedSize);
+      this.bleRead();
     },
     clickWriteButton() {
       console.log("clickWriteButton");
@@ -128,7 +128,7 @@ export default {
         this.showDialog(this.disconnectionFailureMessage);
       });
     },
-    bleRead(size) {
+    bleRead() {
       if (this.selectedDevice == null) {
         this.showDialog(this.targetDeviceIsNotSelectedMessage);
         return;
@@ -139,7 +139,7 @@ export default {
         ble.read(this.selectedDevice.id, this.serviceUuid, this.readCharacteristicUuid, (rawData) => 
         {
           console.log("read success");
-          this.showDialog(this.readSuccessfulMessage);
+          this.showDialog(this.readSuccessfulMessage + rawData.byteLength);
         }, () =>
         {
           console.log("read failure");
