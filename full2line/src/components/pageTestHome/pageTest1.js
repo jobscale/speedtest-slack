@@ -16,6 +16,7 @@ export default {
       scanButtonTitle: "スキャン",
       connectButtonTitle: "接続",
       disconnectButtonTitle: "切断",      
+      requestMtuButtonTitle: "MTU要求",
       readButtonTitle: "読み込み",
       writeButtonTitle: "書き込み",
       devices: [],
@@ -31,6 +32,8 @@ export default {
       connectionFailureMessage: "接続に失敗しました。",
       disconnectionSuccessfulMessage: "切断に成功しました。",
       disconnectionFailureMessage: "切断に失敗しました。",
+      requestMtuSuccessfulMessage: "MTU要求に成功しました。",
+      requestMtuFailureMessage: "MTU要求に失敗しました。",
       readSuccessfulMessage: "読み込みに成功しました。読み込みバイト数：",
       readFailureMessage: "読み込みに失敗しました。",
       writeSuccessfulMessage: "書き込みに成功しました。",
@@ -56,6 +59,10 @@ export default {
     clickDisconnectButton() {
       console.log("clickDisconnectButton");
       this.bleDisconnect();
+    },
+    clickRequestMtuButton() {
+      console.log("clickRequestMtuButton");
+      this.bleRequestMtu();
     },
     clickReadButton() {
       console.log("clickReadButton");
@@ -126,6 +133,29 @@ export default {
       {
         console.log("disconnect failure");
         this.showDialog(this.disconnectionFailureMessage);
+      });
+    },
+    bleRequestMtu() {
+      if (this.selectedDevice == null) {
+        this.showDialog(this.targetDeviceIsNotSelectedMessage);
+        return;
+      }
+      ble.isConnected(this.selectedDevice.id, () => 
+      {
+        console.log("isConnected success"); 
+        ble.requestMtu(this.selectedDevice.id, 185, () => 
+        {
+          console.log("requestMtu success");
+          this.showDialog(this.requestMtuSuccessfulMessage);
+        }, () =>
+        {
+          console.log("requestMtu failure");
+          this.showDialog(this.requestMtuFailureMessage);
+        });
+      }, () =>
+      {
+        console.log("isConnected failure");
+        this.showDialog(this.targetDeviceIsNotConnectedMessage);
       });
     },
     bleRead() {
