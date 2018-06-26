@@ -1,1 +1,1 @@
-# full2linesPlus - Other
+# FULL-2WAY - Other
