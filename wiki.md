@@ -1,4 +1,4 @@
-# full2linesPlus - Wiki
+# FULL-2WAY - Wiki
 
 
 ## Cordova
