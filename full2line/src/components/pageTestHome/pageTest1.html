@@ -22,11 +22,12 @@
   <v-ons-button modifier="large" style="margin: 6px 0" @click="clickRequestMtuButton">{{requestMtuButtonTitle}}</v-ons-button>
   <v-ons-button modifier="large" style="margin: 6px 0" @click="clickReadButton">{{readButtonTitle}}</v-ons-button>
   <v-ons-button modifier="large" style="margin: 6px 0" @click="clickWriteButton">{{writeButtonTitle}}</v-ons-button>
+  <v-ons-button modifier="large" style="margin: 6px 0" @click="clickStartIndicationButton">{{startIndicationButtonTitle}}</v-ons-button>
   <v-ons-select v-model="selectedSize">
       <option v-for="size in sizes" :value="size">{{size}}</option>
     </v-ons-select>
   <v-ons-dialog cancelable :visible.sync="dialogVisible">
-  <p style="text-align: center">{{dialogMessage}}</p>
+  <p style="text-align: center"><span v-html="dialogMessage"></p>
   <p style="text-align: center"><v-ons-button @click="dialogVisible = false">OK</v-ons-button></p>
   </v-ons-dialog>
 </v-ons-page>

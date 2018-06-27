@@ -12,6 +12,7 @@ export default {
       serviceUuid: "d37b0820-34ef-4f73-9b1d-c1c9882c1f45",
       readCharacteristicUuid: "c3988d7e-9695-4e82-8d36-6b7fefd63f77",
       writeCharacteristicUuid: "c3988d7e-9695-4e82-8d36-6b7fefd63f77",
+      indicateCharacteristicUuid: "c3988d7e-9695-4e82-8d36-6b7fefd63f77",
       bleTitle: "BLE 動作確認",
       scanButtonTitle: "スキャン",
       connectButtonTitle: "接続",
@@ -19,6 +20,7 @@ export default {
       requestMtuButtonTitle: "MTU要求",
       readButtonTitle: "読み込み",
       writeButtonTitle: "書き込み",
+      startIndicationButtonTitle: "通告（indicate）開始",
       devices: [],
       selectedDevice: null,
       sizes: [20,21,160,170,181,182,183,184,185,186],
@@ -38,6 +40,8 @@ export default {
       readFailureMessage: "読み込みに失敗しました。",
       writeSuccessfulMessage: "書き込みに成功しました。",
       writeFailureMessage: "書き込みに失敗しました。",
+      startIndicateSuccessfulMessage: "通告に成功しました。通告バイト数：",
+      startIndicateFailureMessage: "通告に失敗しました。",
     };
   },
   created() {
@@ -71,6 +75,10 @@ export default {
     clickWriteButton() {
       console.log("clickWriteButton");
       this.bleWrite(this.selectedSize);
+    },
+    clickStartIndicationButton() {
+      console.log("clickStartIndicationButton");
+      this.bleStartIndication();
     },
     clickItem(device) {
       console.log("clickItem");
@@ -206,8 +214,36 @@ export default {
       });
     },
     showDialog(message) {
-      this.dialogMessage = message;
+      if (this.dialogVisible) {
+        this.dialogMessage = this.dialogMessage + "<br>" + message;
+      }
+      else{
+        this.dialogMessage = message;
+      }
       this.dialogVisible = true;
+    },
+    bleStartIndication() {
+      if (this.selectedDevice == null) {
+        this.showDialog(this.targetDeviceIsNotSelectedMessage);
+        return;
+      }
+      ble.isConnected(this.selectedDevice.id, () => 
+      {
+        console.log("isConnected success"); 
+        ble.startNotification(this.selectedDevice.id, this.serviceUuid, this.indicateCharacteristicUuid, (rawData) => 
+        {
+          console.log("startNotification success");
+          this.showDialog(this.startIndicateSuccessfulMessage + rawData.byteLength);
+        }, () =>
+        {
+          console.log("startNotification failure");
+          this.showDialog(this.startIndicateFailureMessage);
+        });
+      }, () =>
+      {
+        console.log("isConnected failure");
+        this.showDialog(this.targetDeviceIsNotConnectedMessage);
+      });
     },
   }
 };
