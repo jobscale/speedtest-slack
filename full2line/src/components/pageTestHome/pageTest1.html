@@ -27,7 +27,7 @@
       <option v-for="size in sizes" :value="size">{{size}}</option>
     </v-ons-select>
   <v-ons-dialog cancelable :visible.sync="dialogVisible">
-  <p style="text-align: center"><span v-html="dialogMessage"></p>
+  <p style="text-align: center"><span v-html="dialogMessage"/></p>
   <p style="text-align: center"><v-ons-button @click="dialogVisible = false">OK</v-ons-button></p>
   </v-ons-dialog>
 </v-ons-page>
