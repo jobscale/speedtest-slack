@@ -88,7 +88,7 @@ export default {
     },
     bleScan() {
       this.devices = [];
-      ble.scan([scanUuid], 10, (device) =>
+      ble.scan([this.scanUuid], 10, (device) =>
       {
         console.log("scan success name:" + device.name + " id:" + device.id + " rssi:" + device.rssi);
         //異常値排除
