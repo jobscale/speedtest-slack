@@ -1,21 +1,22 @@
-import homePage from './home/Home';
-import newsPage from './news/News';
-import settingsPage from './settings/Settings';
+import HomePage from './home/Home.vue';
+import NewsPage from './news/News.vue';
+import SettingsPage from './settings/Settings.vue';
 
 export default {
   data() {
     return {
       current: (() => {
         const page = this.$parent.$parent.$parent.current;
+        /* eslint-disable no-unneeded-ternary */
         return page ? page : 'home';
       })(),
       pages: ['home', 'news', 'settings'],
-      openSide: false
+      openSide: false,
     };
   },
   components: {
-    home: homePage,
-    news: newsPage,
-    settings: settingsPage,
+    home: HomePage,
+    news: NewsPage,
+    settings: SettingsPage,
   },
 };

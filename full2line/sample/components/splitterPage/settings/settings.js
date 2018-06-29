@@ -1,7 +1,7 @@
-import customToolbar from '../toolbar/Toolbar';
+import customToolbar from '../toolbar/Toolbar.vue';
 
 export default {
   template: '#settings',
   props: ['toggleMenu'],
-  components: { customToolbar }
+  components: { customToolbar },
 };
