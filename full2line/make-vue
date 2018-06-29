@@ -8,3 +8,5 @@ touch $name/$name.html
 touch $name/$name.js
 touch $name/$name.scss
 
+# vue file
+echo '<template src="./'$name'.html"></template><script src="./'$name'.js"></script><style src="./'$name'.scss"></style>' > $name/$vue.vue
