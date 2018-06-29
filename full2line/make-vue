@@ -1,0 +1,10 @@
+#!/bin/bash -eu
+
+name=$1
+vue=$(echo "$name" | awk '{print toupper(substr($0, 1, 1)) substr($0, 2, length($0) - 1)}')
+mkdir $name
+touch $name/$vue.vue
+touch $name/$name.html
+touch $name/$name.js
+touch $name/$name.scss
+

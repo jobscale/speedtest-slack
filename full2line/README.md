@@ -2,6 +2,12 @@
 
 ![Screenshot](res/android/xxxhdpi.png)
 
+## Create the Component
+```bash
+cd src/components
+../../make-vue newPage
+```
+
 ## Build Setup
 
 ``` bash
