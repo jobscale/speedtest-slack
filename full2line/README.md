@@ -1,8 +1,14 @@
-# vue-onsenui-cordova-iphonex
+# FULL-2WAY
 
 > An example Cordova project supporting OnsenUI, Vue
 
 ![Screenshot](res/android/xxxhdpi.png)
+
+## Create the Component
+```bash
+cd src/components
+../../make-vue newPage
+```
 
 ## Build Setup
 

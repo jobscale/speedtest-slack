@@ -1,0 +1,8 @@
+<v-ons-page @show="$emit('change-animation', 'lift')">
+  <v-ons-tabbar
+  position="bottom"
+  :tabs="tabs"
+  animation="none"
+  @push-page="$emit('push-page', $event)"
+  />
+</v-ons-page>
