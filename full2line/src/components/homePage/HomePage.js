@@ -1,13 +1,16 @@
+const strings = require('../../common/strings.json');
+
 export default {
   name: 'HomePageA',
   components: {
   },
   data() {
     return {
-      title: 'Main Page - タイトル',
+      title: strings.homepage.main_title,
       name: '',
-      nextButtonTitle: 'しいたけ入力',
-      listItemTitle: 'えのき茸'
+      backButtonTitle: strings.common.backButton,
+      nextButtonTitle: strings.homepage.input,
+      listItemTitle: strings.homepage.enoki
     }
   },
   created() {
@@ -15,7 +18,7 @@ export default {
   },
   methods: {
     clickButton() {
-      this.name = 'しいたけ';
+      this.name = strings.homepage.shiitake;
     }
   }
 };

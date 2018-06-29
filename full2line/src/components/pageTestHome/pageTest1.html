@@ -10,5 +10,24 @@
   
   <br/>
   <v-ons-button modifier="large" style="margin: 6px 0" @click="clickNextButton">{{nextButtonTitle}}</v-ons-button>
-  <div>hsrgeoifahjlfhliaweuhfaw</div>
+  <div>{{bleTitle}}</div>
+  <v-ons-button modifier="large" style="margin: 6px 0" @click="clickScanButton">{{scanButtonTitle}}</v-ons-button>
+  <v-ons-list style="overflow-y: auto; height:200px; min-height: 200px" modifier="inset">
+    <template v-for="device in devices">
+      <v-ons-list-item tappable @click="clickItem(device)">{{ device.rssi }} | {{ device.name }} | {{ device.id }}</v-ons-list-item>
+    </template>        
+  </v-ons-list>
+  <v-ons-button modifier="large" style="margin: 6px 0" @click="clickConnectButton">{{connectButtonTitle}}</v-ons-button>
+  <v-ons-button modifier="large" style="margin: 6px 0" @click="clickDisconnectButton">{{disconnectButtonTitle}}</v-ons-button>
+  <v-ons-button modifier="large" style="margin: 6px 0" @click="clickRequestMtuButton">{{requestMtuButtonTitle}}</v-ons-button>
+  <v-ons-button modifier="large" style="margin: 6px 0" @click="clickReadButton">{{readButtonTitle}}</v-ons-button>
+  <v-ons-button modifier="large" style="margin: 6px 0" @click="clickWriteButton">{{writeButtonTitle}}</v-ons-button>
+  <v-ons-button modifier="large" style="margin: 6px 0" @click="clickStartIndicationButton">{{startIndicationButtonTitle}}</v-ons-button>
+  <v-ons-select v-model="selectedSize">
+      <option v-for="size in sizes" :value="size">{{size}}</option>
+    </v-ons-select>
+  <v-ons-dialog cancelable :visible.sync="dialogVisible">
+  <p style="text-align: center"><span v-html="dialogMessage"></p>
+  <p style="text-align: center"><v-ons-button @click="dialogVisible = false">OK</v-ons-button></p>
+  </v-ons-dialog>
 </v-ons-page>

@@ -1,0 +1,18 @@
+{
+	"common": {
+		"backButton": "戻る"
+	},
+	"homepage": {
+		"main_title": "Main Page + タイトル",
+		"shiitake": "しいたけ",
+		"input": "しいたけ入力",
+		"enoki": "えのき茸"
+	},
+	"mainmenu": {
+		"eringi": "エリンギ"
+	},
+	"pagetest1": {
+		"title": "タイトル",
+		"buttontitle": "しめじを取りに行く"
+	}
+}
