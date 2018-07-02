@@ -1,8 +1,8 @@
-import NotesPage from '@/components/notesPage/NotesPage';
-import SplitterPage from '@/components/splitterPage/SplitterPage';
-import CarouselPage from '@/components/carousel/Carousel';
-import Dialogs from '@/components/dialogs/Dialogs';
-import GoingPage from '@/components/goingPage/GoingPage';
+import NotesPage from '@/components/notesPage/NotesPage.vue';
+import SplitterPage from '@/components/splitterPage/SplitterPage.vue';
+import CarouselPage from '@/components/carousel/Carousel.vue';
+import Dialogs from '@/components/dialogs/Dialogs.vue';
+import GoingPage from '@/components/goingPage/GoingPage.vue';
 
 export default {
   data() {

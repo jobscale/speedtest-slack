@@ -1,5 +1,5 @@
-import TabsPage from '@/components/tabsPage/TabsPage';
-import CoverPage from '@/components/coverPage/CoverPage';
+import TabsPage from '@/components/tabsPage/TabsPage.vue';
+import CoverPage from '@/components/coverPage/CoverPage.vue';
 
 export default {
   data() {

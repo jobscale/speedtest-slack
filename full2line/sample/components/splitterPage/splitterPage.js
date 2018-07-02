@@ -1,6 +1,6 @@
-import HomePage from './home/Home';
-import NewsPage from './news/News';
-import SettingsPage from './settings/Settings';
+import HomePage from './home/Home.vue';
+import NewsPage from './news/News.vue';
+import SettingsPage from './settings/Settings.vue';
 
 export default {
   data() {

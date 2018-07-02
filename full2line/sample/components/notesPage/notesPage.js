@@ -1,4 +1,4 @@
-import NewNotePage from '@/components/newNotePage/NewNotePage';
+import NewNotePage from '@/components/newNotePage/NewNotePage.vue';
 
 export default {
   data() {
