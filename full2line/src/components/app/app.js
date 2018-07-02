@@ -1,6 +1,6 @@
-import HomePageA from '../homePage/HomePageA';
-import MainNavigatorA from '../mainNavigator/AppMainNavigator';
-import MainMenu from '../mainMenu/AppMainMenu';
+import HomePageA from '@/components/homePage/HomePageA';
+import MainNavigatorA from '@/components/mainNavigator/AppMainNavigator';
+import MainMenu from '@/components/mainMenu/AppMainMenu';
 export default {
   name: 'app',
   data() {
@@ -28,5 +28,12 @@ export default {
     MainNavigatorA,
     MainMenu,
     HomePageA
-  }
+  },
+  beforeMount() {
+    const html = document.documentElement;
+    if (this.$ons.platform.isIPhoneX()) {
+      html.setAttribute('onsflag-iphonex-portrait', '');
+      html.setAttribute('onsflag-iphonex-landscape', '');
+    }
+  },
 };
