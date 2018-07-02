@@ -1,4 +1,4 @@
-import Second from '../second/Second.vue';
+import Second from '../second';
 
 export default {
   key: 'page1',
