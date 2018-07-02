@@ -6,7 +6,7 @@ import 'onsenui/css/onsen-css-components.css';
 import Vue from 'vue';
 import VueOnsen from 'vue-onsenui';
 import store from './store';
-import App from './App.vue';
+import App from '.';
 
 Vue.config.productionTip = false;
 

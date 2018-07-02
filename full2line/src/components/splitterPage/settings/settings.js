@@ -1,4 +1,4 @@
-import customToolbar from '../toolbar/Toolbar.vue';
+import customToolbar from '../toolbar';
 
 export default {
   template: '#settings',
