@@ -3,10 +3,13 @@
 name=$1
 vue=$(echo "$name" | awk '{print toupper(substr($0, 1, 1)) substr($0, 2, length($0) - 1)}')
 mkdir $name
-touch $name/$vue.vue
-touch $name/$name.html
-touch $name/$name.js
-touch $name/$name.scss
+
+# html files
+touch $name/$name.html $name/$name.scss
 
 # vue file
-echo '<template src="./'$name'.html"></template><script src="./'$name'.js"></script><style src="./'$name'.scss"></style>' > $name/$vue.vue
+echo -e '<template src="./'$name'.html">\n</template><script src="./'$name'.js"></script>\n<style src="./'$name'.scss"></style>\n' > $name/$vue.vue
+
+# js file
+echo -e "export default {\n  data() {\n    return {};\n  },\n};\n" > $name/$name.js
+
