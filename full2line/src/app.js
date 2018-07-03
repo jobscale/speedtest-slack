@@ -1,15 +1,20 @@
-import TabsPage from '@/components/tabsPage';
+import SplitterPage from '@/components/splitterPage';
 import CoverPage from '@/components/coverPage';
 
 export default {
   data() {
     return {
+      isFirst: false,
       pageStack: [
-        TabsPage,
-        CoverPage,
+        SplitterPage,
       ],
       animation: 'fade',
     };
+  },
+  created() {
+    if (this.isFirst/* TODO: 最初のとき */) {
+      this.pageStack.push(CoverPage);
+    }
   },
   beforeMount() {
     const html = document.documentElement;

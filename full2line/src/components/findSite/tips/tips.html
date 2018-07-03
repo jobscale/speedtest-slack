@@ -1,0 +1,16 @@
+<v-ons-page class="small">
+  <v-ons-carousel fullscreen swipeable auto-scroll overscrollable
+                  :index.sync="carouselIndex"
+  >
+    <v-ons-carousel-item class="small" v-for="(value, key) in items" :style="{backgroundColor: value}">
+      <div style="text-align: center; font-size: 30px; margin-top: 20px; color: #fff;">{{key}}</div>
+    </v-ons-carousel-item>
+  </v-ons-carousel>
+  <div :style="dots">
+      <span :index="dotIndex - 1" v-for="dotIndex in Object.keys(items).length" :key="dotIndex" style="cursor: pointer" @click="carouselIndex = dotIndex - 1">
+        {{ carouselIndex === dotIndex - 1 ? '\u25CF' : '\u25CB' }}
+      </span>
+    <v-ons-button v-if="carouselIndex < 2" modifier="large" @click="carouselIndex < 2 && carouselIndex++" >次へ</v-ons-button>
+    <v-ons-button v-else="carouselIndex < 2" modifier="large" v-on:click="onClickClose">おわり</v-ons-button>
+  </div>
+</v-ons-page>

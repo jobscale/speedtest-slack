@@ -1,6 +1,9 @@
-<v-ons-page>
-  <custom-toolbar title="Home" :action="toggleMenu"></custom-toolbar>
+<v-ons-page
+@push-page="$emit('push-page', $event)"
+>
+  <splitter-page-toolbar title="Home" :action="toggleMenu"></splitter-page-toolbar>
   <p style="text-align: center">
     Welcome home.
   </p>
+  <v-ons-button modifier="large" v-on:click="openFindSite">電波探査</v-ons-button>
 </v-ons-page>

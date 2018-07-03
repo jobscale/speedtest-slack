@@ -1,0 +1,21 @@
+<v-ons-page>
+  <v-ons-toolbar>
+    <div class="left">
+      <v-ons-button @click="onClickClose">ホーム</v-ons-button>
+    </div>
+    <div class="center">現場調査</div>
+    <div class="right">
+      <v-ons-button @click="push">？</v-ons-button>
+    </div>
+  </v-ons-toolbar>
+  <p style="text-align: center">
+    <v-ons-button modifier="large" @click="onClickFinding" >チャンネル調査開始</v-ons-button>
+  </p>
+  <v-ons-modal :visible="modalVisible" @click="modalVisible = false">
+    <p style="text-align: center">
+      Loading <v-ons-icon icon="fa-spinner" spin></v-ons-icon>
+      <br><br>
+      Click or wait
+    </p>
+  </v-ons-modal>
+</v-ons-page>

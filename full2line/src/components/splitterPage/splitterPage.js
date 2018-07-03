@@ -1,22 +1,26 @@
-import HomePage from './home';
-import NewsPage from './news';
-import SettingsPage from './settings';
+import { logging } from '@/modules/logging';
 
 export default {
   data() {
     return {
-      current: (() => {
-        const page = this.$parent.$parent.$parent.current;
-        /* eslint-disable no-unneeded-ternary */
-        return page ? page : 'home';
-      })(),
-      pages: ['home', 'news', 'settings'],
+      current: 'SplitterPageHome',
+      pages: [{
+        caption: 'Home',
+        name: 'SplitterPageHome',
+      }, {
+        caption: 'News',
+        name: 'SplitterPageNews',
+      }, {
+        caption: 'Settings',
+        name: 'SplitterPageSettings',
+      }],
       openSide: false,
     };
   },
-  components: {
-    home: HomePage,
-    news: NewsPage,
-    settings: SettingsPage,
+  created() {
+    this.$emit('change-animation', 'fade');
+    logging('change-animation');
+  },
+  methods: {
   },
 };

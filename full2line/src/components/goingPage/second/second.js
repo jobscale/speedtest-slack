@@ -1,5 +1,4 @@
 export default {
-  key: 'page2',
   data() {
     return {
       modalVisible: false,
