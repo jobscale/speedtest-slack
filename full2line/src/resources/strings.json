@@ -1,5 +1,6 @@
 {
 	"common": {
+		"home": "ホーム",
 		"backButton": "戻る"
 	},
 	"homepage": {
@@ -7,6 +8,9 @@
 		"shiitake": "しいたけ",
 		"input": "しいたけ入力",
 		"enoki": "えのき茸"
+	},
+	"findSite": {
+		"finding": "電波探査"
 	},
 	"mainmenu": {
 		"eringi": "エリンギ"

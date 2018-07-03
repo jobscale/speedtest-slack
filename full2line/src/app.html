@@ -1,11 +1,9 @@
-<div id="app">
-  <v-ons-page>
-    <v-ons-navigator
-    :page-stack="pageStack"
-    :animation="animation"
-    @push-page="pageStack.push($event)"
-    @pop-page="pageStack.pop()"
-    @change-animation="animation = $event"
-    />
-  </v-ons-page>
-</div>
+<v-ons-page>
+  <v-ons-navigator
+  :page-stack="pageStack"
+  :animation="animation"
+  @push-page="pageStack.push($event)"
+  @pop-page="pageStack.pop()"
+  @change-animation="animation = $event"
+  />
+</v-ons-page>
