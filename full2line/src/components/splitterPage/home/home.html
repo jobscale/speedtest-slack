@@ -1,9 +1,9 @@
 <v-ons-page
 @push-page="$emit('push-page', $event)"
 >
-  <splitter-page-toolbar title="Home" :action="toggleMenu"></splitter-page-toolbar>
+  <splitter-page-toolbar :title="translate('common.home')" :action="toggleMenu"></splitter-page-toolbar>
   <p style="text-align: center">
     Welcome home.
   </p>
-  <v-ons-button modifier="large" v-on:click="openFindSite">電波探査</v-ons-button>
+  <v-ons-button modifier="large" v-on:click="openFindSite">{{translate('findSite.finding')}}</v-ons-button>
 </v-ons-page>

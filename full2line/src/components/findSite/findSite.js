@@ -4,6 +4,7 @@ import Tips from './tips';
 export default {
   data() {
     return {
+      translate: util.translate,
       modalVisible: false,
       timeoutID: 0,
     };

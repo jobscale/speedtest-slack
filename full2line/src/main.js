@@ -6,7 +6,7 @@ import Vue from 'vue';
 import VueOnsen from 'vue-onsenui';
 import store from './store';
 import App from '.';
-import { logging } from './modules/logging';
+import { logging } from './modules/util';
 
 const _ = require('lodash');
 
