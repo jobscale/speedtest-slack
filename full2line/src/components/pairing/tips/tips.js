@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       carouselIndex: 0,
-      tips: u.translate('findSite.tips.text'),
+      tips: u.translate('pairing.tips.text'),
       dots: {
         textAlign: 'center',
         fontSize: '420%',

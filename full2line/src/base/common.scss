@@ -1,4 +1,18 @@
 body {
-  padding: 2%;
-  border: 3px solid red;
+  border: 0.1em solid ghostwhite;
+}
+div.center {
+  text-align: center;
+  padding: 3%;
+}
+ons-button.button {
+  margin: 3%;
+}
+ons-button.button--large {
+  line-height: 380%;
+  margin: 8% 3%;
+  width: initial;
+}
+ons-icon.ons-icon {
+  color: #0076ff;
 }

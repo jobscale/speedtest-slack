@@ -3,7 +3,6 @@ import { Util as u } from '@/modules/util';
 export default {
   data() {
     return {
-      translate: u.translate,
       current: 'SplitterPageHome',
       pages: [{
         caption: u.translate('common.home'),
@@ -23,5 +22,6 @@ export default {
     u.logger.log('change-animation');
   },
   methods: {
+    translate: u.translate,
   },
 };
