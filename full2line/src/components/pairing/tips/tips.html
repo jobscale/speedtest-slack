@@ -1,5 +1,5 @@
 <v-ons-page class="small">
-  <h3 class="center">{{translate('findSite.tips.title')}}</h3>
+  <h3 class="center">{{translate('pairing.tips.title')}}</h3>
   <v-ons-carousel fullscreen swipeable auto-scroll overscrollable
                   :index.sync="carouselIndex"
   >
@@ -12,6 +12,6 @@
         {{ carouselIndex === index ? '\u25CF' : '\u25CB' }}
       </span>
     <v-ons-button v-if="carouselIndex < tips.length-1" modifier="large" @click="carouselIndex++" >{{translate('common.next')}}</v-ons-button>
-    <v-ons-button v-else="carouselIndex < tips.length-1" modifier="large" v-on:click="onClickClose">{{translate('findSite.start')}}</v-ons-button>
+    <v-ons-button v-else="carouselIndex < tips.length-1" modifier="large" v-on:click="onClickClose">{{translate('pairing.tips.cancel')}}</v-ons-button>
   </div>
 </v-ons-page>

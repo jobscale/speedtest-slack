@@ -1,22 +1,51 @@
 {
 	"common": {
 		"home": "ホーム",
-		"backButton": "戻る"
-	},
-	"homepage": {
-		"main_title": "Main Page + タイトル",
-		"shiitake": "しいたけ",
-		"input": "しいたけ入力",
-		"enoki": "えのき茸"
+		"backButton": "戻る",
+		"next": "次へ"
 	},
 	"findSite": {
-		"finding": "電波探査"
+		"caption": "電波確認",
+		"title": "現場調査",
+		"start": "チャンネル調査開始",
+		"tips": {
+			"title": "操作方法",
+			"text": [
+				"導入後の無線環境トラブルを未然に防ぐため、現場の無線環境を調査します。<br>使用可能なチャンネルを確認することができます。",
+				"チャンネル調査開始ボタンを押すと、<br>現場の使用可能なチャンネル調査を開始します。",
+				"この状態で、、、",
+				"最後に、、、"
+			],
+			"start": "開始",
+			"cancel": "チャンネル調査終了"
+		}
 	},
-	"mainmenu": {
-		"eringi": "エリンギ"
+	"pairing": {
+		"caption": "端末確認",
+		"title": "ペアリング",
+		"submit": "設定内容を送信",
+		"tips": {
+			"title": "操作方法",
+			"text": [
+				"設定器を対象のセンサーに向け、設定機器の「通信」ボタンを押してください。<br>センサーの情報を取得します。"
+			],
+			"start": "開始",
+			"cancel": "調光センサー設定中止"
+		}
 	},
-	"pagetest1": {
-		"title": "タイトル",
-		"buttontitle": "しめじを取りに行く"
+	"system": {
+		"caption": "システムデータ"
+	},
+	"tool": {
+		"caption": "器具設定"
+	},
+	"maintenance": {
+		"caption": "保守機能"
+	},
+	"tutorial": {
+		"caption": "アプリの使い方"
+	},
+	"data": {
+		"caption": "データ保守・管理"
 	}
 }
