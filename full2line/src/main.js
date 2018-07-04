@@ -6,9 +6,7 @@ import Vue from 'vue';
 import VueOnsen from 'vue-onsenui';
 import store from './store';
 import App from '.';
-import { logging } from './modules/util';
-
-const _ = require('lodash');
+import { Util as u } from './modules/util';
 
 (() => {
   const requireComponent = require.context('./components', true, /\w+\.vue$/);
@@ -16,8 +14,8 @@ const _ = require('lodash');
     // コンポーネント設定を取得する
     const componentConfig = requireComponent(fileName);
     // コンポーネント名をパスカルケース (PascalCase) で取得する
-    const componentName = _.upperFirst(_.camelCase(fileName.replace(/^\.\/(.*)index\.\w+$/, '$1')));
-    logging(componentName);
+    const componentName = u.upperFirst(u.camelCase(fileName.replace(/^\.\/(.*)index\.\w+$/, '$1')));
+    u.logger.info(componentName);
     // コンポーネントをグローバル登録する
     Vue.component(
       componentName,

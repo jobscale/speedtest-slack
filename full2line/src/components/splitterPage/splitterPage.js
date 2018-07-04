@@ -1,12 +1,12 @@
-import util from '@/modules/util';
+import { Util as u } from '@/modules/util';
 
 export default {
   data() {
     return {
-      translate: util.translate,
+      translate: u.translate,
       current: 'SplitterPageHome',
       pages: [{
-        caption: util.translate('common.home'),
+        caption: u.translate('common.home'),
         name: 'SplitterPageHome',
       }, {
         caption: 'News',
@@ -20,7 +20,7 @@ export default {
   },
   created() {
     this.$emit('change-animation', 'fade');
-    util.logging('change-animation');
+    u.logger.log('change-animation');
   },
   methods: {
   },

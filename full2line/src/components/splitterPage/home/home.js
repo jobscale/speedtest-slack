@@ -1,15 +1,15 @@
-import util from '@/modules/util';
+import { Util as u } from '@/modules/util';
 
 export default {
   data() {
     return {
-      translate: util.translate,
+      translate: u.translate,
     };
   },
   props: ['toggleMenu'],
   methods: {
     openFindSite() {
-      util.logging('openFindSite');
+      u.logger.log('openFindSite');
       let self;
       for (self = this.$parent; !self.current; self = self.$parent);
       self.current = 'FindSite';

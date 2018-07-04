@@ -1,10 +1,10 @@
-import util from '@/modules/util';
+import { Util as u } from '@/modules/util';
 import Tips from './tips';
 
 export default {
   data() {
     return {
-      translate: util.translate,
+      translate: u.translate,
       modalVisible: false,
       timeoutID: 0,
     };
@@ -15,11 +15,11 @@ export default {
   },
   methods: {
     push() {
-      util.logging('push');
+      u.logger.log('push');
       this.$root.$children[0].pageStack.push(Tips);
     },
     onClickClose() {
-      util.logging('close');
+      u.logger.log('close');
       let self;
       for (self = this.$parent; !self.current; self = self.$parent);
       self.current = 'SplitterPageHome';
