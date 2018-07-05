@@ -3,6 +3,8 @@ body {
 }
 div.center {
   text-align: center;
+}
+.page__content.page--material__content > div.center {
   padding: 3%;
 }
 ons-button.button {
