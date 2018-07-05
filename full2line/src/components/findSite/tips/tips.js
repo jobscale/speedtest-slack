@@ -7,7 +7,7 @@ export default {
       tips: u.translate('findSite.tips.text'),
       dots: {
         textAlign: 'center',
-        fontSize: '420%',
+        fontSize: '180%',
         color: '#0076ff',
         position: 'absolute',
         bottom: '0%',
