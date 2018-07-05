@@ -3,13 +3,13 @@
     <div class="left">
       <ons-icon icon="fa-angle-left" size="1em" fixed-width="true" @click="onClickClose">{{translate('common.home')}}</ons-icon>
     </div>
-    <div class="center">{{translate('findSite.title')}}</div>
+    <div class="center">{{translate('channel.title')}}</div>
     <div class="right">
       <ons-icon icon="ion-ios-help" size="2em" fixed-width="true" @click="push"></ons-icon>
     </div>
   </v-ons-toolbar>
   <p style="text-align: center">
-    <v-ons-button modifier="large" @click="onClickFinding" >{{translate('findSite.start')}}</v-ons-button>
+    <v-ons-button modifier="large" @click="onClickFinding" >{{translate('channel.start')}}</v-ons-button>
   </p>
   <v-ons-modal :visible="modalVisible" @click="modalVisible = false">
     <p style="text-align: center">

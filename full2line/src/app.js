@@ -1,5 +1,5 @@
-import SplitterPage from '@/components/splitterPage';
-import CoverPage from '@/components/coverPage';
+import SplitterPage from '@/components/splitter';
+import CoverPage from '@/components/cover';
 
 export default {
   data() {

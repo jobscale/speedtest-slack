@@ -3,16 +3,16 @@ import { Util as u } from '@/modules/util';
 export default {
   data() {
     return {
-      current: 'SplitterPageHome',
+      current: 'SplitterHome',
       pages: [{
         caption: u.translate('common.home'),
-        name: 'SplitterPageHome',
+        name: 'SplitterHome',
       }, {
         caption: 'News',
-        name: 'SplitterPageNews',
+        name: 'SplitterNews',
       }, {
         caption: 'Settings',
-        name: 'SplitterPageSettings',
+        name: 'SplitterSettings',
       }],
       openSide: false,
     };

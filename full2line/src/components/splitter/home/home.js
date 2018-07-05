@@ -13,9 +13,9 @@ export default {
       for (self = this.$parent; !self.current; self = self.$parent);
       return self;
     },
-    openFindSite() {
-      u.logger.log('openFindSite');
-      this.parent().current = 'FindSite';
+    openChannel() {
+      u.logger.log('openChannel');
+      this.parent().current = 'Channel';
     },
     openPairing() {
       u.logger.log('openPairing');
@@ -25,7 +25,7 @@ export default {
       u.logger.log('openCoverPage');
       this.parent().current = 'CoverPage';
       setTimeout(() => {
-        this.parent().current = 'SplitterPageHome';
+        this.parent().current = 'SplitterHome';
       }, 2000);
     },
   },

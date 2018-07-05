@@ -22,7 +22,7 @@ export default {
       u.logger.log('close');
       let self;
       for (self = this.$parent; !self.current; self = self.$parent);
-      self.current = 'SplitterPageHome';
+      self.current = 'SplitterHome';
     },
     onClickFinding() {
       this.modalVisible = true;
