@@ -3,8 +3,9 @@ import { Util as u } from '@/modules/util';
 export default {
   data() {
     return {
+      isTips: true,
       carouselIndex: 0,
-      tips: u.translate('findSite.tips.text'),
+      tips: u.translate('channel.tips.text'),
       dots: {
         textAlign: 'center',
         fontSize: '180%',
@@ -14,12 +15,17 @@ export default {
         left: 0,
         right: 0,
       },
+      modalVisible: false,
     };
   },
   methods: {
     translate: u.translate,
-    onClickClose() {
-      this.$root.$children[0].pageStack.pop();
+    onClose() {
+      this.$emit('pop-page');
+    },
+    onClickFinding() {
+      this.modalVisible = true;
+      setTimeout(() => this.modalVisible = false, 3000);
     },
   },
 };

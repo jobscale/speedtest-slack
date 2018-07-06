@@ -1,13 +1,13 @@
 <v-ons-page>
   <v-ons-toolbar>
     <v-ons-back-button @click.prevent="onClose" class="left">{{translate('common.home')}}</v-ons-back-button>
-    <div class="center">{{translate('pairing.title')}}</div>
+    <div class="center">{{translate('channel.title')}}</div>
     <div class="right">
       <v-ons-icon icon="ion-ios-help" size="2em" fixed-width="true" v-on:click="isTips = true"></v-ons-icon>
     </div>
   </v-ons-toolbar>
   <p style="text-align: center">
-    <v-ons-button modifier="large" @click="onClickFinding" >{{translate('pairing.submit')}}</v-ons-button>
+    <v-ons-button modifier="large" @click="onClickFinding" >{{translate('channel.start')}}</v-ons-button>
   </p>
   <v-ons-modal :visible="modalVisible" @click="modalVisible = false">
     <p style="text-align: center">
@@ -18,7 +18,7 @@
   </v-ons-modal>
   <v-ons-modal :visible="isTips">
     <div class="tips-content">
-      <h3 class="center">{{translate('pairing.tips.title')}}</h3>
+      <h3 class="center">{{translate('channel.tips.title')}}</h3>
       <v-ons-carousel fullscreen swipeable auto-scroll overscrollable
                       :index.sync="carouselIndex"
       >
@@ -31,7 +31,7 @@
         {{ carouselIndex === index ? '\u25CF' : '\u25CB' }}
       </span>
         <v-ons-button v-if="carouselIndex < tips.length-1" modifier="large" @click="carouselIndex++" >{{translate('common.next')}}</v-ons-button>
-        <v-ons-button v-else="carouselIndex < tips.length-1" modifier="large" v-on:click="isTips=false;carouselIndex=0">{{translate('pairing.tips.cancel')}}</v-ons-button>
+        <v-ons-button v-else="carouselIndex < tips.length-1" modifier="large" v-on:click="isTips=false;carouselIndex=0">{{translate('channel.start')}}</v-ons-button>
       </div>
     </div>
   </v-ons-modal>

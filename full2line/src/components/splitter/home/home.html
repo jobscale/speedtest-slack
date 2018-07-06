@@ -1,0 +1,10 @@
+<v-ons-page>
+  <splitter-toolbar v-if="isToolbar" :title="translate('common.home')" :action="toggleMenu"></splitter-toolbar>
+  <v-ons-navigator
+  :page-stack="pageStack"
+  :animation="animation"
+  @push-page="isToolbar=false;pageStack.push($event)"
+  @pop-page="pageStack.pop();isToolbar=true"
+  @change-animation="animation = $event"
+  ></v-ons-navigator>
+</v-ons-page>

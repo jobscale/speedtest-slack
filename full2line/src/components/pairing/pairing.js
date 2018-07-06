@@ -1,34 +1,31 @@
 import { Util as u } from '@/modules/util';
-import Tips from './tips';
 
 export default {
   data() {
     return {
+      isTips: true,
+      carouselIndex: 0,
+      tips: u.translate('pairing.tips.text'),
+      dots: {
+        textAlign: 'center',
+        fontSize: '180%',
+        color: '#0076ff',
+        position: 'absolute',
+        bottom: '0%',
+        left: 0,
+        right: 0,
+      },
       modalVisible: false,
-      timeoutID: 0,
     };
-  },
-  created() {
-    this.$emit('change-animation', 'fade');
-    this.$root.$children[0].pageStack.push(Tips);
   },
   methods: {
     translate: u.translate,
-    push() {
-      u.logger.log('push');
-      this.$root.$children[0].pageStack.push(Tips);
-    },
-    onClickClose() {
-      u.logger.log('close');
-      let self;
-      for (self = this.$parent; !self.current; self = self.$parent);
-      self.current = 'SplitterPageHome';
+    onClose() {
+      this.$emit('pop-page');
     },
     onClickFinding() {
       this.modalVisible = true;
-      clearTimeout(this.timeoutID);
-      /* eslint-disable no-return-assign */
-      this.timeoutID = setTimeout(() => this.modalVisible = false, 6000);
+      setTimeout(() => this.modalVisible = false, 3000);
     },
   },
 };
