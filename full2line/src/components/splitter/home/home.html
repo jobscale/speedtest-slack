@@ -3,7 +3,7 @@
   <v-ons-navigator
   :page-stack="pageStack"
   :animation="animation"
-  @push-page="pageStack.push($event);isToolbar=false"
+  @push-page="isToolbar=false;pageStack.push($event)"
   @pop-page="pageStack.pop();isToolbar=true"
   @change-animation="animation = $event"
   ></v-ons-navigator>
