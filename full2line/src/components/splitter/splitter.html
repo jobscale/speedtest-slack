@@ -17,7 +17,7 @@
         </v-ons-list>
       </v-ons-page>
     </v-ons-splitter-side>
-    <v-ons-splitter-content>
+    <v-ons-splitter-content v-if="current">
       <component :is="current" :toggle-menu="() => openSide = !openSide"></component>
     </v-ons-splitter-content>
   </v-ons-splitter>

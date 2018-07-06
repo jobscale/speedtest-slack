@@ -17,6 +17,18 @@ const Util = _.merge({
     });
     return self;
   })(['log', 'info', 'warn', 'error', 'assert']),
+  get key() {
+    const data = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const val = [];
+    [8, 4, 4, 4, 12].forEach(len => {
+      let x = '';
+      for (let i = 0; i < len; i++) {
+        x += data[Math.floor(Math.random() * data.length)];
+      }
+      val.push(x);
+    });
+    return val.join('-');
+  },
 }, _);
 
 const mixin = {

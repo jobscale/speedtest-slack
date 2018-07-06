@@ -1,11 +1,9 @@
 <v-ons-page>
   <v-ons-toolbar>
-    <div class="left">
-      <ons-icon icon="fa-angle-left" size="1em" fixed-width="true" @click="onClickClose">{{translate('common.home')}}</ons-icon>
-    </div>
+    <v-ons-back-button @click.prevent="onClose" class="left">{{translate('common.home')}}</v-ons-back-button>
     <div class="center">{{translate('channel.title')}}</div>
     <div class="right">
-      <ons-icon icon="ion-ios-help" size="2em" fixed-width="true" @click="push"></ons-icon>
+      <v-ons-icon icon="ion-ios-help" size="2em" fixed-width="true" v-on:click="isTips = true"></v-ons-icon>
     </div>
   </v-ons-toolbar>
   <p style="text-align: center">
@@ -17,5 +15,24 @@
       <br><br>
       Click or wait
     </p>
+  </v-ons-modal>
+  <v-ons-modal :visible="isTips">
+    <div class="tips-content">
+      <h3 class="center">{{translate('channel.tips.title')}}</h3>
+      <v-ons-carousel fullscreen swipeable auto-scroll overscrollable
+                      :index.sync="carouselIndex"
+      >
+        <v-ons-carousel-item class="small" v-for="(text, index) in tips">
+          <div v-html="text"></div>
+        </v-ons-carousel-item>
+      </v-ons-carousel>
+      <div :style="dots">
+      <span v-if="tips.length > 1" :index="index" v-for="(text, index) in tips" :key="index" style="cursor: pointer" @click="carouselIndex = index">
+        {{ carouselIndex === index ? '\u25CF' : '\u25CB' }}
+      </span>
+        <v-ons-button v-if="carouselIndex < tips.length-1" modifier="large" @click="carouselIndex++" >{{translate('common.next')}}</v-ons-button>
+        <v-ons-button v-else="carouselIndex < tips.length-1" modifier="large" v-on:click="isTips=false;carouselIndex=0">{{translate('channel.start')}}</v-ons-button>
+      </div>
+    </div>
   </v-ons-modal>
 </v-ons-page>

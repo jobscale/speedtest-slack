@@ -17,9 +17,12 @@ export default {
       openSide: false,
     };
   },
-  created() {
-    this.$emit('change-animation', 'fade');
-    u.logger.log('change-animation');
+  beforeMount() {
+    const html = document.documentElement;
+    if (this.$ons.platform.isIPhoneX()) {
+      html.setAttribute('onsflag-iphonex-portrait', '');
+      html.setAttribute('onsflag-iphonex-landscape', '');
+    }
   },
   methods: {
     translate: u.translate,

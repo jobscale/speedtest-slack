@@ -1,21 +1,10 @@
-<v-ons-page
-@push-page="$emit('push-page', $event)"
->
-  <splitter-page-toolbar :title="translate('common.home')" :action="toggleMenu"></splitter-page-toolbar>
-  <div class="center">
-    Welcome home.
-    <v-ons-button modifier="large" v-on:click="openChannel">{{translate('channel.caption')}}</v-ons-button>
-    <v-ons-button modifier="large" v-on:click="openPairing">{{translate('pairing.caption')}}</v-ons-button>
-    <v-ons-button modifier="large" v-on:click="openCoverPage">{{translate('system.caption')}}</v-ons-button>
-    <v-ons-button modifier="large" v-on:click="openCoverPage">{{translate('tool.caption')}}</v-ons-button>
-    <v-ons-button modifier="large" v-on:click="openCoverPage">{{translate('maintenance.caption')}}</v-ons-button>
-    <div class="home-icon">
-      <span>
-        <ons-icon icon="ion-ios-help" size="2em" @click="openCoverPage"><br><span>{{translate('tutorial.caption')}}</span></ons-icon>
-      </span>
-      <span>
-        <ons-icon icon="fa-archive" size="2em" @click="openCoverPage"><br><span>{{translate('data.caption')}}</span></ons-icon>
-      </span>
-    </div>
-  </div>
+<v-ons-page>
+  <splitter-toolbar v-if="isToolbar" :title="translate('common.home')" :action="toggleMenu"></splitter-toolbar>
+  <v-ons-navigator
+  :page-stack="pageStack"
+  :animation="animation"
+  @push-page="pageStack.push($event);isToolbar=false"
+  @pop-page="pageStack.pop();isToolbar=true"
+  @change-animation="animation = $event"
+  ></v-ons-navigator>
 </v-ons-page>
