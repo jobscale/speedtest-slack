@@ -1,7 +1,7 @@
 import { Util as u } from '@/modules/util';
-import { Database as DatabaseBase } from '@/modules/common/database';
+import { Database as Base } from '@/modules/common/database';
 
-export default class Database extends DatabaseBase {
+export default class Database extends Base {
   constructor(instance) {
     super(instance);
     u.logger.log('Database start.');
