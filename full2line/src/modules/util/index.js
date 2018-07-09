@@ -8,7 +8,7 @@ const Util = _.merge({
   logger: (methods => {
     const self = {};
     methods.forEach((method) => {
-      self[method] = window.console[method];
+      self[method] = window.console[(['log', 'info'].indexOf(method) !== -1) ? 'warn' : method];
       if (process.env.NODE_ENV === 'production') {
         window.console[method] = () => {};
       }
