@@ -5,7 +5,6 @@
   "author": "Persol AVC Technology",
   "private": true,
   "scripts": {
-    "exec": "$@",
     "dev": "node build/dev-server.js",
     "start": "npm run dev",
     "build": "node build/build.js",
