@@ -2,7 +2,7 @@
 <widget id="com.panasonic.full2way" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>FULL-2WAY</name>
     <description>
-        full2linsPlus remote setup application and utility.
+        FULL-2WAY remote setup application and utility.
     </description>
     <author email="support@kk.jp.panasonic.com" href="https://www.persol-avct.co.jp">
         support persol avct development team.
@@ -34,7 +34,7 @@
         <splash density="port-xhdpi" src="res/screen/android/logo-xhdpi.9.png" />
         <preference name="AutoHideSplashScreen" value="true" />
         <preference name="ShowSplashScreenSpinner" value="false" />
-        <preference name="SplashScreenDelay" value="3000" />
+        <preference name="SplashScreenDelay" value="2000" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

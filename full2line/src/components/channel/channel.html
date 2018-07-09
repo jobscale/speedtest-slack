@@ -22,7 +22,7 @@
       <v-ons-carousel fullscreen swipeable auto-scroll overscrollable
                       :index.sync="carouselIndex"
       >
-        <v-ons-carousel-item class="small" v-for="(text, index) in tips">
+        <v-ons-carousel-item class="small" v-for="(text, index) in tips" :key="index">
           <div v-html="text"></div>
         </v-ons-carousel-item>
       </v-ons-carousel>
