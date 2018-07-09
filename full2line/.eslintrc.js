@@ -38,5 +38,7 @@ module.exports = {
     "arrow-parens": "off",
     "no-return-assign": "off",
     "no-plusplus": "off",
+    "no-confusing-arrow": "off",
+    "class-methods-use-this": "off",
   },
 };

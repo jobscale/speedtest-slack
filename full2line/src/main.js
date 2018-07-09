@@ -7,15 +7,25 @@ import VueOnsen from 'vue-onsenui';
 import store from './store';
 import App from './components/splitter';
 import { Util as u } from './modules/util';
+import Database from './modules/database';
+import Bluetooth from './modules/bluetooth';
+import Storage from './modules/storage';
+
+/**
+ * アプリ内共通インスタンス
+ * Util.db データベース
+ * Util.blue ブルートゥース通信
+ * Util.storage ストレージ操作
+ */
 
 const app = {
   registerComponent(name, componentConfig) {
     const config = u.assignIn({ key: u.key }, componentConfig.default || componentConfig);
-    u.logger.info(name, JSON.stringify(config));
+    u.logger.info(name, config.key);
     // コンポーネントをグローバル登録する
     Vue.component(name, config);
   },
-  initialize() {
+  initComponent() {
     const requireComponent = require.context('./components', true, /\w+\.vue$/);
     requireComponent.keys().forEach(fileName => {
       // コンポーネント名をパスカルケース (PascalCase) で取得する
@@ -28,6 +38,16 @@ const app = {
     Vue.config.productionTip = false;
     Vue.use(VueOnsen);
   },
+  initDatabase() {
+    u.db = new Database();
+    u.db.open('full2way.db');
+  },
+  initBluetooth() {
+    u.blue = new Bluetooth();
+  },
+  initStorage() {
+    u.storage = new Storage();
+  },
   run() {
     return new Vue({
       el: '#app',
@@ -36,6 +56,12 @@ const app = {
       components: { App },
     });
   },
+  main() {
+    app.initComponent();
+    app.initDatabase();
+    app.initBluetooth();
+    app.initStorage();
+    app.run();
+  },
 };
-app.initialize();
-app.run();
+app.main();
