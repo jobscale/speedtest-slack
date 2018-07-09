@@ -12,14 +12,16 @@ cd src/components
 
 #### javascript
 ```es2015
-import util from '@/modules/util';
+import { Util as u } from '@/modules/util';
 
 export default {
   data() {
     return {
-      translate: util.translate,
-      title: util.translate('common.home'),
+      title: u.translate('common.home'),
     };
+  },
+  methods: {
+    translate: u.translate,
   },
 };
 
@@ -27,7 +29,7 @@ export default {
 
 #### onsenui
 ```onsenui
-<v-ons-button modifier="large" v-on:click="openFindSite">{{translate('findSite.finding')}}</v-ons-button>
+<v-ons-button v-on:click="open">{{translate('pairing.finding')}}</v-ons-button>
 ```
 
 #### vue-template

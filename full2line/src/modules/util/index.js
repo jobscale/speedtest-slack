@@ -2,11 +2,9 @@ const _ = require('lodash');
 
 const Util = _.merge({
   /* eslint-disable global-require */
-  lang: require('@/resources/strings'),
-  /* eslint-enable global-require */
+  lang: require('@/resources/strings'), /* eslint-enable global-require */
   /* eslint-disable no-eval */
-  translate: source => eval(`Util.lang.${source}`),
-  /* eslint-enable no-eval */
+  translate: source => eval(`Util.lang.${source}`), /* eslint-enable no-eval */
   logger: (methods => {
     const self = {};
     methods.forEach((method) => {
@@ -29,6 +27,21 @@ const Util = _.merge({
     });
     return val.join('-');
   },
+  stringToDatetime(timestamp) {
+    return new Date(timestamp);
+  },
+  dateToString(ts) {
+    const con = n => n < 10 ? `0${n}` : n;
+    const dt = {
+      Y: ts.getFullYear(),
+      m: con(ts.getMonth() + 1),
+      d: con(ts.getDate()),
+      H: con(ts.getHours()),
+      M: con(ts.getMinutes()),
+      S: con(ts.getSeconds()),
+    };
+    return `${dt.Y}-${dt.m}-${dt.d} ${dt.H}:${dt.M}:${dt.S}`;
+  },
 }, _);
 
 const mixin = {
@@ -36,9 +49,6 @@ const mixin = {
     return {
       translate: Util.translate,
     };
-  },
-  method: {
-    logging: Util.logger.log,
   },
 };
 
