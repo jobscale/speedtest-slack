@@ -19,7 +19,7 @@ export default {
   methods: {
     translate: u.translate,
     onClose() {
-      this.$emit('pop-page');
+      u.navigator.pop();
     },
     onClickFinding() {
       this.modalVisible = true;

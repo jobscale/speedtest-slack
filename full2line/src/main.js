@@ -5,7 +5,6 @@ import 'onsenui/css/onsen-css-components.css';
 import Vue from 'vue';
 import VueOnsen from 'vue-onsenui';
 import store from './store';
-import App from './components/splitter';
 import { Util as u } from './modules/util';
 import Database from './modules/database';
 import Bluetooth from './modules/bluetooth';
@@ -40,7 +39,17 @@ const app = {
   },
   initDatabase() {
     u.db = new Database();
-    u.db.open('full2way.db');
+    u.db.open(u.db.name);
+    u.db.createTable()
+    .then(() => {
+      u.logger.info('succeeded createTable');
+      return u.db.dropTable();
+    })
+    .then(() => {
+      u.logger.info('succeeded dropTable');
+      return 'succeeded dropTable';
+    })
+    .catch(e => u.logger.error(e.message));
   },
   initBluetooth() {
     u.blue = new Bluetooth();
@@ -52,8 +61,7 @@ const app = {
     return new Vue({
       el: '#app',
       store,
-      template: '<App/>',
-      components: { App },
+      template: '<navigator/>',
     });
   },
   main() {

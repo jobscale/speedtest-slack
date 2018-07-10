@@ -1,10 +1,19 @@
 <v-ons-page>
-  <splitter-toolbar v-if="isToolbar" :title="translate('common.home')" :action="toggleMenu"></splitter-toolbar>
-  <v-ons-navigator
-  :page-stack="pageStack"
-  :animation="animation"
-  @push-page="isToolbar=false;pageStack.push($event)"
-  @pop-page="pageStack.pop();isToolbar=true"
-  @change-animation="animation = $event"
-  ></v-ons-navigator>
+  <splitter-toolbar :title="translate('common.home')" :action="toggleMenu"></splitter-toolbar>
+  <div class="center">
+    Welcome home.
+    <v-ons-button modifier="large" v-on:click="open('Channel')">{{translate('channel.caption')}}</v-ons-button>
+    <v-ons-button modifier="large" v-on:click="open('Pairing')">{{translate('pairing.caption')}}</v-ons-button>
+    <v-ons-button modifier="large" v-on:click="open('Cover')">{{translate('system.caption')}}</v-ons-button>
+    <v-ons-button modifier="large" v-on:click="open('Cover')">{{translate('tool.caption')}}</v-ons-button>
+    <v-ons-button modifier="large" v-on:click="open('Cover')">{{translate('maintenance.caption')}}</v-ons-button>
+    <div class="home-icon">
+      <span>
+        <ons-icon icon="fa-question-circle" size="10vw" @click="open('Cover')"><br><span>{{translate('tutorial.caption')}}</span></ons-icon>
+      </span>
+      <span>
+        <ons-icon icon="fa-archive" size="10vw" @click="open('Cover')"><br><span>{{translate('data.caption')}}</span></ons-icon>
+      </span>
+    </div>
+  </div>
 </v-ons-page>
