@@ -9,7 +9,7 @@ ons-button.button {
 }
 ons-button.button--large {
   line-height: 9vh;
-  margin: 2vw;
+  margin: 1.4vh 2vw;
   width: 90vw;
   font-size: 5vw;
   display: inline-grid;
@@ -19,4 +19,27 @@ ons-icon.ons-icon {
 }
 .tips-content ons-button.button--large {
   width: 80vw;
+  margin: 0 2vw 3vh 2vw;
+}
+ons-page.small .page__background {
+  background-color: #272744;
+  opacity: 0.6;
+}
+.tips-content h3 {
+  margin-top: 3vh;
+  padding-top: 3vh;
+}
+.tips-content {
+  color: black;
+  position: relative;
+  margin: 8vh 4vw 3vh 4vw;
+  height: 88vh;
+  background-color: whitesmoke;
+  text-align: center;
+}
+ons-carousel ons-carousel-item.small {
+  font-size: 4.8vw;
+}
+.tips-content h3.center {
+  font-size: 5.2vw;
 }
