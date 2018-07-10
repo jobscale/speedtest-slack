@@ -33,6 +33,7 @@
         <splash density="port-mdpi" src="res/screen/android/logo-mdpi.9.png" />
         <splash density="port-xhdpi" src="res/screen/android/logo-xhdpi.9.png" />
         <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard" />
+        <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
