@@ -5,7 +5,7 @@ export default {
   methods: {
     translate: u.translate,
     open(name) {
-      u.navigator.push(u.components[name]);
+      u.splitter.$emit('push-page', u.components[name]);
     },
   },
 };
