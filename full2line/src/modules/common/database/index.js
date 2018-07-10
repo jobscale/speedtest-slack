@@ -47,7 +47,7 @@ const Database = function _() {
    * SQLite
    */
   this.openSQLite = () => {
-    Util.logger.info('call to openSQLite.');
+    Util.logger.info(`call to openSQLite. ${this.info.name}`);
     const promise = this.promise();
     this.database = window.sqlitePlugin.openDatabase(this.info, (...argv) => {
       this.cbSuccess(...argv);
@@ -62,7 +62,7 @@ const Database = function _() {
    * WebSQL
    */
   this.openWebSQL = () => {
-    Util.logger.info('call to openWebSQL.');
+    Util.logger.info(`call to openWebSQL. ${this.info.name}`);
     const promise = this.promise();
     this.database = window.openDatabase(
       this.info.name, this.info.version, this.info.description, this.info.size,
