@@ -1,6 +1,6 @@
 # フル２線PLUS設定スマートフォンアプリ
 
-![Screenshot](res/android/xxxhdpi.png)
+![Screenshot](src/assets/logo.png)
 
 ## Create the Component
 ```bash
@@ -39,9 +39,9 @@ export default {
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
-start.sh
+./start.sh
 
 # serve with hot reload at localhost:8080
 npm run dev
@@ -58,3 +58,42 @@ npm run build
 cordova run ios --target="iPhone-X"
 ```
 
+## Modules
+
+#### Bluetooth (Cordova plugin)
+```pre
+modules/common/bluetooth/index.js
+modules/bluetooth/index.js
+
+u.blue = new Bluetooth(); // instance
+```
+
+#### FileStorage (Cordova plugin)
+```pre
+modules/common/storage/index.js
+modules/storage/index.js
+
+u.storage = new Storage(); // instance
+```
+
+#### Database (WebSQL)
+```pre
+modules/common/database/index.js
+modules/database/index.js
+
+u.db = new Database(); // instance
+```
+
+#### Main Utility (Application Common)
+```pre
+modules/util/index.js
+
+import { Util as u } from '@/modules/util'; // static
+```
+
+## Models
+
+#### Database
+```pre
+modules/database/models/index.js
+```
