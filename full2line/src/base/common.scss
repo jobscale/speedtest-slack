@@ -2,16 +2,21 @@ div.center {
   text-align: center;
 }
 .page__content.page--material__content > div.center {
-  padding: 3%;
+  padding: 2vw;
 }
 ons-button.button {
-  margin: 3%;
+  margin: 2vw;
 }
 ons-button.button--large {
-  line-height: 380%;
-  margin: 4%;
-  width: 90%;
+  line-height: 9vh;
+  margin: 2vw;
+  width: 90vw;
+  font-size: 5vw;
+  display: inline-grid;
 }
 ons-icon.ons-icon {
   color: #0076ff;
+}
+.tips-content ons-button.button--large {
+  width: 80vw;
 }
