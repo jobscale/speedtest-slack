@@ -17,12 +17,8 @@ export default {
       openSide: false,
     };
   },
-  beforeMount() {
-    const html = document.documentElement;
-    if (this.$ons.platform.isIPhoneX()) {
-      html.setAttribute('onsflag-iphonex-portrait', '');
-      html.setAttribute('onsflag-iphonex-landscape', '');
-    }
+  created() {
+    u.splitter = this;
   },
   methods: {
     translate: u.translate,

@@ -5,8 +5,20 @@ import { Models } from './models';
 class Database extends Base {
   constructor(instance) {
     super(instance);
-    u.logger.log('Database start.');
-    this.name = Models.schema;
+    u.logger.info('start', 'Database');
+  }
+  initialize() {
+    this.open(Models.schema, Models.size);
+    return this.createTable()
+    .then(() => {
+      u.logger.info('succeeded', 'createTable');
+      return u.db.dropTable();
+    })
+    .then(() => {
+      u.logger.info('succeeded', 'dropTable');
+      return 'ok';
+    })
+    .catch(e => u.logger.error(e.message));
   }
   createTable() {
     return this.transaction(tx => {

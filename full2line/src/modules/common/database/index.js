@@ -11,33 +11,32 @@ const { Util } = require('@/modules/util');
 const Database = function _() {
   this.constructor = () => {
     Util.logger.log('New Instance of Database');
-    this.info = {};
-    this.initialize();
+    this.initInfo();
   };
   /**
    * 初期化
    */
-  this.initialize = () => {
-    this.info.ua = navigator.userAgent.toLowerCase();
-    this.info.isNative = this.info.ua.match('android') || this.info.ua.match('iphone');
+  this.initInfo = () => {
+    const ua = navigator.userAgent.toLowerCase();
+    this.info = {
+      ua,
+      isNative: ua.match('android') || ua.match('iphone'),
+      location: 'default',
+      description: 'Web SQL Database',
+      version: '1.0',
+      module: window.sqlitePlugin ? 'SQLite' : 'WebSQL',
+    };
   };
   /**
    * オープン
-   * @param name
-   * @returns {*}
    */
-  this.open = name => {
+  this.open = (name, size) => {
     this.info.name = name;
-    this.info.location = 'default';
-    this.info.description = 'Web SQL Database';
-    this.info.size = 5 * 1024 * 1024;
-    this.info.version = '1.0';
-    this.info.module = window.sqlitePlugin ? 'SQLite' : 'WebSQL';
+    this.info.size = size;
     return this[`open${this.info.module}`]();
   };
   /**
    * クローズ
-   * @returns {*}
    */
   this.close = () => this.database ? (() => {
     this.database.close(this.cbSuccess);
@@ -72,8 +71,6 @@ const Database = function _() {
   };
   /**
    * クエリを実行
-   * @param sql
-   * @returns {*|PromiseLike<T>|Promise<T>}
    */
   this.exec = sql => {
     let result;
@@ -94,7 +91,12 @@ const Database = function _() {
     const method = argv.unshift();
     method(...argv);
   })() : null;
-  this.transaction = (exec) => {
+  /**
+   * トランザクション
+   * @param exec
+   * @returns {Promise|i.a}
+   */
+  this.transaction = exec => {
     const promise = this.promise();
     this.database.transaction(exec, e => {
       this.cbError(e);

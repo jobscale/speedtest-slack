@@ -20,7 +20,7 @@ import Storage from './modules/storage';
 const app = {
   registerComponent(name, componentConfig) {
     const config = u.assignIn({ key: u.key }, componentConfig.default || componentConfig);
-    u.logger.info(name, config.key);
+    u.logger.info('ok', name, config.key);
     // コンポーネントをグローバル登録する
     Vue.component(name, config);
   },
@@ -39,29 +39,28 @@ const app = {
   },
   initDatabase() {
     u.db = new Database();
-    u.db.open(u.db.name);
-    u.db.createTable()
-    .then(() => {
-      u.logger.info('succeeded createTable');
-      return u.db.dropTable();
-    })
-    .then(() => {
-      u.logger.info('succeeded dropTable');
-      return 'succeeded dropTable';
-    })
-    .catch(e => u.logger.error(e.message));
+    u.db.initialize();
   },
   initBluetooth() {
     u.blue = new Bluetooth();
+    u.blue.initialize();
   },
   initStorage() {
     u.storage = new Storage();
+    u.storage.initialize();
   },
   run() {
     return new Vue({
       el: '#app',
       store,
       template: '<navigator/>',
+      beforeMount() {
+        const html = document.documentElement;
+        if (this.$ons.platform.isIPhoneX()) {
+          html.setAttribute('onsflag-iphonex-portrait', '');
+          html.setAttribute('onsflag-iphonex-landscape', '');
+        }
+      },
     });
   },
   main() {
