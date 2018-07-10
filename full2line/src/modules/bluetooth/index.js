@@ -4,6 +4,7 @@ import { Bluetooth as Base } from '@/modules/common/bluetooth';
 export default class Bluetooth extends Base {
   constructor() {
     super();
-    u.logger.log('Bluetooth start.');
+    u.logger.info('start', 'Bluetooth');
   }
+  initialize() {}
 }

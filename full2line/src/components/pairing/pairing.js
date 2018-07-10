@@ -21,7 +21,7 @@ export default {
   methods: {
     translate: u.translate,
     onClose() {
-      this.$emit('pop-page');
+      u.splitter.$emit('pop-page');
     },
     onClickFinding() {
       this.modalVisible = true;

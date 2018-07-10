@@ -8,12 +8,10 @@ export default {
       tips: u.translate('channel.tips.text'),
       dots: {
         textAlign: 'center',
-        fontSize: '180%',
+        fontSize: '10vw',
         color: '#0076ff',
         position: 'absolute',
-        bottom: '0%',
-        left: 0,
-        right: 0,
+        bottom: '0vh',
       },
       modalVisible: false,
     };
@@ -21,7 +19,7 @@ export default {
   methods: {
     translate: u.translate,
     onClose() {
-      this.$emit('pop-page');
+      u.splitter.$emit('pop-page');
     },
     onClickFinding() {
       this.modalVisible = true;

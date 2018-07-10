@@ -5,7 +5,6 @@ import 'onsenui/css/onsen-css-components.css';
 import Vue from 'vue';
 import VueOnsen from 'vue-onsenui';
 import store from './store';
-import App from './components/splitter';
 import { Util as u } from './modules/util';
 import Database from './modules/database';
 import Bluetooth from './modules/bluetooth';
@@ -21,7 +20,7 @@ import Storage from './modules/storage';
 const app = {
   registerComponent(name, componentConfig) {
     const config = u.assignIn({ key: u.key }, componentConfig.default || componentConfig);
-    u.logger.info(name, config.key);
+    u.logger.info('ok', name, config.key);
     // コンポーネントをグローバル登録する
     Vue.component(name, config);
   },
@@ -40,20 +39,28 @@ const app = {
   },
   initDatabase() {
     u.db = new Database();
-    u.db.open('full2way.db');
+    u.db.initialize();
   },
   initBluetooth() {
     u.blue = new Bluetooth();
+    u.blue.initialize();
   },
   initStorage() {
     u.storage = new Storage();
+    u.storage.initialize();
   },
   run() {
     return new Vue({
       el: '#app',
       store,
-      template: '<App/>',
-      components: { App },
+      template: '<navigator/>',
+      beforeMount() {
+        const html = document.documentElement;
+        if (this.$ons.platform.isIPhoneX()) {
+          html.setAttribute('onsflag-iphonex-portrait', '');
+          html.setAttribute('onsflag-iphonex-landscape', '');
+        }
+      },
     });
   },
   main() {
