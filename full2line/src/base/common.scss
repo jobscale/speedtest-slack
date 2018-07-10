@@ -6,6 +6,7 @@ div.center {
 }
 ons-button.button {
   margin: 2vw;
+  border-radius: 2vw;
 }
 ons-button.button--large {
   line-height: 9vh;
@@ -32,6 +33,7 @@ ons-page.small .page__background {
 .tips-content {
   color: black;
   position: relative;
+  border-radius: 4vw;
   margin: 8vh 4vw 3vh 4vw;
   height: 88vh;
   background-color: whitesmoke;
