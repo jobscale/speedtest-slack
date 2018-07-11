@@ -1,6 +1,4 @@
-<v-ons-page
-@push-page="$emit('push-page', $event)"
->
+<v-ons-page>
   <v-ons-splitter>
     <v-ons-splitter-side
     swipeable width="150px" collapse="" side="left"
@@ -18,7 +16,7 @@
         </v-ons-list>
       </v-ons-page>
     </v-ons-splitter-side>
-    <v-ons-splitter-content v-if="current">
+    <v-ons-splitter-content>
       <component :is="current" :toggle-menu="() => openSide = !openSide"></component>
     </v-ons-splitter-content>
   </v-ons-splitter>

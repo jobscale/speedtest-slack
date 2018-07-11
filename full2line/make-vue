@@ -35,7 +35,7 @@ jsTemplate() {
   echo '  methods: {'
   echo '    translate: u.translate,'
   echo '    close() {'
-  echo '      u.splitter.$emit('"'pop-page');"
+  echo '      this.$emit('"'pop-page');"
   echo '    },'
   echo '  },'
   echo '};'

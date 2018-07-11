@@ -8,9 +8,6 @@ export default {
     };
   },
   props: ['toggleMenu'],
-  created() {
-    u.navigator = this;
-  },
   methods: {
     translate: u.translate,
     push(component) {

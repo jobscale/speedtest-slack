@@ -8,11 +8,11 @@ export default {
   methods: {
     translate: u.translate,
     open(name) {
-      u.splitter.$emit('pop-page');
-      u.splitter.$emit('push-page', u.components[name]);
+      this.$emit('pop-page');
+      this.$emit('push-page', u.components[name]);
     },
     close() {
-      u.splitter.$emit('pop-page');
+      this.$emit('pop-page');
     },
   },
 };
