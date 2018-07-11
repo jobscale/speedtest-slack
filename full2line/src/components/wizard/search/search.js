@@ -9,7 +9,7 @@ export default {
   methods: {
     translate: u.translate,
     close() {
-      u.splitter.$emit('pop-page');
+      this.$emit('pop-page');
     },
   },
 };
