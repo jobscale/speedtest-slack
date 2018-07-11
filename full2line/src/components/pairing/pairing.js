@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     translate: u.translate,
-    onClose() {
+    close() {
       u.splitter.$emit('pop-page');
     },
     onClickFinding() {

@@ -16,7 +16,7 @@ htmlTemplate() {
   echo '<v-ons-page id="'$name'">'
   echo '  <div class="background"></div>'
   echo '  <div class="content">'
-  echo '    <div class="center" @click="onClick">'
+  echo '    <div class="center" @click="close">'
   echo '      <img src="../../assets/logo.png">'
   echo '    </div>'
   echo '  </div>'
@@ -34,7 +34,7 @@ jsTemplate() {
   echo '  },'
   echo '  methods: {'
   echo '    translate: u.translate,'
-  echo '    onClick() {'
+  echo '    close() {'
   echo '      u.splitter.$emit('"'pop-page');"
   echo '    },'
   echo '  },'

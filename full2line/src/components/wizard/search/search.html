@@ -1,0 +1,26 @@
+<v-ons-page id="search">
+  <v-ons-toolbar>
+    <div class="center">{{translate('wizard.title')}}</div>
+  </v-ons-toolbar>
+  <div class="content">
+    <div class="center">
+      <h3>{{translate('wizard.search.caption')}}</h3>
+      <img src="../../../assets/logo.png">
+      <div>{{translate('wizard.search.text')}}</div>
+      <v-ons-list class="center">
+        <v-ons-list-header>機器一覧</v-ons-list-header>
+        <v-ons-list-item modifier="chevron" tappable v-on:click="isTips=true">5123.123.123</v-ons-list-item>
+        <v-ons-list-item modifier="chevron" tappable v-on:click="isTips=true">6123.123.123</v-ons-list-item>
+        <v-ons-list-item modifier="chevron" tappable v-on:click="isTips=true">7123.123.123</v-ons-list-item>
+      </v-ons-list>
+      <v-ons-button modifier="large" v-on:click="close()">{{translate('wizard.search.notFound')}}</v-ons-button>
+    </div>
+  </div>
+  <v-ons-modal :visible="isTips">
+    <div class="tips-content">
+      <h3 class="center">接続完了</h3>
+      通信I/F「？？？」との接続が完了しました。
+      <v-ons-button modifier="large" v-on:click="close">アプリの使用を開始</v-ons-button>
+    </div>
+  </v-ons-modal>
+</v-ons-page>
