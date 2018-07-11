@@ -6,7 +6,9 @@
     swipeable width="150px" collapse="" side="left"
     :open.sync="openSide"
     >
-      <v-ons-page>
+      <v-ons-page
+      @push-page="$emit('push-page', $event)"
+      >
         <v-ons-list>
           <v-ons-list-item v-for="page in pages"
                            :key="page.name"
