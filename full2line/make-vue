@@ -3,11 +3,50 @@
 name=$1
 mkdir $name
 
-# html files
-touch $name/$name.html $name/$name.scss
+# touch files
+touch $name/$name.scss
 
-# vue file
-echo -e '<template src="./'$name'.html"></template>\n<script src="./'$name'.js"></script>\n<style src="./'$name'.scss"></style>' > $name/index.vue
+vueTemplate() {
+  echo '<template src="./'$name'.html"></template>'
+  echo '<script src="./'$name'.js"></script>'
+  echo '<style src="./'$name'.scss"></style>'
+}
 
-# js file
-echo -e "export default {\n  data() {\n    return {};\n  },\n};\n" > $name/$name.js
+htmlTemplate() {
+  echo '<v-ons-page id="'$name'">'
+  echo '  <div class="background"></div>'
+  echo '  <div class="content">'
+  echo '    <div class="center" @click="close">'
+  echo '      <img src="../../assets/logo.png">'
+  echo '    </div>'
+  echo '  </div>'
+  echo '</v-ons-page>'
+
+}
+
+jsTemplate() {
+  echo "import { Util as u } from '@/modules/util';"
+  echo ''
+  echo 'export default {'
+  echo '  data() {'
+  echo '    return {'
+  echo '    };'
+  echo '  },'
+  echo '  methods: {'
+  echo '    translate: u.translate,'
+  echo '    close() {'
+  echo '      u.splitter.$emit('"'pop-page');"
+  echo '    },'
+  echo '  },'
+  echo '};'
+}
+
+main() {
+  vueTemplate > $name/index.vue
+  htmlTemplate > $name/$name.html
+  jsTemplate > $name/$name.js
+}
+
+main
+echo 'created files'
+find $name -type f -ls

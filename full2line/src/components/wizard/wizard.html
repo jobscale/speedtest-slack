@@ -1,0 +1,14 @@
+<v-ons-page id="wizard">
+  <v-ons-toolbar>
+    <div class="center">{{translate('wizard.title')}}</div>
+  </v-ons-toolbar>
+  <div class="content">
+    <div class="center">
+      <h3>{{translate('wizard.caption')}}</h3>
+      <img src="../../assets/logo.png">
+      <div>{{translate('wizard.text')}}</div>
+      <v-ons-button modifier="large" v-on:click="open('WizardSearch')">{{translate('wizard.sure')}}</v-ons-button>
+      <v-ons-button modifier="large" v-on:click="close()">{{translate('wizard.cancel')}}</v-ons-button>
+    </div>
+  </div>
+</v-ons-page>

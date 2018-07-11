@@ -1,0 +1,14 @@
+<v-ons-page id="operation">
+  <v-ons-toolbar>
+    <v-ons-back-button @click.prevent="close" class="left">{{translate('common.home')}}</v-ons-back-button>
+    <div class="center">{{translate('operation.caption')}}</div>
+  </v-ons-toolbar>
+  <div class="content">
+    {{translate('operation.caption')}}
+    <div class='cssload-loader'>
+      <div class='cssload-inner cssload-one'></div>
+      <div class='cssload-inner cssload-two'></div>
+      <div class='cssload-inner cssload-three'></div>
+    </div>
+  </div>
+</v-ons-page>

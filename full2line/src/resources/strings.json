@@ -4,6 +4,18 @@
 		"backButton": "戻る",
 		"next": "次へ"
 	},
+	"wizard": {
+		"title": "フル２線　設定・保守アプリ",
+		"caption": "ようこそ",
+		"text": "接続を行います。",
+		"sure": "通信I/Fとの接続設定を開始する",
+		"cancel": "後で接続設定を行う",
+		"search": {
+			"caption": "設定器の選択",
+			"text": "番号を選択してください。",
+			"notFound": "設定器が見つからない"
+		}
+	},
 	"channel": {
 		"caption": "電波確認",
 		"title": "現場調査",
@@ -36,16 +48,16 @@
 	"system": {
 		"caption": "システムデータ"
 	},
-	"tool": {
+	"operation": {
 		"caption": "器具設定"
 	},
 	"maintenance": {
 		"caption": "保守機能"
 	},
-	"tutorial": {
+	"help": {
 		"caption": "アプリの使い方"
 	},
-	"data": {
+	"manage": {
 		"caption": "データ保守・管理"
 	}
 }

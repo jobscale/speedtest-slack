@@ -53,10 +53,12 @@ const app = {
     return new Vue({
       el: '#app',
       store,
-      template: '<navigator/>',
+      template: '<navigator v-bind:class="{hide:isCold}"/>',
+      data() { return { isCold: true }; },
+      created() { setTimeout(() => this.isCold = false, 2000); },
       beforeMount() {
-        const html = document.documentElement;
         if (this.$ons.platform.isIPhoneX()) {
+          const html = document.documentElement;
           html.setAttribute('onsflag-iphonex-portrait', '');
           html.setAttribute('onsflag-iphonex-landscape', '');
         }

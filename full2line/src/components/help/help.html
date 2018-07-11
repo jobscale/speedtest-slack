@@ -1,0 +1,41 @@
+<v-ons-page id="help" xmlns:v-model="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+  <v-ons-toolbar>
+    <v-ons-back-button @click.prevent="close" class="left">{{translate('common.home')}}</v-ons-back-button>
+    <div class="center">{{translate('help.caption')}}</div>
+  </v-ons-toolbar>
+  <div class="content">
+    <div class="back"></div>
+    <div class="registration-form">
+      <header>
+        <h1>Sign Up</h1>
+        <p>Fill in all informations</p>
+      </header>
+      <form>
+        <div class="input-section email-section" v-bind:class="{'fold-up':style.fixEmail}">
+          <input class="email" type="email" placeholder="ENTER YOUR E-MAIL HERE" autocomplete="off"
+                 v-model:value="email"
+          />
+          <div class="animated-button"><span class="icon-paper-plane" v-bind:class="{next:email}"><i class="fa fa-envelope-o"></i></span>
+            <span class="next-button email" @click="next('Email')"><i class="fa fa-arrow-up"></i></span></div>
+        </div>
+        <div class="input-section password-section" v-bind:class="{folded:!style.fixEmail,'fold-up':style.fixPassword}">
+          <input class="password" type="password" placeholder="ENTER YOUR PASSWORD HERE"
+                 v-model:value="password"
+          />
+          <div class="animated-button"><span class="icon-lock" v-bind:class="{next:password}"><i class="fa fa-lock"></i></span>
+            <span class="next-button password" @click="next('Password')"><i class="fa fa-arrow-up"></i></span></div>
+        </div>
+        <div class="input-section repeat-password-section" v-bind:class="{folded:!style.fixPassword,'fold-up':style.fixConfirm}">
+          <input class="repeat-password" type="password" placeholder="REPEAT YOUR PASSWORD HERE"
+                 v-model:value="confirm"
+          />
+          <div class="animated-button"><span class="icon-repeat-lock"  v-bind:class="{next:confirm}"><i class="fa fa-lock"></i></span>
+            <span class="next-button repeat-password" @click="next('Confirm')"><i class="fa fa-paper-plane"></i></span></div>
+        </div>
+        <div class="success" v-bind:style="style.fixConfirm?'marginTop:0':''" @click="close">
+          <p>ACCOUNT CREATED</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</v-ons-page>
