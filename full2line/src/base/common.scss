@@ -1,5 +1,13 @@
 body {
-  background: url(../assets/logo.png) center center no-repeat;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  color: #ececec;
+  font-family: Quattrocento, serif;
+  line-height: 1.8925;
+  background: url(../assets/logo.png) no-repeat center center;
+  background-size: contain;
   text-align: center;
 }
 div.center {
