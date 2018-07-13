@@ -20,8 +20,10 @@
         </div>
       </v-ons-list-item>
       <v-ons-list-item modifier="chevron" tappable @click="isExpanded=false;$ons.notification.prompt({
-        message: '保存する名前を入力',
+        title: '保存',
+        messageHTML: '<div>保存する名前を入力</div><div class=margin-mid><small>既存の名前を指定すると上書きされます。</small></div>',
         modifier: 'material',
+        placeholder: '標準の初期設定',
         callback: name => $ons.notification.toast(`「${name}」を保存しました。`, {timeout:3000}),
       })">
         保存する
