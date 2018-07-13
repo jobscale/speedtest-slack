@@ -13,6 +13,15 @@ body {
 div.center {
   text-align: center;
 }
+.toolbar__title.toolbar--material__center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 70vw;
+}
 .page__content.page--material__content > div.center {
   padding: 2vw;
 }
@@ -62,4 +71,10 @@ ons-carousel ons-carousel-item.small {
 }
 .hide {
   display: none;
+}
+.margin-min {
+  margin: 1vw;
+}
+.margin-mid {
+  margin: 2vw 1vw;
 }

@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       pageStack: [u.components.Splitter],
-      animation: 'fade',
+      animation: ['slide', 'lift', 'fade', 'none'][0],
     };
   },
   props: ['toggleMenu'],
