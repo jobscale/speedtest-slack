@@ -17,7 +17,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "cordova-android": "^6.2.3",
+    "cordova-android": "6.2.3",
     "cordova-ios": "4.5.4",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-file": "^4.3.3",
@@ -27,7 +27,8 @@
     "onsenui": "^2.7.0",
     "vue": "2.5.0",
     "vue-onsenui": "^2.3.0",
-    "vuex": "^3.0.0"
+    "vuex": "^3.0.0",
+    "cordova-plugin-crosswalk-webview": "~2.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -87,8 +88,12 @@
     "plugins": {
       "cordova-plugin-whitelist": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "cordova-plugin-crosswalk-webview": {}
     },
-    "platforms": []
+    "platforms": [
+      "android",
+      "ios"
+    ]
   }
 }
