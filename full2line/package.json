@@ -12,8 +12,9 @@
     "build:custom": "node build/build_custom.js",
     "build:watch": "cross-env WEBPACK_WATCH=true node build/build.js",
     "build:watch:custom": "cross-env WEBPACK_WATCH=true node build/build_custom.js",
-    "cordova:build:a": "cordova build android | grep -i error | tee $(date +'/tmp/%m%d-%H%M%S.log')",
-    "android": "npm run build && npm run cordova:build:a && cordova run android --nobuild",
+    "pf:android": "scripts/pf-android",
+    "pf:build:android": "cordova build android | grep -i error | tee $(date +'/tmp/%m%d-%H%M%S.log')",
+    "android": "npm run build && npm run pf:build:android && cordova run android --nobuild",
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {

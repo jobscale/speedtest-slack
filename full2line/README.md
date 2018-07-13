@@ -41,7 +41,7 @@ export default {
 
 ```bash
 # install dependencies
-./start.sh
+scripts/start.sh
 
 # serve with hot reload at localhost:8080
 npm run dev
