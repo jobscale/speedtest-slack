@@ -2,6 +2,20 @@
 
 ![Screenshot](src/assets/logo.png)
 
+## Environment
+
+#### platform add android
+```bash
+npm run pf:android
+```
+
+## Run
+
+#### run android
+```bash
+npm run android
+```
+
 ## Create the Component
 ```bash
 cd src/components
