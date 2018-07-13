@@ -7,4 +7,9 @@ div.home-icon > span {
 }
 div.home-icon > span span {
   font-size: 4vw;
+  display: block;
+}
+div.home-icon > span:nth-child(even) {
+  width: 1.5vw;
+  display: inline-block;
 }
