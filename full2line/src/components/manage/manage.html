@@ -5,12 +5,6 @@
   </v-ons-toolbar>
   <div class="background"></div>
   <div class="content">
-    <div class="dropdown" @click="isDropped=!isDropped;isCollapse=!isCollapse" v-bind:class="{dropped:isDropped}">
-      <div class="item" v-bind:class="{collapse:isCollapse}">機器A設定</div>
-      <div class="item" v-bind:class="{collapse:isCollapse}">機器B設定</div>
-      <div class="item" v-bind:class="{collapse:isCollapse}">機器C設定</div>
-      <div class="item" v-bind:class="{collapse:isCollapse}">開く</div>
-    </div>
     <v-ons-list>
       <v-ons-list-item expandable :expanded.sync="isExpanded">
         開く
