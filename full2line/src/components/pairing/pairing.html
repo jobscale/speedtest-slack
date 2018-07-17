@@ -3,36 +3,12 @@
     <v-ons-back-button @click.prevent="close" class="left">{{translate('common.home')}}</v-ons-back-button>
     <div class="center">{{translate('pairing.title')}}</div>
     <div class="right">
-      <v-ons-icon icon="ion-ios-help" size="2em" fixed-width="true" v-on:click="isTips = true"></v-ons-icon>
+      <v-ons-icon icon="ion-ios-help" size="2em" fixed-width="true" v-on:click="isTips=true"></v-ons-icon>
     </div>
   </v-ons-toolbar>
   <p style="text-align: center">
-    <v-ons-button modifier="large" @click="onClickFinding" >{{translate('pairing.submit')}}</v-ons-button>
+    <v-ons-button modifier="large" @click="isProcessing=true" >{{translate('pairing.submit')}}</v-ons-button>
   </p>
-  <v-ons-modal :visible="modalVisible" @click="modalVisible = false">
-    <p style="text-align: center">
-      Loading <v-ons-icon icon="fa-spinner" spin></v-ons-icon>
-      <br><br>
-      Click or wait
-    </p>
-  </v-ons-modal>
-  <v-ons-modal :visible="isTips">
-    <div class="tips-content">
-      <h3 class="center">{{translate('pairing.tips.title')}}</h3>
-      <v-ons-carousel fullscreen swipeable auto-scroll overscrollable
-                      :index.sync="carouselIndex"
-      >
-        <v-ons-carousel-item class="small" v-for="(text, index) in tips" :key="index">
-          <div v-html="text"></div>
-        </v-ons-carousel-item>
-      </v-ons-carousel>
-      <div :style="dots">
-      <span v-if="tips.length > 1" :index="index" v-for="(text, index) in tips" :key="index" style="cursor: pointer" @click="carouselIndex = index">
-        {{ carouselIndex === index ? '\u25CF' : '\u25CB' }}
-      </span>
-        <v-ons-button v-if="carouselIndex < tips.length-1" modifier="large" @click="carouselIndex++" >{{translate('common.next')}}</v-ons-button>
-        <v-ons-button v-else="carouselIndex < tips.length-1" modifier="large" v-on:click="isTips=false;carouselIndex=0">{{translate('pairing.tips.cancel')}}</v-ons-button>
-      </div>
-    </div>
-  </v-ons-modal>
+  <processing :visible="isProcessing" :close="()=>isProcessing=false"></processing>
+  <pairing-tips :visible="isTips" :close="()=>isTips=false"></pairing-tips>
 </v-ons-page>
