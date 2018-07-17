@@ -17,7 +17,11 @@
       </v-ons-page>
     </v-ons-splitter-side>
     <v-ons-splitter-content>
-      <component :is="current" :toggle="()=>openSide=!openSide"></component>
+      <component
+      :is="current"
+      :toggle="()=>openSide=!openSide"
+      @push-page="$emit('push-page', $event)"
+      ></component>
     </v-ons-splitter-content>
   </v-ons-splitter>
 </v-ons-page>

@@ -2,18 +2,18 @@
   <splitter-toolbar :title="translate('common.home')" :action="toggle"></splitter-toolbar>
   <div class="center">
     Welcome home.
-    <v-ons-button modifier="large" v-on:click="open('Channel')">{{translate('channel.caption')}}</v-ons-button>
-    <v-ons-button modifier="large" v-on:click="open('Pairing')">{{translate('pairing.caption')}}</v-ons-button>
-    <v-ons-button modifier="large" v-on:click="open('System')">{{translate('system.caption')}}</v-ons-button>
-    <v-ons-button modifier="large" v-on:click="open('Operation')">{{translate('operation.caption')}}</v-ons-button>
-    <v-ons-button modifier="large" v-on:click="open('Maintenance')">{{translate('maintenance.caption')}}</v-ons-button>
+    <v-ons-button modifier="large" v-on:click="$emit('push-page', 'Channel')">{{translate('channel.caption')}}</v-ons-button>
+    <v-ons-button modifier="large" v-on:click="$emit('push-page', 'Pairing')">{{translate('pairing.caption')}}</v-ons-button>
+    <v-ons-button modifier="large" v-on:click="$emit('push-page', 'System')">{{translate('system.caption')}}</v-ons-button>
+    <v-ons-button modifier="large" v-on:click="$emit('push-page', 'Operation')">{{translate('operation.caption')}}</v-ons-button>
+    <v-ons-button modifier="large" v-on:click="$emit('push-page', 'Maintenance')">{{translate('maintenance.caption')}}</v-ons-button>
     <div class="home-icon">
       <span>
-        <ons-icon icon="fa-question-circle" size="10vw" @click="open('Help')"><br><span>{{translate('help.caption')}}</span></ons-icon>
+        <ons-icon icon="fa-question-circle" size="10vw" @click="$emit('push-page', 'Help')"><br><span>{{translate('help.caption')}}</span></ons-icon>
       </span>
       <span></span>
       <span>
-        <ons-icon icon="fa-archive" size="10vw" @click="open('Manage')"><br><span>{{translate('manage.caption')}}</span></ons-icon>
+        <ons-icon icon="fa-archive" size="10vw" @click="$emit('push-page', 'Manage')"><br><span>{{translate('manage.caption')}}</span></ons-icon>
       </span>
     </div>
   </div>

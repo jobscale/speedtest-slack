@@ -9,11 +9,5 @@ export default {
   },
   methods: {
     translate: u.translate,
-    push(component) {
-      this.pageStack.push(component);
-    },
-    pop() {
-      this.pageStack.pop();
-    },
   },
 };
