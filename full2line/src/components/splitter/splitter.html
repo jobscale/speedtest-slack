@@ -9,7 +9,7 @@
           <v-ons-list-item v-for="page in pages"
                            :key="page.name"
                            tappable modifier="chevron"
-                           @click="current = page.name; openSide = false"
+                           @click="current=page.name;openSide=false"
           >
             <div class="center">{{ page.caption }}</div>
           </v-ons-list-item>
@@ -17,7 +17,7 @@
       </v-ons-page>
     </v-ons-splitter-side>
     <v-ons-splitter-content>
-      <component :is="current" :toggle-menu="() => openSide = !openSide"></component>
+      <component :is="current" :toggle="()=>openSide=!openSide"></component>
     </v-ons-splitter-content>
   </v-ons-splitter>
 </v-ons-page>

@@ -1,3 +1,3 @@
 export default {
-  props: ['toggleMenu'],
+  props: ['toggle'],
 };

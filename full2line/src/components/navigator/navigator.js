@@ -7,7 +7,6 @@ export default {
       animation: ['slide', 'lift', 'fade', 'none'][0],
     };
   },
-  props: ['toggleMenu'],
   methods: {
     translate: u.translate,
     push(component) {

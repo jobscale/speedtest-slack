@@ -1,7 +1,7 @@
 import { Util as u } from '@/modules/util';
 
 export default {
-  props: ['toggleMenu'],
+  props: ['toggle'],
   created() {
     u.splitter.$emit('push-page', u.components.Wizard);
   },
