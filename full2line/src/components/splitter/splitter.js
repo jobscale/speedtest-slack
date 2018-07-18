@@ -17,9 +17,6 @@ export default {
       openSide: false,
     };
   },
-  created() {
-    u.splitter = this;
-  },
   methods: {
     translate: u.translate,
   },
