@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       pageStack: [u.components.Splitter],
-      animation: ['slide', 'lift', 'fade', 'none'][0],
+      animation: ['slide', 'lift', 'fade', 'none'][3],
     };
   },
   methods: {

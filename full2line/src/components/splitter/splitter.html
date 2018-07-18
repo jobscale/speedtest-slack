@@ -1,4 +1,4 @@
-<v-ons-page>
+<v-ons-page id="splitter">
   <v-ons-splitter>
     <v-ons-splitter-side
     swipeable width="150px" collapse="" side="left"
@@ -6,10 +6,11 @@
     >
       <v-ons-page>
         <v-ons-list>
-          <v-ons-list-item v-for="page in pages"
-                           :key="page.name"
-                           tappable modifier="chevron"
-                           @click="current=page.name;openSide=false"
+          <v-ons-list-item
+          v-for="page in pages"
+          :key="page.name"
+          tappable modifier="chevron"
+          @click="current=page.name;openSide=false"
           >
             <div class="center">{{ page.caption }}</div>
           </v-ons-list-item>
