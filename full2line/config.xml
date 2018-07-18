@@ -52,6 +52,7 @@
         </config-file>
     </platform>
     <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="Orientation" value="portrait" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashScreenDelay" value="2000" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
