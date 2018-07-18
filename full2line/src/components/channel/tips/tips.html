@@ -1,8 +1,9 @@
 <v-ons-modal :visible="visible">
   <div class="tips-content">
     <h3 class="center">{{translate('channel.tips.title')}}</h3>
-    <v-ons-carousel fullscreen swipeable auto-scroll overscrollable
-                    :index.sync="carouselIndex"
+    <v-ons-carousel
+    fullscreen swipeable auto-scroll overscrollable auto-refresh
+    :index.sync="carouselIndex"
     >
       <v-ons-carousel-item class="small" v-for="(text, index) in tips" :key="index">
         <div v-html="text"></div>

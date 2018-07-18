@@ -1,9 +1,9 @@
-<v-ons-page>
+<v-ons-page id="channel">
   <v-ons-toolbar>
     <v-ons-back-button @click.prevent="close" class="left">{{translate('common.home')}}</v-ons-back-button>
     <div class="center">{{translate('channel.title')}}</div>
     <div class="right">
-      <v-ons-icon icon="ion-ios-help" size="2em" fixed-width="true" v-on:click="isTips=true"></v-ons-icon>
+      <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
     </div>
   </v-ons-toolbar>
   <p style="text-align: center">

@@ -7,8 +7,8 @@
       <h3>{{translate('wizard.caption')}}</h3>
       <img src="../../assets/logo.png">
       <div>{{translate('wizard.text')}}</div>
-      <v-ons-button modifier="large" v-on:click="open('WizardSearch')">{{translate('wizard.sure')}}</v-ons-button>
-      <v-ons-button modifier="large" v-on:click="close()">{{translate('wizard.cancel')}}</v-ons-button>
+      <v-ons-button modifier="large" @click="open('WizardSearch')">{{translate('wizard.sure')}}</v-ons-button>
+      <v-ons-button modifier="large" @click="close()">{{translate('wizard.cancel')}}</v-ons-button>
     </div>
   </div>
 </v-ons-page>
