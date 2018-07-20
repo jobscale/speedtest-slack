@@ -72,7 +72,15 @@ npm run build
 cordova run ios --target="iPhone-X"
 ```
 
+## Components
+> src/conponents
+
+* ユーザーインターフェース - (Vueコンポーネント)
+
 ## Modules
+> src/modules
+
+* アプリ機能 - （機能モジュール）
 
 #### Bluetooth (Cordova plugin)
 ```pre
@@ -106,6 +114,9 @@ import { Util as u } from '@/modules/util'; // static
 ```
 
 ## Models
+> src/modules/<機能>/models
+
+* アプリデータ - (データモデル)
 
 #### Database
 ```pre
