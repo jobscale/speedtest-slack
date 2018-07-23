@@ -31,42 +31,36 @@ export default new Vuex.Store({
       },
     ],
   },
+  /* eslint no-param-reassign: ["error", { "props": false }] */
   mutations: {
-    clear() {
-      this.state = {
-        interfaces: [],
-      };
+    clear(state) {
+      state.interfaces = [];
     },
-    addInterface(id, name) {
-      this.state.interfaces[id] = {
+    addInterface(state, id, name) {
+      state.interfaces[id] = {
         name,
         sensors: [],
       };
     },
-    addSensor(id, sensor, name) {
-      this.state.interfaces[id].sensors[sensor] = {
+    addSensor(state, params) {
+      state.interfaces[params.id].sensors[params.sensor] = {
         name,
         lines: [
-          { items: [] },
-          { items: [] },
-          { items: [] },
           { items: [] },
         ],
       };
     },
-    addItem(id, sensor, line, item, name) {
-      if (this.state.interfaces[id].sensors[sensor].lines[line].items.length > 63) {
+    addItem(state, params) {
+      if (state.interfaces[params.id].sensors[params.sensor].lines[params.line].items.length > 63) {
         throw new Error('items over 64');
       }
-      this.state.interfaces[id].sensors[sensor].lines[line].items[item] = {
-        name,
+      state.interfaces[params.id].sensors[params.sensor].lines[params.line].items[params.item] = {
+        name: params.name,
       };
     },
-    removeItem(id, sensor, line, item) {
-      if (this.state.interfaces[id].sensors[sensor].lines[line].items.length > 63) {
-        throw new Error('items over 64');
-      }
-      delete this.state.interfaces[id].sensors[sensor].lines[line].items[item];
+    removeItem(state, params) {
+      delete
+      state.interfaces[params.id].sensors[params.sensor].lines[params.line].items[params.item];
     },
   },
 });
