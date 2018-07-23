@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { Util as u } from '@/modules/util';
+import { Constant } from '@/base/common';
 
 Vue.use(Vuex);
 
@@ -19,6 +21,7 @@ export default new Vuex.Store({
             name: 'sensor',
             lines: [ // const 4
               {
+                name: 'line',
                 items: [ // max 64
                   {
                     name: 'item',
@@ -51,12 +54,17 @@ export default new Vuex.Store({
       };
     },
     addItem(state, params) {
-      if (state.interfaces[params.id].sensors[params.sensor].lines[params.line].items.length > 63) {
+      if (state.interfaces[params.id].sensors[params.sensor].lines[params.line]
+      .items.length >= Constant.maxItem) {
         throw new Error('items over 64');
       }
       state.interfaces[params.id].sensors[params.sensor].lines[params.line].items[params.item] = {
         name: params.name,
       };
+      u.logger.info({
+        Constant,
+        state: JSON.stringify(this.state),
+      });
     },
     removeItem(state, params) {
       delete

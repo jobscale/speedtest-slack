@@ -55,7 +55,12 @@ const app = {
       store,
       template: '<navigator v-bind:class="{hide:isCold}"/>',
       data() { return { isCold: true }; },
-      created() { setTimeout(() => this.isCold = false, 2000); },
+      created() {
+        setTimeout(() => {
+          this.isCold = false;
+          this.componentTest();
+        }, 2000);
+      },
       beforeMount() {
         if (this.$ons.platform.isIPhoneX()) {
           const html = document.documentElement;
@@ -63,6 +68,18 @@ const app = {
           html.setAttribute('onsflag-iphonex-landscape', '');
         }
         this.$ons.platform.select('ios');
+      },
+      methods: {
+        componentTest() {
+          const item = {
+            id: 0,
+            sensor: 0,
+            line: 0,
+            item: 0,
+            name: 'first',
+          };
+          this.$store.commit('addItem', item);
+        },
       },
     });
   },
