@@ -1,12 +1,12 @@
-const { slack } = require('env');
+const env = require('env');
 const { Slack } = require('slack');
 
 const main = () => {
-  const app = new Slack(slack);
-  app.getHistory(1000)
-  .then(json => app.deleteChat(json.messages))
-  .catch(e => console.error(e.message))
-  .then(json => console.info(json));
+  const slack = new Slack(env.slack);
+  slack.getHistory(1000)
+  .then(json => slack.deleteChat(json.messages))
+  .catch(e => slack.logger.error(e.message))
+  .then(json => slack.logger.info(json));
 };
 (() => {
   main();

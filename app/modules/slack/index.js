@@ -67,7 +67,7 @@ class Slack extends App {
       return response.json();
     })
     .catch(e => e.message)
-    .then(info => console.info(info));
+    .then(info => this.logger.info(info));
   }
 
   deleteChat(messages) {
@@ -87,7 +87,7 @@ class Slack extends App {
     };
     const main = () => {
       this.count = 0;
-      run(800);
+      run(1000);
     };
     main();
     return promise.instance;

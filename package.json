@@ -13,7 +13,7 @@
     "url": "https://github.com/jobscale/speedtest-slack/issues"
   },
   "homepage": "https://github.com/jobscale/speedtest-slack#readme",
-  "main": "fetch.js",
+  "main": "app/index.js",
   "scripts": {
     "start": "NODE_PATH=./app/config:./app/modules node app/index",
     "channel:clear": "NODE_PATH=./app/config:./app/modules node app/clear-channel",
@@ -23,7 +23,8 @@
   "dependencies": {
     "form-data": "^2.3.2",
     "lodash": "^4.17.10",
-    "node-fetch": "^2.1.2"
+    "node-fetch": "^2.1.2",
+    "speedtest-cli": "^0.1.0"
   },
   "devDependencies": {
     "http-proxy-agent": "^2.1.0",
