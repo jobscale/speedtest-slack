@@ -2,29 +2,33 @@
   "name": "speedtest-slack",
   "version": "1.0.0",
   "description": "",
-  "main": "fetch.js",
-  "dependencies": {
-    "form-data": "^2.3.2",
-    "http-proxy-agent": "^2.1.0",
-    "https-proxy-agent": "^2.2.1",
-    "lodash": "^4.17.10",
-    "node-fetch": "^2.1.2"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "start": "NODE_PATH=./app/config:./app/modules node index",
-    "channel:clear": "NODE_PATH=./app/config:./app/modules node clear-channel",
-    "test": "NODE_PATH=./app/config:./app/modules node fetch"
-  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jobscale/speedtest-slack.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/jobscale/speedtest-slack/issues"
   },
-  "homepage": "https://github.com/jobscale/speedtest-slack#readme"
+  "homepage": "https://github.com/jobscale/speedtest-slack#readme",
+  "main": "fetch.js",
+  "scripts": {
+    "start": "NODE_PATH=./app/config:./app/modules node app/index",
+    "channel:clear": "NODE_PATH=./app/config:./app/modules node app/clear-channel",
+    "test": "NODE_PATH=./app/config:./app/modules node app/fetch",
+    "lint": "eslint app"
+  },
+  "dependencies": {
+    "lodash": "^4.17.10",
+    "node-fetch": "^2.1.2"
+  },
+  "devDependencies": {
+    "http-proxy-agent": "^2.1.0",
+    "https-proxy-agent": "^2.2.1",
+    "eslint": "^5.2.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-config-airbnb-base": "^13.0.0"
+  }
 }
