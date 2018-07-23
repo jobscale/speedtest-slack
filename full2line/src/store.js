@@ -1,39 +1,72 @@
-/* eslint no-param-reassign: ["error", { "props": false }] */
 import Vue from 'vue';
 import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  /**
+   * interface : 通信I/F
+   * sensor : Aセンサ
+   * lint : 系統
+   * item : 器具
+   */
   state: {
-    noteGroups: [
+    interfaces: [ // max ?
       {
-        name: '2017',
-        notes: [
+        name: 'interface',
+        sensors: [ // max ?
           {
-            title: 'iPhone 8 / 8 Plus',
-            description: 'September 22, 2017',
+            name: 'sensor',
+            lines: [ // const 4
+              {
+                items: [ // max 64
+                  {
+                    name: 'item',
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
     ],
   },
   mutations: {
-    addNote(state, note) {
-      if (note.title === '' && note.description === '') { return; }
-
-      const matcher = note.description.match(/(20\d{2})/);
-      const name = (matcher && matcher[1]) || 'Unknown';
-      let targetNoteGroup = state.noteGroups.find(v => v.name === name);
-      if (!targetNoteGroup) {
-        const newNoteGroup = {
-          name,
-          notes: [],
-        };
-        state.noteGroups.unshift(newNoteGroup);
-        targetNoteGroup = newNoteGroup;
+    clear() {
+      this.state = {
+        interfaces: [],
+      };
+    },
+    addInterface(id, name) {
+      this.state.interfaces[id] = {
+        name,
+        sensors: [],
+      };
+    },
+    addSensor(id, sensor, name) {
+      this.state.interfaces[id].sensors[sensor] = {
+        name,
+        lines: [
+          { items: [] },
+          { items: [] },
+          { items: [] },
+          { items: [] },
+        ],
+      };
+    },
+    addItem(id, sensor, line, item, name) {
+      if (this.state.interfaces[id].sensors[sensor].lines[line].items.length > 63) {
+        throw new Error('items over 64');
       }
-      targetNoteGroup.notes.unshift(note);
+      this.state.interfaces[id].sensors[sensor].lines[line].items[item] = {
+        name,
+      };
+    },
+    removeItem(id, sensor, line, item) {
+      if (this.state.interfaces[id].sensors[sensor].lines[line].items.length > 63) {
+        throw new Error('items over 64');
+      }
+      delete this.state.interfaces[id].sensors[sensor].lines[line].items[item];
     },
   },
 });
