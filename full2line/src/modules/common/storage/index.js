@@ -1,12 +1,10 @@
-const { Util } = require('@/modules/util');
+import { Util as u } from '@/modules/util';
 
-const Storage = function _() {
-  this.constructor = () => {
-    Util.logger.info('New Instance of Storage');
-  };
-  this.constructor();
-};
-
-module.exports = {
+export class Storage {
+  constructor() {
+    u.logger.info('New Instance of Storage');
+  }
+}
+export default {
   Storage,
 };

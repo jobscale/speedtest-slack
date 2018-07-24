@@ -1,6 +1,4 @@
-const _ = require('lodash');
-
-const Models = _.merge({
+export const Models = {
   schema: 'full2way.db',
   size: 5 * 1024 * 1024,
   tables: {
@@ -22,7 +20,7 @@ const Models = _.merge({
       ')',
     },
   },
-}, _);
-module.exports = {
+};
+export default {
   Models,
 };

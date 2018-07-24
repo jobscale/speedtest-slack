@@ -1,21 +1,10 @@
-const _ = require('lodash');
+import _ from 'lodash';
 
-const Util = _.merge({
-  /* eslint-disable global-require */
-  lang: require('@/resources/strings'), /* eslint-enable global-require */
-  /* eslint-disable no-eval */
-  translate: source => eval(`Util.lang.${source}`), /* eslint-enable no-eval */
-  logger: (methods => {
-    const self = {};
-    methods.forEach((method) => {
-      self[method] = window.console[(['log', 'info'].indexOf(method) !== -1) ? 'warn' : method];
-      if (process.env.NODE_ENV === 'production') {
-        window.console[method] = () => {};
-      }
-    });
-    return self;
-  })(['log', 'info', 'warn', 'error', 'assert']),
-  get key() {
+export class Util {
+  constructor() {
+    throw Error('only static');
+  }
+  static get key() {
     const data = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     const val = [];
     [8, 4, 4, 4, 12].forEach(len => {
@@ -26,11 +15,15 @@ const Util = _.merge({
       val.push(x);
     });
     return val.join('-');
-  },
-  stringToDatetime(timestamp) {
+  }
+  static translate(source) {
+    /* eslint-disable no-eval */
+    return eval(`Util.lang.${source}`); /* eslint-enable no-eval */
+  }
+  static stringToDatetime(timestamp) {
     return new Date(timestamp);
-  },
-  dateToString(ts) {
+  }
+  static dateToString(ts) {
     const con = n => n < 10 ? `0${n}` : n;
     const dt = {
       Y: ts.getFullYear(),
@@ -41,18 +34,38 @@ const Util = _.merge({
       S: con(ts.getSeconds()),
     };
     return `${dt.Y}-${dt.m}-${dt.d} ${dt.H}:${dt.M}:${dt.S}`;
-  },
+  }
+  static promise() {
+    const promise = {};
+    promise.instance = new Promise((resolve, reject) => {
+      promise.resolve = resolve;
+      promise.reject = reject;
+    });
+    return promise;
+  }
+}
+_.merge(Util, {
+  /* eslint-disable global-require */
+  lang: require('@/resources/strings'), /* eslint-enable global-require */
+  logger: (methods => {
+    const nativeCode = () => {};
+    const self = {};
+    methods.forEach((method) => {
+      self[method] = process.env.NODE_ENV === 'production' ? nativeCode : window.console[method];
+      window.console[method] = nativeCode;
+    });
+    return self;
+  })(['log', 'info', 'warn', 'error', 'assert']),
+  ..._,
 }, _);
-
-const mixin = {
+export const mixin = {
   data() {
     return {
       translate: Util.translate,
     };
   },
 };
-
-module.exports = {
+export default {
   Util,
   mixin,
 };

@@ -21,7 +21,6 @@ htmlTemplate() {
   echo '    </div>'
   echo '  </div>'
   echo '</v-ons-page>'
-
 }
 
 jsTemplate() {

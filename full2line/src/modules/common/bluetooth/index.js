@@ -1,12 +1,10 @@
-const { Util } = require('@/modules/util');
+import { Util as u } from '@/modules/util';
 
-const Bluetooth = function _() {
-  this.constructor = () => {
-    Util.logger.info('New Instance of Bluetooth');
-  };
-  this.constructor();
-};
-
-module.exports = {
+export class Bluetooth {
+  constructor() {
+    u.logger.info('New Instance of Bluetooth');
+  }
+}
+export default {
   Bluetooth,
 };

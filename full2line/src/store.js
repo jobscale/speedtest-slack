@@ -1,10 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { Util as u } from '@/modules/util';
-import { Constant } from '@/base/common';
+import { Mute } from '@/modules/mutation';
 
 Vue.use(Vuex);
-
 export default new Vuex.Store({
   /**
    * interface : 通信I/F
@@ -13,18 +11,22 @@ export default new Vuex.Store({
    * item : 器具
    */
   state: {
-    interfaces: [ // max ?
+    interfaces: [ // maxInterface
       {
+        id: 1,
         name: 'interface',
-        sensors: [ // max ?
+        sensors: [ // maxSensor
           {
+            id: 1,
             name: 'sensor',
-            lines: [ // const 4
+            lines: [ // maxLine
               {
-                name: 'line',
-                items: [ // max 64
+                id: 1,
+                items: [ // maxItem
                   {
+                    id: 1,
                     name: 'item',
+                    macAddress: 'm-a-c-a-d-d-r-e-s-s',
                   },
                 ],
               },
@@ -34,41 +36,7 @@ export default new Vuex.Store({
       },
     ],
   },
-  /* eslint no-param-reassign: ["error", { "props": false }] */
   mutations: {
-    clear(state) {
-      state.interfaces = [];
-    },
-    addInterface(state, id, name) {
-      state.interfaces[id] = {
-        name,
-        sensors: [],
-      };
-    },
-    addSensor(state, params) {
-      state.interfaces[params.id].sensors[params.sensor] = {
-        name,
-        lines: [
-          { items: [] },
-        ],
-      };
-    },
-    addItem(state, params) {
-      if (state.interfaces[params.id].sensors[params.sensor].lines[params.line]
-      .items.length >= Constant.maxItem) {
-        throw new Error('items over 64');
-      }
-      state.interfaces[params.id].sensors[params.sensor].lines[params.line].items[params.item] = {
-        name: params.name,
-      };
-      u.logger.info({
-        Constant,
-        state: JSON.stringify(this.state),
-      });
-    },
-    removeItem(state, params) {
-      delete
-      state.interfaces[params.id].sensors[params.sensor].lines[params.line].items[params.item];
-    },
+    ...Mute,
   },
 });
