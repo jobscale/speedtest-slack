@@ -1,39 +1,74 @@
-/* eslint no-param-reassign: ["error", { "props": false }] */
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { Util as u } from '@/modules/util';
+import { Constant } from '@/base/common';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  /**
+   * interface : 通信I/F
+   * sensor : Aセンサ
+   * lint : 系統
+   * item : 器具
+   */
   state: {
-    noteGroups: [
+    interfaces: [ // max ?
       {
-        name: '2017',
-        notes: [
+        name: 'interface',
+        sensors: [ // max ?
           {
-            title: 'iPhone 8 / 8 Plus',
-            description: 'September 22, 2017',
+            name: 'sensor',
+            lines: [ // const 4
+              {
+                name: 'line',
+                items: [ // max 64
+                  {
+                    name: 'item',
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
     ],
   },
+  /* eslint no-param-reassign: ["error", { "props": false }] */
   mutations: {
-    addNote(state, note) {
-      if (note.title === '' && note.description === '') { return; }
-
-      const matcher = note.description.match(/(20\d{2})/);
-      const name = (matcher && matcher[1]) || 'Unknown';
-      let targetNoteGroup = state.noteGroups.find(v => v.name === name);
-      if (!targetNoteGroup) {
-        const newNoteGroup = {
-          name,
-          notes: [],
-        };
-        state.noteGroups.unshift(newNoteGroup);
-        targetNoteGroup = newNoteGroup;
+    clear(state) {
+      state.interfaces = [];
+    },
+    addInterface(state, id, name) {
+      state.interfaces[id] = {
+        name,
+        sensors: [],
+      };
+    },
+    addSensor(state, params) {
+      state.interfaces[params.id].sensors[params.sensor] = {
+        name,
+        lines: [
+          { items: [] },
+        ],
+      };
+    },
+    addItem(state, params) {
+      if (state.interfaces[params.id].sensors[params.sensor].lines[params.line]
+      .items.length >= Constant.maxItem) {
+        throw new Error('items over 64');
       }
-      targetNoteGroup.notes.unshift(note);
+      state.interfaces[params.id].sensors[params.sensor].lines[params.line].items[params.item] = {
+        name: params.name,
+      };
+      u.logger.info({
+        Constant,
+        state: JSON.stringify(this.state),
+      });
+    },
+    removeItem(state, params) {
+      delete
+      state.interfaces[params.id].sensors[params.sensor].lines[params.line].items[params.item];
     },
   },
 });
