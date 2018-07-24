@@ -1,0 +1,18 @@
+<v-ons-page id="selectLines">
+  <v-ons-toolbar>
+    <v-ons-back-button @click.prevent="close" class="left">{{translate('common.home')}}</v-ons-back-button>
+    <div class="center">{{translate('selectLines.title')}}</div>
+    <div class="right">
+      <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
+    </div>
+  </v-ons-toolbar>
+
+  <v-ons-list>
+    <v-ons-list-header>{{translate('selectLines.text')}}</v-ons-list-header>
+    <v-ons-list-item modifier="chevron" tappable @click.prevnent="close">1 ({{translate('selectLines.listItem')}})</v-ons-list-item>
+    <v-ons-list-item modifier="chevron" tappable @click.prevnent="close">2 ({{translate('selectLines.listItem')}})</v-ons-list-item>
+    <v-ons-list-item modifier="chevron" tappable @click.prevnent="close">3 ({{translate('selectLines.listItem')}})</v-ons-list-item>
+    <v-ons-list-item modifier="chevron" tappable @click.prevnent="close">4 ({{translate('selectLines.listItem')}})</v-ons-list-item>
+  </v-ons-list>
+
+</v-ons-page>
