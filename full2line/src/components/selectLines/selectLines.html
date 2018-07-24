@@ -9,10 +9,10 @@
 
   <v-ons-list>
     <v-ons-list-header>{{translate('selectLines.text')}}</v-ons-list-header>
-    <v-ons-list-item modifier="chevron" tappable @click.prevnent="close">1 ({{translate('selectLines.listItem')}})</v-ons-list-item>
-    <v-ons-list-item modifier="chevron" tappable @click.prevnent="close">2 ({{translate('selectLines.listItem')}})</v-ons-list-item>
-    <v-ons-list-item modifier="chevron" tappable @click.prevnent="close">3 ({{translate('selectLines.listItem')}})</v-ons-list-item>
-    <v-ons-list-item modifier="chevron" tappable @click.prevnent="close">4 ({{translate('selectLines.listItem')}})</v-ons-list-item>
+    <v-ons-list-item modifier="chevron" tappable @click="$emit('push-page', 'pairedItems')">1 ({{translate('selectLines.listItem')}})</v-ons-list-item>
+    <v-ons-list-item modifier="chevron" tappable @click="$emit('push-page', 'pairedItems')">2 ({{translate('selectLines.listItem')}})</v-ons-list-item>
+    <v-ons-list-item modifier="chevron" tappable @click="$emit('push-page', 'pairedItems')">3 ({{translate('selectLines.listItem')}})</v-ons-list-item>
+    <v-ons-list-item modifier="chevron" tappable @click="$emit('push-page', 'pairedItems')">4 ({{translate('selectLines.listItem')}})</v-ons-list-item>
   </v-ons-list>
 
 </v-ons-page>

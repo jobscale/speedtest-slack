@@ -64,5 +64,12 @@
 		"title": "登録情報",
 		"text": "系統選択",
 		"listItem": "調光回路ID："
+	},
+	"pairedItems": {
+		"changeId": "調光回路ID変更",
+		"text": "ペアリング済器具",
+		"add": "追加",
+		"delete": "削除",
+		"confirm": "動作確認"
 	}
 }
