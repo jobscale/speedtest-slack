@@ -59,5 +59,10 @@
 	},
 	"manage": {
 		"caption": "データ保守・管理"
+	},
+	"selectLines": {
+		"title": "登録情報",
+		"text": "系統選択",
+		"listItem": "調光回路ID："
 	}
 }
