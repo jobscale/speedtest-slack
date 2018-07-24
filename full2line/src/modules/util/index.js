@@ -1,19 +1,5 @@
 import _ from 'lodash';
 
-const craft = {
-  /* eslint-disable global-require */
-  lang: require('@/resources/strings'), /* eslint-enable global-require */
-  logger: (methods => {
-    const nativeCode = () => {};
-    const self = {};
-    methods.forEach((method) => {
-      self[method] = process.env.NODE_ENV === 'production' ? nativeCode : window.console[method];
-      window.console[method] = nativeCode;
-    });
-    return self;
-  })(['log', 'info', 'warn', 'error', 'assert']),
-};
-
 export class Util {
   constructor() {
     throw Error('only static');
@@ -58,7 +44,19 @@ export class Util {
     return promise;
   }
 }
-_.merge(Util, craft, _);
+_.merge(Util, {
+  /* eslint-disable global-require */
+  lang: require('@/resources/strings'), /* eslint-enable global-require */
+  logger: (methods => {
+    const nativeCode = () => {};
+    const self = {};
+    methods.forEach((method) => {
+      self[method] = process.env.NODE_ENV === 'production' ? nativeCode : window.console[method];
+      window.console[method] = nativeCode;
+    });
+    return self;
+  })(['log', 'info', 'warn', 'error', 'assert']),
+}, _);
 export const mixin = {
   data() {
     return {
