@@ -1,0 +1,39 @@
+<v-ons-page>
+  <v-ons-toolbar>
+    <v-ons-back-button @click.prevent="close" class="left">{{translate('selectLines.title')}}</v-ons-back-button>
+    <div class="center">系統１</div>
+    <div class="right">
+      <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
+    </div>
+  </v-ons-toolbar>
+
+  <v-ons-list>
+    <v-ons-list-item modifier="chevron" tappable>{{translate('pairedItems.changeId')}}</v-ons-list-item>
+  </v-ons-list>
+  <v-ons-list modifier="inset">
+    <v-ons-list-header>{{translate('pairedItems.text')}}</v-ons-list-header>
+    <v-ons-list-item modifier="longdivider">
+      <div>
+        <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
+      </div>
+      <div>1</div>
+      <div class="right">
+        <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
+      </div>
+    </v-ons-list-item>
+    <v-ons-list-item modifier="longdivider">
+      <div>
+        <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
+      </div>
+      <div>2</div>
+      <div class="right">
+        <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
+      </div>
+    </v-ons-list-item>
+  </v-ons-list>
+  <div>
+    <v-ons-button modifier="large" @click="">{{translate('pairedItems.add')}}</v-ons-button>
+    <v-ons-button modifier="large" @click="">{{translate('pairedItems.delete')}}</v-ons-button>
+    <v-ons-button modifier="large" @click="">{{translate('pairedItems.confirm')}}</v-ons-button>
+  </div>
+</v-ons-page>
