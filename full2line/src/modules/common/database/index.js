@@ -5,18 +5,17 @@
  * tx トランザクション
  * dt DateTime
  */
+import { Util as u } from '@/modules/util';
 
-const { Util } = require('@/modules/util');
-
-const Database = function _() {
-  this.constructor = () => {
-    Util.logger.log('New Instance of Database');
+export class Database {
+  constructor() {
+    u.logger.log('New Instance of Database');
     this.initInfo();
-  };
+  }
   /**
    * 初期化
    */
-  this.initInfo = () => {
+  initInfo() {
     const ua = navigator.userAgent.toLowerCase();
     this.info = {
       ua,
@@ -26,28 +25,30 @@ const Database = function _() {
       version: '1.0',
       module: window.sqlitePlugin ? 'SQLite' : 'WebSQL',
     };
-  };
+  }
   /**
    * オープン
    */
-  this.open = (name, size) => {
+  open(name, size) {
     this.info.name = name;
     this.info.size = size;
     return this[`open${this.info.module}`]();
-  };
+  }
   /**
    * クローズ
    */
-  this.close = () => this.database ? (() => {
-    this.database.close(this.cbSuccess);
-    delete this.database;
-  })() : null;
+  close() {
+    return this.database ? (() => {
+      this.database.close(this.cbSuccess);
+      delete this.database;
+    })() : null;
+  }
   /**
    * SQLite
    */
-  this.openSQLite = () => {
-    Util.logger.info(`call to openSQLite. ${this.info.name}`);
-    const promise = this.promise();
+  openSQLite() {
+    u.logger.info(`call to openSQLite. ${this.info.name}`);
+    const promise = u.promise();
     this.database = window.sqlitePlugin.openDatabase(this.info, (...argv) => {
       this.cbSuccess(...argv);
       promise.resolve(...argv);
@@ -56,48 +57,52 @@ const Database = function _() {
       promise.reject(e);
     });
     return promise.instance;
-  };
+  }
   /**
    * WebSQL
    */
-  this.openWebSQL = () => {
-    Util.logger.info(`call to openWebSQL. ${this.info.name}`);
-    const promise = this.promise();
+  openWebSQL() {
+    u.logger.info(`call to openWebSQL. ${this.info.name}`);
+    const promise = u.promise();
     this.database = window.openDatabase(
       this.info.name, this.info.version, this.info.description, this.info.size,
     );
     promise.resolve(this.info);
     return promise.instance;
-  };
+  }
   /**
    * クエリを実行
    */
-  this.exec = sql => {
+  exec(sql) {
     let result;
     return this.transaction(tx => {
       tx.executeSql(sql, [], (_tx, res) => result = res, this.cbError);
     })
     .then(() => result);
-  };
+  }
   /**
    * 異常終了のコールバック
    */
-  this.cbError = e => Util.logger.error('error.', e.message);
+  cbError(e) {
+    u.logger.error('error.', e.message);
+  }
   /**
    * 正常終了のコールバック
    */
-  this.cbSuccess = (...argv) => typeof argv[0] === 'function' ? (() => {
-    Util.logger.info('succeeded.');
-    const method = argv.unshift();
-    method(...argv);
-  })() : null;
+  cbSuccess(...argv) {
+    return typeof argv[0] === 'function' ? (() => {
+      u.logger.info('succeeded.');
+      const method = argv.unshift();
+      method(...argv);
+    })() : null;
+  }
   /**
    * トランザクション
    * @param exec
    * @returns {Promise|i.a}
    */
-  this.transaction = exec => {
-    const promise = this.promise();
+  transaction(exec) {
+    const promise = u.promise();
     this.database.transaction(exec, e => {
       this.cbError(e);
       promise.reject(e);
@@ -106,7 +111,7 @@ const Database = function _() {
       promise.resolve(...argv);
     });
     return promise.instance;
-  };
+  }
   /**
    * 選択
    * @param name
@@ -118,14 +123,14 @@ const Database = function _() {
    * @param ecb
    * @returns {*}
    */
-  this.select = (name, columns, where, order, data, cb, ecb) => {
+  select(name, columns, where, order, data, cb, ecb) {
     let sql = `SELECT ${columns} FROM ${name} WHERE delete_at IS NULL`;
     if (where) sql += ` AND ${where}`;
     if (order) sql += ` ORDER BY ${order}`;
     return this.transaction(tx => {
       tx.executeSql(sql, data, (_tx, res) => cb(res), (_tx, e) => ecb(e));
     });
-  };
+  }
   /**
    * 挿入
    * @param name
@@ -134,12 +139,12 @@ const Database = function _() {
    * @param data
    * @returns {*}
    */
-  this.insert = (name, columns, values, data) => {
+  insert(name, columns, values, data) {
     const sql = `INSERT INTO ${name} (${columns}) VALUES (${values})`;
     return this.transaction(tx => {
       tx.executeSql(sql, data);
     });
-  };
+  }
   /**
    * 更新
    * @param name
@@ -148,44 +153,55 @@ const Database = function _() {
    * @param data
    * @returns {*}
    */
-  this.update = (name, id, columns, data) => {
-    data.push(Util.dateToString(new Date()));
+  update(name, id, columns, data) {
+    data.push(u.dateToString(new Date()));
     data.push(id);
     const sql = `UPDATE ${name} SET ${columns}, update_at = ? WHERE id = ?`;
     return this.transaction(tx => {
       tx.executeSql(sql, data);
     });
-  };
+  }
   /**
    * 論理削除
    * @param name
    * @param id
    * @returns {*}
    */
-  this.delete = (name, id) => {
+  delete(name, id) {
     const sql = `UPDATE ${name} SET delete_at = ? WHERE id = ?`;
     const data = [
-      Util.dateToString(new Date()),
+      u.dateToString(new Date()),
       id,
     ];
     return this.transaction(tx => {
       tx.executeSql(sql, data);
     });
-  };
-  this.organizeTarget = (name, dt) => {
-    const promise = this.promise();
+  }
+  organizeTarget(name, dt) {
+    const promise = u.promise();
     const sql = `SELECT * FROM ${name} WHERE create_at < ?`;
     const data = [
-      Util.dateToString(dt),
+      u.dateToString(dt),
     ];
     this.transaction(tx => {
       tx.executeSql(sql, data, (_tx, res) => promise.resolve(res), (_tx, e) => promise.reject(e));
     });
     return promise.instance;
-  };
-  this.constructor();
-};
-
-module.exports = {
+  }
+  organize(name, dt) {
+    return this.organizeTarget(name, dt)
+    .then(async res => {
+      const sql = `DELETE FROM ${name} WHERE create_at < ?`;
+      const data = [
+        u.dateToString(dt),
+      ];
+      await this.transaction(tx => {
+        tx.executeSql(sql, data);
+      });
+      return res;
+    });
+  }
+}
+export default {
   Database,
 };

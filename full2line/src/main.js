@@ -6,9 +6,9 @@ import Vue from 'vue';
 import VueOnsen from 'vue-onsenui';
 import store from './store';
 import { Util as u } from './modules/util';
-import Database from './modules/database';
-import Bluetooth from './modules/bluetooth';
-import Storage from './modules/storage';
+import { Database } from './modules/database';
+import { Bluetooth } from './modules/bluetooth';
+import { Storage } from './modules/storage';
 
 /**
  * アプリ内共通インスタンス
