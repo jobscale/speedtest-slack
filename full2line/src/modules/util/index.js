@@ -56,6 +56,7 @@ _.merge(Util, {
     });
     return self;
   })(['log', 'info', 'warn', 'error', 'assert']),
+  ..._,
 }, _);
 export const mixin = {
   data() {

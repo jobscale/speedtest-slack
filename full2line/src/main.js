@@ -12,9 +12,9 @@ import { Storage } from './modules/storage';
 
 /**
  * アプリ内共通インスタンス
- * Util.db データベース
- * Util.blue ブルートゥース通信
- * Util.storage ストレージ操作
+ * u.db データベース
+ * u.blue ブルートゥース通信
+ * u.storage ストレージ操作
  */
 
 const app = {
@@ -71,14 +71,25 @@ const app = {
       },
       methods: {
         componentTest() {
-          const item = {
-            id: 0,
-            sensor: 0,
-            line: 0,
-            item: 0,
-            name: 'first',
-          };
-          this.$store.commit('addItem', item);
+          this.$store.commit('clear');
+          this.$store.commit('setInterface', {
+            idInterface: 1,
+            name: 'first interface',
+          });
+          this.$store.commit('setSensor', {
+            idInterface: 1,
+            idSensor: 1,
+            name: 'first sensor',
+          });
+          this.$store.commit('setItem', {
+            idInterface: 1,
+            idSensor: 1,
+            idLine: 1,
+            id: 1,
+            name: 'first item',
+            macAddress: 'mac-address',
+          });
+          this.$store.commit('dump');
         },
       },
     });
