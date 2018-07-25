@@ -12,5 +12,13 @@ export default {
     close() {
       this.$emit('pop-page');
     },
+    disconnect() {
+      u.blue.disconnect()
+      .then(() => {
+        this.$ons.notification.toast('切断しました。', { timeout: 3000 });
+        this.$emit('pop-page');
+      })
+      .catch(e => u.logger.error(e.message));
+    },
   },
 };

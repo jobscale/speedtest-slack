@@ -95,11 +95,14 @@ ons-carousel ons-carousel-item.small {
   margin: 2vw 1vw;
 }
 #home .status {
-  background-color: #1c9;
+  background-color: orangered;
   color: white;
   position: absolute;
   height: 8vh;
   width: 100vw;
+}
+#home .status.active {
+  background-color: #1c9;
 }
 #home .status .first {
   position: absolute;
