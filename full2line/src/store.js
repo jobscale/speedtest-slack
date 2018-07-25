@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { Mute } from '@/modules/mutation';
+import { Mute, Getter } from '@/modules/mutation';
 
 Vue.use(Vuex);
 export default new Vuex.Store({
@@ -11,16 +11,30 @@ export default new Vuex.Store({
    * item : 器具
    */
   state: {
+    current: {
+      idInterface: 1,
+      idSensor: 1,
+      idLine: 1,
+      nameCSV: 'Aチーム用',
+    },
     interfaces: [ // maxInterface
       {
         id: 1,
         name: 'interface',
+        macAddress: 'm-a-c-a-d-d-r-e-s-s',
         sensors: [ // maxSensor
           {
+            lux: 1000, // 輝度計測
             id: 1,
             name: 'sensor',
             lines: [ // maxLine
               {
+                torque: { // 出力輝度設定
+                  set: 700,
+                  min: 20,
+                  max: 80,
+                },
+                color: 90,
                 id: 1,
                 items: [ // maxItem
                   {
@@ -38,5 +52,8 @@ export default new Vuex.Store({
   },
   mutations: {
     ...Mute,
+  },
+  getters: {
+    ...Getter,
   },
 });

@@ -10,7 +10,7 @@
   <div class="content">
     <div>登録されている設定機の情報です。<br>
     見つからない際は設定機を探すボタンで音を鳴らせます。</div>
-    <div class="center">
+    <div class="center" @click="$ons.notification.toast(`設定機の音を鳴らせました。`, {timeout:3000})">
       <img src="../../assets/logo.png">
     </div>
     <div>
@@ -39,6 +39,6 @@
         </v-ons-list-item>
       </v-ons-list>
     </div>
-    <v-ons-button modifier="large" class="orange">切断</v-ons-button>
+    <v-ons-button modifier="large" class="orange" @click="$emit('pop-page')">切断</v-ons-button>
   </div>
 </v-ons-page>

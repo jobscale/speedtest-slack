@@ -4,6 +4,7 @@ export default {
   data() {
     return {
       status: u.blue.status,
+      nameCSV: this.$store.getters.getNameCSV,
     };
   },
   methods: {
