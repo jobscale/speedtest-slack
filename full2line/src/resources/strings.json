@@ -71,5 +71,10 @@
 		"add": "追加",
 		"delete": "削除",
 		"confirm": "動作確認"
+	},
+	"pairingMethod": {
+		"caption": "ペアリング",
+		"reliableSettings": "確実設定（赤外あり）",
+		"easySettings": "簡単設定（赤外なし）"
 	}
 }

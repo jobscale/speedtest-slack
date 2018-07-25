@@ -32,7 +32,7 @@
     </v-ons-list-item>
   </v-ons-list>
   <div>
-    <v-ons-button modifier="large" @click="">{{translate('pairedItems.add')}}</v-ons-button>
+    <v-ons-button modifier="large" @click="$emit('push-page', 'pairingMethod')">{{translate('pairedItems.add')}}</v-ons-button>
     <v-ons-button modifier="large" @click="">{{translate('pairedItems.delete')}}</v-ons-button>
     <v-ons-button modifier="large" @click="">{{translate('pairedItems.confirm')}}</v-ons-button>
   </div>
