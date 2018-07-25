@@ -12,7 +12,7 @@
         <img class="right" v-if="status.power===1" src="../../../assets/power1.png">
         <img class="right" v-if="status.power===0" src="../../../assets/power0.png">
         <div class="first"><small>接続機器との接続状態：良好</small></div>
-        <div class="second">Aチーム用</div>
+        <div class="second">{{interface.name}}</div>
       </div>
       <div class="middle">
         <v-ons-button modifier="large" @click="$emit('push-page', 'Channel')">{{translate('channel.caption')}}</v-ons-button>

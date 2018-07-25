@@ -75,6 +75,7 @@ const app = {
           this.$store.commit('setInterface', {
             idInterface: 1,
             name: 'first interface',
+            macAddress: 'mac-address',
           });
           this.$store.commit('setSensor', {
             idInterface: 1,
