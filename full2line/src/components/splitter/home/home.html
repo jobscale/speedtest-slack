@@ -1,7 +1,19 @@
 <v-ons-page id="home">
   <splitter-toolbar :title="translate('common.home')" :action="toggle"></splitter-toolbar>
   <div class="center">
-    Welcome home.
+    <div class="status" @click="$emit('push-page', 'Status')">
+      <img class="left" src="../../../assets/interface.png">
+      <img class="right" v-if="status.power===5" src="../../../assets/power5.png">
+      <img class="right" v-if="status.power===4" src="../../../assets/power4.png">
+      <img class="right" v-if="status.power===3" src="../../../assets/power3.png">
+      <img class="right" v-if="status.power===2" src="../../../assets/power2.png">
+      <img class="right" v-if="status.power===1" src="../../../assets/power1.png">
+      <img class="right" v-if="status.power===0" src="../../../assets/power0.png">
+      <v-ons-icon icon="fa-angle-right"></v-ons-icon>
+      <div>接続機器との接続状態：良好</div>
+      <div>name name name</div>
+    </div>
+    <div class="separate"></div>
     <v-ons-button modifier="large" @click="$emit('push-page', 'Channel')">{{translate('channel.caption')}}</v-ons-button>
     <v-ons-button modifier="large" @click="$emit('push-page', 'Pairing')">{{translate('pairing.caption')}}</v-ons-button>
     <v-ons-button modifier="large" @click="$emit('push-page', 'System')">{{translate('system.caption')}}</v-ons-button>

@@ -8,7 +8,6 @@ export default {
       dots: {
         textAlign: 'center',
         fontSize: '10vw',
-        color: '#0076ff',
         position: 'absolute',
         bottom: '0vh',
         left: 0,

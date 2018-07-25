@@ -30,14 +30,30 @@ ons-button.button {
   border-radius: 2vw;
 }
 ons-button.button--large {
-  line-height: 9vh;
+  line-height: 8vh;
   margin: 1.4vh 2vw;
   width: 90vw;
   font-size: 5vw;
   display: inline-block;
 }
+ons-button.button {
+  background-color: #19c;
+}
+ons-button.orange.button {
+  background-color: orangered;
+}
 ons-icon.ons-icon {
-  color: #0076ff;
+  color: #19c;
+}
+.carousel-dots {
+  cursor: pointer;
+  color: #19c;
+}
+.back-button.back-button {
+  color: #19c;
+}
+.back-button.back-button polygon {
+  fill: #19c;
 }
 .tips-content ons-button.button--large {
   width: 80vw;
@@ -77,4 +93,33 @@ ons-carousel ons-carousel-item.small {
 }
 .margin-mid {
   margin: 2vw 1vw;
+}
+#home .status {
+  background-color: #1c9;
+  color: white;
+  position: absolute;
+  height: 5vh;
+  width: 100vw;
+}
+#home .status img.left {
+  position: absolute;
+  left: 1vw;
+  height: 80%;
+  top: 10%;
+}
+#home .status img.right {
+  position: absolute;
+  right: 3vw;
+  height: 80%;
+  top: 10%;
+}
+#home .separate {
+  height: 5vh;
+}
+#home ons-icon.ons-icon.fa-angle-right.fa {
+  position: absolute;
+  right: 1vw;
+  top: 10%;
+  font-size: 2vw;
+  color: white;
 }

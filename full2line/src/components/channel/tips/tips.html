@@ -10,7 +10,7 @@
       </v-ons-carousel-item>
     </v-ons-carousel>
     <div :style="dots">
-      <span v-if="tips.length > 1" :index="index" v-for="(text, index) in tips" :key="index" style="cursor: pointer" @click="carouselIndex=index">
+      <span v-if="tips.length > 1" :index="index" v-for="(text, index) in tips" :key="index" class="carousel-dots" @click="carouselIndex=index">
         {{ carouselIndex === index ? '\u25CF' : '\u25CB' }}
       </span>
       <v-ons-button v-if="carouselIndex < tips.length-1" modifier="large" @click="carouselIndex++" >{{translate('common.next')}}</v-ons-button>
