@@ -8,7 +8,7 @@
   </v-ons-toolbar>
 
   <v-ons-list>
-    <v-ons-list-item modifier="chevron" tappable>{{translate('pairedItems.changeId')}}</v-ons-list-item>
+    <v-ons-list-item modifier="chevron" tappable @click="$emit('push-page', 'dimmerid')">{{translate('pairedItems.changeId')}}</v-ons-list-item>
   </v-ons-list>
   <v-ons-list modifier="inset">
     <v-ons-list-header>{{translate('pairedItems.text')}}</v-ons-list-header>
