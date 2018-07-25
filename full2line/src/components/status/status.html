@@ -1,0 +1,44 @@
+<v-ons-page id="status">
+  <v-ons-toolbar>
+    <v-ons-back-button @click.prevent="close" class="left">{{translate('common.home')}}</v-ons-back-button>
+    <div class="center">設定器情報</div>
+    <div class="right">
+      <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
+    </div>
+  </v-ons-toolbar>
+  <div class="background"></div>
+  <div class="content">
+    <div>登録されている設定機の情報です。<br>
+    見つからない際は設定機を探すボタンで音を鳴らせます。</div>
+    <div class="center">
+      <img src="../../assets/logo.png">
+    </div>
+    <div>
+      <v-ons-list modifier="inset">
+        <v-ons-list-header>名称</v-ons-list-header>
+        <v-ons-list-item modifier="longdivider">Aチーム用</v-ons-list-item>
+      </v-ons-list>
+    </div>
+    <div>
+      <v-ons-list>
+        <v-ons-list-header></v-ons-list-header>
+        <v-ons-list-item modifier="longdivider">電池残量
+          <div class="right">
+            <img v-if="status.power===5" src="../../assets/power5.png">
+            <img v-if="status.power===4" src="../../assets/power4.png">
+            <img v-if="status.power===3" src="../../assets/power3.png">
+            <img v-if="status.power===2" src="../../assets/power2.png">
+            <img v-if="status.power===1" src="../../assets/power1.png">
+            <img v-if="status.power===0" src="../../assets/power0.png">
+          </div>
+        </v-ons-list-item>
+        <v-ons-list-item modifier="longdivider">通信状態
+          <div class="right">
+            良好
+          </div>
+        </v-ons-list-item>
+      </v-ons-list>
+    </div>
+    <v-ons-button modifier="large" class="orange">切断</v-ons-button>
+  </div>
+</v-ons-page>
