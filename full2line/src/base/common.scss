@@ -122,8 +122,12 @@ ons-carousel ons-carousel-item.small {
   height: 50%;
   top: 25%;
 }
-#home .separate {
-  height: 8vh;
+#home .middle {
+  position: absolute;
+  width: 100%;
+  top: 8.5vh;
+  bottom:1vh;
+  overflow: scroll;
 }
 #home ons-icon.ons-icon.fa-angle-right.fa {
   position: absolute;
@@ -131,4 +135,19 @@ ons-carousel ons-carousel-item.small {
   top: 10%;
   font-size: 2vw;
   color: white;
+}
+#home .home-icon {
+  margin-top: 3vh;
+}
+#home .home-icon > span {
+  width: 40vw;
+  display: inline-grid;
+}
+#home .home-icon > span span {
+  font-size: 4vw;
+  display: block;
+}
+#home .home-icon > span:nth-child(even) {
+  width: 1.5vw;
+  display: inline-block;
 }
