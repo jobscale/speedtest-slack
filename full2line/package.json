@@ -14,7 +14,9 @@
     "build:watch:custom": "cross-env WEBPACK_WATCH=true node build/build_custom.js",
     "pf:android": "scripts/pf-android",
     "pf:build:android": "cordova build android | grep -i error | tee $(date +'/tmp/%m%d-%H%M%S.log')",
+    "pf:build:ios": "cordova build ios | grep -i error | tee $(date +'/tmp/%m%d-%H%M%S.log')",
     "android": "npm run build && npm run pf:build:android && cordova run android --nobuild",
+    "ios": "npm run build && npm run pf:build:ios && cordova run ios --nobuild",
     "test": "npm run lint",
     "precommit": "npm test",
     "lint": "eslint --ext .js,.vue src"
