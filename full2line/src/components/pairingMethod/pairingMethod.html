@@ -1,0 +1,13 @@
+<v-ons-page id="pairingMethod">
+  <v-ons-toolbar>
+    <v-ons-back-button @click.prevent="close" class="left">{{translate('common.backButton')}}</v-ons-back-button>
+    <div class="center">{{translate('pairingMethod.caption')}}</div>
+    <div class="right">
+      <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
+    </div>
+  </v-ons-toolbar>
+
+  <v-ons-button modifier="large">{{translate('pairingMethod.reliableSettings')}}</v-ons-button>
+  <v-ons-button modifier="large">{{translate('pairingMethod.easySettings')}}</v-ons-button>
+
+</v-ons-page>

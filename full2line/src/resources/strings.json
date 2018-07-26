@@ -71,5 +71,16 @@
 		"add": "追加",
 		"delete": "削除",
 		"confirm": "動作確認"
+	},
+	"pairingMethod": {
+		"caption": "ペアリング",
+		"reliableSettings": "確実設定（赤外あり）",
+		"easySettings": "簡単設定（赤外なし）"
+	},
+	"dimmerid": {
+		"caption": "調光回路ID変更",
+		"text": "番号を入力してください。",
+		"placeholder": "番号",
+		"submit": "送信"
 	}
 }
