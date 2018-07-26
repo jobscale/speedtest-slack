@@ -145,6 +145,8 @@ SPA (シングルページアプリケーション)
 
 * 器具ペアリング (paired-items)
 * 系統選択 (select-lines)
+* ペアリング方法選択 (pairingMethod)
+* 調光回路ID変更 (dimmerid)
 * ようこそ (wizard)
 
 #### モーダル
