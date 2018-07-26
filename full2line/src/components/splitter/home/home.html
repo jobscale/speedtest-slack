@@ -2,7 +2,7 @@
   <splitter-toolbar :title="translate('common.home')" :action="toggle"></splitter-toolbar>
   <div class="content">
     <div class="center">
-      <div class="status" v-bind:class="{active:status.active}" @click="$emit('push-page', 'Status')">
+      <div class="status" v-bind:class="{active:status.active}" @click="$emit('push-page', status.active ? 'Status' : 'Wizard')">
         <v-ons-icon icon="fa-angle-right"></v-ons-icon>
         <img class="left" src="../../../assets/interface.png">
         <img class="right" v-if="status.power===5" src="../../../assets/power5.png">

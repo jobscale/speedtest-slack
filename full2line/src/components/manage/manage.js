@@ -13,5 +13,15 @@ export default {
     close() {
       this.$emit('pop-page');
     },
+    prompt() {
+      this.$ons.notification.prompt({
+        title: '保存',
+        messageHTML: this.$el.querySelector('#manage-prompt').innerHTML,
+        modifier: 'material',
+        placeholder: '標準の初期設定',
+        buttonLabels: '保存',
+        callback: name => this.$ons.notification.toast(`「${name}」を保存しました。`, { timeout: 3000 }),
+      });
+    },
   },
 };
