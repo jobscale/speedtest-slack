@@ -168,12 +168,12 @@ SPA (シングルページアプリケーション)
 
 例 (html)
 ```html
-<div @click="@emit('push-page', 'Channel')">channel</div>
+<div @click="$emit('push-page', 'Channel')">channel</div>
 ```
 
 例 (javascript)
 ```es6
 channel() {
-  this.@emit('push-page', 'Channel')
+  this.$emit('push-page', 'Channel')
 },
 ```
