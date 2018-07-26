@@ -36,6 +36,7 @@ export default new Vuex.Store({
                 },
                 color: 90,
                 id: 1,
+                circuit: 1, // 調光回路ID
                 items: [ // maxItem
                   {
                     id: 1,
