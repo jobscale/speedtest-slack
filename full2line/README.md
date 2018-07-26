@@ -48,7 +48,7 @@ export default {
 
 #### vue-template
 ```vue-template
-<splitter-page-toolbar :title="translate('common.home')" :action="toggleMenu"></splitter-page-toolbar>
+<v-ons-input :placeholder="translate('common.home')"></v-ons-input>
 ```
 
 ## Build Setup
@@ -73,7 +73,7 @@ cordova run ios --target="iPhone-X"
 ```
 
 ## Components
-> src/conponents
+> src/components
 
 * ユーザーインターフェース - (Vueコンポーネント)
 
@@ -121,4 +121,59 @@ import { Util as u } from '@/modules/util'; // static
 #### Database
 ```pre
 modules/database/models/index.js
+```
+
+## 画面一覧
+
+SPA (シングルページアプリケーション)
+
+* コンポーネント名称 (物理名)
+
+#### 制御
+* ナビゲーター (navigator)
+* スプリッター (splitter)
+
+#### ページ
+* ホーム (splitter-home)
+* 電波確認 (channel)
+* 端末確認 (pairing)
+* システムデータ (system)
+* 器具設定 (operation)
+* 保守機能 (maintenance)
+* アプリの使い方 (help)
+* データ保存・管理 (manage)
+
+* 器具ペアリング (paired-items)
+* 系統選択 (select-lines)
+* ようこそ (wizard)
+
+#### モーダル
+* 汎用処理中 (processing)
+* 電波確認ヘルプ (channel-tips)
+* 端末確認ヘルプ (pairing-tips)
+
+コンポーネントの埋め込み方法
+
+> <物理名></物理名>
+
+> <物理名/>
+
+例
+```html
+<channel-tips></channel-tips>
+<navigator/>
+```
+
+ページの呼び出し方法
+
+例 (html)
+```html
+<div @click="@emit('Channel')">channel</div>
+```
+
+例 (javascript)
+```es6
+channel() {
+  this.@emit('Channel')
+},
 ```
