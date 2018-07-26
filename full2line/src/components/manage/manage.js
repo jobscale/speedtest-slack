@@ -19,9 +19,16 @@ export default {
         messageHTML: this.$el.querySelector('#manage-prompt').innerHTML,
         modifier: 'material',
         placeholder: '標準の初期設定',
-        buttonLabels: '保存',
-        callback: name => this.$ons.notification.toast(`「${name}」を保存しました。`, { timeout: 3000 }),
+        buttonLabels: ['キャンセル', '保存'],
+        callback: name => name !== null && this.save(),
       });
+    },
+    save(name) {
+      if (name) {
+        this.$ons.notification.toast(`「${name}」を保存しました。`, { timeout: 3000 });
+      } else {
+        this.prompt();
+      }
     },
   },
 };
