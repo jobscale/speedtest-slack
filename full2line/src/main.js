@@ -9,6 +9,7 @@ import { Util as u } from './modules/util';
 import { Database } from './modules/database';
 import { Bluetooth } from './modules/bluetooth';
 import { Storage } from './modules/storage';
+import { ExampleStore } from './modules/mutation';
 
 /**
  * アプリ内共通インスタンス
@@ -71,26 +72,9 @@ const app = {
       },
       methods: {
         componentTest() {
-          this.$store.commit('clear');
-          this.$store.commit('setInterface', {
-            idInterface: 1,
-            name: 'first interface',
-            macAddress: 'mac-address',
-          });
-          this.$store.commit('setSensor', {
-            idInterface: 1,
-            idSensor: 1,
-            name: 'first sensor',
-          });
-          this.$store.commit('setItem', {
-            idInterface: 1,
-            idSensor: 1,
-            idLine: 1,
-            id: 1,
-            name: 'first item',
-            macAddress: 'mac-address',
-          });
-          this.$store.commit('dump');
+          this.$store.commit('initialize');
+          ExampleStore.example(this)
+          .then(() => this.$store.commit('dump'));
         },
       },
     });
