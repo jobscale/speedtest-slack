@@ -73,7 +73,7 @@ const app = {
       methods: {
         componentTest() {
           this.$store.commit('initialize');
-          ExampleStore.example(this)
+          ExampleStore.example.bind(this)()
           .then(() => this.$store.commit('dump'));
         },
       },

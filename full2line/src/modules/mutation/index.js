@@ -18,23 +18,23 @@ const Finder = {
 export const ExampleStore = {
   /**
    * データ設定・取得見本、Mutation の UnitTest用
-   * VueComponent から ExampleStore.example(this) として呼び出し可能
+   * VueComponent から ExampleStore.example.bind(this)() として呼び出し可能
    */
-  example(vue) {
+  example() {
     const test = () => {
       const promise = u.promise();
-      vue.$store.commit('setInterface', {
+      this.$store.commit('setInterface', {
         idInterface: 1,
         name: 'first interface',
         macAddress: 'mac-address',
       });
-      vue.$store.commit('setSensor', {
+      this.$store.commit('setSensor', {
         idInterface: 1,
         idSensor: 1,
         name: 'first sensor',
         macAddress: 'mac-address',
       });
-      vue.$store.commit('setLine', {
+      this.$store.commit('setLine', {
         idInterface: 1,
         idSensor: 1,
         idLine: 1,
@@ -42,7 +42,7 @@ export const ExampleStore = {
          * 設定器内ユニークである必要がある */
         circuit: Math.floor(Math.random() * 27) + 1,
       });
-      vue.$store.commit('setItem', {
+      this.$store.commit('setItem', {
         idInterface: 1,
         idSensor: 1,
         idLine: 1,
@@ -113,7 +113,6 @@ const Mutation = {
   initialize(state) {
     (o => o)(state).current = {};
     (o => o)(state).interfaces = [];
-    /** test sample */this.dataTree(state);
   },
   dump(state) {
     u.logger.info(JSON.stringify(state));
@@ -129,7 +128,7 @@ const Mutation = {
   },
   setInterface(state, param) {
     let obj = Finder.findInterface(state, param);
-    if (obj) {
+    if (u.keys(obj).length) {
       obj.name = param.name;
       return;
     }
@@ -145,7 +144,7 @@ const Mutation = {
   },
   setSensor(state, param) {
     let obj = Finder.findSensor(state, param);
-    if (obj) {
+    if (u.keys(obj).length) {
       obj.name = param.name;
       return;
     }
@@ -174,7 +173,7 @@ const Mutation = {
   },
   setItem(state, param) {
     let obj = Finder.findItem(state, param);
-    if (obj) {
+    if (u.keys(obj).length) {
       obj.name = param.name;
       obj.macAddress = param.macAddress;
       return;
