@@ -22,6 +22,44 @@ export class Bluetooth {
   on(event, callback) {
     this.eventHandler[event] = callback;
   }
+
+  scan() {
+    this.devices = [];
+    this.ble.scan([this.scanUuid], 10, (device) => {
+      u.logger.info(`scan success name:${device.name} id:${device.id} rssi:${device.rssi}`);
+      // 異常値排除
+      if (device.rssi === 127) {
+        return;
+      }
+      // 重複排除
+      this.devices.forEach((scanDevice) => {
+        if (scanDevice.id === device.id) {
+          // return;
+        }
+      });
+      this.devices.push(device);
+      // 降順にソート
+      this.devices.sort((a, b) => {
+        if (a.rssi > b.rssi) return -1;
+        if (a.rssi < b.rssi) return 1;
+        return 0;
+      });
+    }, (reason) => {
+      u.logger.info(`scan failure reason:${reason}`);
+    });
+  }
+
+  connect() {
+
+  }
+
+  disconnect() {
+
+  }
+
+  write() {
+
+  }
 }
 export default {
   Bluetooth,
