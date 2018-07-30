@@ -73,7 +73,7 @@ const app = {
       },
       methods: {
         disconnect() {
-          u.logger('info disconnect ble.');
+          u.logger.info('info', 'disconnect ble.');
         },
         componentTest() {
           this.$store.commit('initialize');
