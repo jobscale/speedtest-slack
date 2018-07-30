@@ -11,18 +11,15 @@ export default {
           name: 'first interface',
           macAddress: '12-34-56-78',
         },
-        {
-          id: 2,
-          name: 'second interface',
-          macAddress: '34-56-78-12',
-        },
-        {
-          id: 3,
-          name: 'third interface',
-          macAddress: '56-78-12-34',
-        },
       ],
     };
+  },
+  created() {
+    u.blue.scan()
+    .then((devices) => {
+      this.list = devices;
+      u.logger.info(`search::created() ${devices}`);
+    });
   },
   methods: {
     translate: u.translate,

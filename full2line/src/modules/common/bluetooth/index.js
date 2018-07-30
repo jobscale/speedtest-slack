@@ -26,19 +26,25 @@ export class Bluetooth {
   scan() {
     const promise = u.promise();
     const seconds = 10;
-    setTimeout(() => promise.resolve(), seconds * 1000);
-    this.devices = [];
-    this.ble.scan([this.scanUuid], seconds, (device) => {
-      u.logger.info(`scan success name:${device.name} id:${device.id} rssi:${device.rssi}`);
-      // 異常値排除
-      if (device.rssi === 127) {
-        return;
-      }
-      // 未登録を追加
-      if (!u.find(this.devices, { id: device.id })) this.devices.push(device);
-    }, (reason) => {
-      u.logger.info(`scan failure reason:${reason}`);
-    });
+
+    if (window.ble) {
+      setTimeout(() => promise.resolve(this.devices), seconds * 1000);
+      this.devices = [];
+      window.ble.scan([this.scanUuid], seconds, (device) => {
+        u.logger.info(`scan success name:${device.name} id:${device.id} rssi:${device.rssi}`);
+        // 異常値排除
+        if (device.rssi === 127) {
+          return;
+        }
+        // 未登録を追加
+        if (!u.find(this.devices, { id: device.id })) this.devices.push(device);
+      }, (reason) => {
+        u.logger.info(`scan failure reason:${reason}`);
+      });
+    } else {
+      u.logger.info('no plugin scan stub!!');
+      promise.resolve(this.devices);
+    }
     return promise.instance;
   }
 

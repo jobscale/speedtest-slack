@@ -22,6 +22,18 @@ export class Bluetooth extends Base {
       this.mock.getPower();
     }
   }
+  scan() {
+    const promise = u.promise();
+    if (this.hasBLE) {
+      u.logger.info('run scan');
+      super.scan()
+        .then(devices => promise.resolve(devices));
+    } else {
+      this.mock.scan()
+        .then(devices => promise.resolve(devices));
+    }
+    return promise.instance;
+  }
   connect(param) {
     const promise = u.promise();
     if (!this.hasBLE) {

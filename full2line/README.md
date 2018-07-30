@@ -143,11 +143,12 @@ SPA (シングルページアプリケーション)
 * アプリの使い方 (help)
 * データ保存・管理 (manage)
 
-* 器具ペアリング (paired-items)
-* 系統選択 (select-lines)
+* 器具ペアリング (pairedItems)
+* 系統選択 (selectLines)
 * ペアリング方法選択 (pairingMethod)
 * 調光回路ID変更 (dimmerid)
 * ようこそ (wizard)
+* 設定器の選択 (wizard-search)
 
 #### モーダル
 * 汎用処理中 (processing)
