@@ -24,29 +24,22 @@ export class Bluetooth {
   }
 
   scan() {
+    const promise = u.promise();
+    const seconds = 10;
+    setTimeout(() => promise.resolve(), seconds * 1000);
     this.devices = [];
-    this.ble.scan([this.scanUuid], 10, (device) => {
+    this.ble.scan([this.scanUuid], seconds, (device) => {
       u.logger.info(`scan success name:${device.name} id:${device.id} rssi:${device.rssi}`);
       // 異常値排除
       if (device.rssi === 127) {
         return;
       }
-      // 重複排除
-      this.devices.forEach((scanDevice) => {
-        if (scanDevice.id === device.id) {
-          // return;
-        }
-      });
-      this.devices.push(device);
-      // 降順にソート
-      this.devices.sort((a, b) => {
-        if (a.rssi > b.rssi) return -1;
-        if (a.rssi < b.rssi) return 1;
-        return 0;
-      });
+      // 未登録を追加
+      if (!u.find(this.devices, { id: device.id })) this.devices.push(device);
     }, (reason) => {
       u.logger.info(`scan failure reason:${reason}`);
     });
+    return promise.instance;
   }
 
   connect() {
