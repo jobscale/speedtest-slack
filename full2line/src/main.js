@@ -45,6 +45,7 @@ const app = {
   initBluetooth() {
     u.blue = new Bluetooth();
     u.blue.initialize();
+    u.blue.on('disconnect', this.disconnect);
   },
   initStorage() {
     u.storage = new Storage();
@@ -71,9 +72,12 @@ const app = {
         this.$ons.platform.select('ios');
       },
       methods: {
+        disconnect() {
+          u.logger('info disconnect ble.');
+        },
         componentTest() {
           this.$store.commit('initialize');
-          ExampleStore.example(this)
+          ExampleStore.example.bind(this)()
           .then(() => this.$store.commit('dump'));
         },
       },
