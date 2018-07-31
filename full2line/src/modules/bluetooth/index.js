@@ -13,6 +13,7 @@ export class Bluetooth extends Base {
   }
   initialize() {
     if (!this.hasBLE) {
+      u.logger.warn('assign mock.');
       Mock.assign(this);
       setInterval(() => this.status.power === -1 ? undefined : this.getPower(), 3000);
     }
