@@ -7,9 +7,11 @@ export class Bluetooth extends Base {
   constructor() {
     super();
     u.logger.info('start', 'Bluetooth', this.hasBLE);
+    this.scanUuid = 'ee5ffac6-eca7-46b4-99cf-eca4ad20e594';
     this.status = {
       active: false,
       power: -1,
+      devices: [],
     };
   }
   initialize() {
@@ -27,16 +29,14 @@ export class Bluetooth extends Base {
   getPower() {
   }
   scan() {
-    const promise = u.promise();
-    if (this.hasBLE) {
-      u.logger.info('run scan');
-      super.scan()
-        .then(devices => promise.resolve(devices));
-    } else {
-      this.mock.scan()
-        .then(devices => promise.resolve(devices));
-    }
-    return promise.instance;
+    this.status.devices.length = 0;
+    u.logger.info('run scan');
+    return super.scan(this.status.devices, Constant.blue.scanSeconds)
+    .then(devices => u.logger.assert(this.status.devices === devices))
+    .catch(e => {
+      u.logger.error('error', e.message);
+      throw e;
+    });
   }
   connect() {
     return super.connect()

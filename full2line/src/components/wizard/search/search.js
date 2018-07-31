@@ -5,21 +5,18 @@ export default {
     return {
       isTips: false,
       current: {},
-      list: [
-        {
-          id: 1,
-          name: 'first interface',
-          macAddress: '12-34-56-78',
-        },
-      ],
+      list: u.blue.status.devices,
     };
   },
   created() {
+    u.logger.info('list', this.list, u.blue.status.devices);
+    u.logger.assert(this.list === u.blue.status.devices);
     u.blue.scan()
-    .then((devices) => {
-      this.list = devices;
-      u.logger.info(`search::created() ${devices}`);
-    });
+    .then(devices => {
+      u.logger.assert(this.list === devices);
+      u.logger.info('search::created()', devices);
+    })
+    .catch(e => this.$ons.notification.toast(`エラー: ${e.message}`, { timeout: 3000 }));
   },
   methods: {
     translate: u.translate,

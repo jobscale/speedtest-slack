@@ -9,7 +9,7 @@ export const Mock = {
   },
   scan() {
     const promise = u.promise();
-    promise.resolve([
+    this.status.devices = [
       {
         id: 1,
         name: 'first interface',
@@ -25,7 +25,8 @@ export const Mock = {
         name: 'third interface',
         macAddress: '56-78-12-34',
       },
-    ]);
+    ];
+    promise.resolve(this.status.devices);
     return promise.instance;
   },
   connect(param) {
