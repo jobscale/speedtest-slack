@@ -28,13 +28,13 @@ export class Bluetooth extends Base {
   }
   connect() {
     return super.connect()
-    .then(res => u.logging.info(res))
-    .catch(e => u.logging.error(e.message));
+    .then(res => u.logger.info(res))
+    .catch(e => u.logger.error(e.message));
   }
   disconnect() {
     return super.disconnect()
-    .then(res => u.logging.info(res))
-    .catch(e => u.logging.error(e.message));
+    .then(res => u.logger.info(res))
+    .catch(e => u.logger.error(e.message));
   }
 }
 export default {
