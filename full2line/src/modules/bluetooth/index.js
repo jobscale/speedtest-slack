@@ -13,14 +13,12 @@ export class Bluetooth extends Base {
   }
   initialize() {
     if (!this.hasBLE) {
-      this.mock = new Mock(this);
+      u.logger.warn('assign mock.');
+      Mock.assign(this);
       setInterval(() => this.status.power === -1 ? undefined : this.getPower(), 3000);
     }
   }
   getPower() {
-    if (!this.hasBLE) {
-      this.mock.getPower();
-    }
   }
   scan() {
     const promise = u.promise();
@@ -34,21 +32,15 @@ export class Bluetooth extends Base {
     }
     return promise.instance;
   }
-  connect(param) {
-    const promise = u.promise();
-    if (!this.hasBLE) {
-      this.mock.connect(param)
-      .then(res => promise.resolve(res));
-    }
-    return promise.instance;
+  connect() {
+    return super.connect()
+    .then(res => u.logging.info(res))
+    .catch(e => u.logging.error(e.message));
   }
   disconnect() {
-    const promise = u.promise();
-    if (!this.hasBLE) {
-      this.mock.disconnect()
-      .then(res => promise.resolve(res));
-    }
-    return promise.instance;
+    return super.disconnect()
+    .then(res => u.logging.info(res))
+    .catch(e => u.logging.error(e.message));
   }
 }
 export default {
