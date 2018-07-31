@@ -6,11 +6,13 @@
     <div class="center">
       <h3>{{translate('wizard.search.caption')}}</h3>
       <img src="../../../assets/logo.png">
-      <div>{{translate('wizard.search.text')}}</div>
-      <v-ons-list class="center">
-        <v-ons-list-header>機器一覧</v-ons-list-header>
-        <v-ons-list-item v-for="v in list" :key="v.id" modifier="chevron" tappable @click="connect(v.id)">{{v.macAddress}}</v-ons-list-item>
-      </v-ons-list>
+      <div v-if="status.devices.length">
+        <div>{{translate('wizard.search.text')}}</div>
+        <v-ons-list class="center">
+          <v-ons-list-header>機器一覧</v-ons-list-header>
+          <v-ons-list-item v-for="v in status.devices" :key="v.id" modifier="chevron" tappable @click="connect(v.id)">{{v.id}}</v-ons-list-item>
+        </v-ons-list>
+      </div>
       <v-ons-button modifier="large" @click="close()">{{translate('wizard.search.notFound')}}</v-ons-button>
     </div>
   </div>

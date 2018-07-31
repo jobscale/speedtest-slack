@@ -29,10 +29,9 @@ export class Bluetooth extends Base {
   getPower() {
   }
   scan() {
-    this.status.devices.length = 0;
+    u.map(this.status.devices, () => this.status.devices.pop());
     u.logger.info('run scan');
     return super.scan(this.status.devices, Constant.blue.scanSeconds)
-    .then(devices => u.logger.assert(this.status.devices === devices))
     .catch(e => {
       u.logger.error('error', e.message);
       throw e;
