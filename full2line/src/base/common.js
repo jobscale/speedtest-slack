@@ -5,6 +5,7 @@ const Constant = {
   maxItem: 64,
   blue: {
     powerInterval: 60 * 1000,
+    scanSeconds: 10,
   },
 };
 

@@ -5,20 +5,14 @@ export default {
     return {
       isTips: false,
       current: {},
-      list: [
-        {
-          id: 1,
-          name: 'first interface',
-          macAddress: '12-34-56-78',
-        },
-      ],
+      list: u.blue.status.devices,
     };
   },
   created() {
     u.blue.scan()
-    .then((devices) => {
-      this.list = devices;
-      u.logger.info(`search::created() ${devices}`);
+    .then(devices => {
+      u.logger.assert(this.list === devices);
+      u.logger.info('search::created()', devices);
     });
   },
   methods: {

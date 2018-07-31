@@ -10,6 +10,7 @@ export class Bluetooth extends Base {
     this.status = {
       active: false,
       power: -1,
+      devices: [],
     };
   }
   initialize() {
@@ -27,16 +28,11 @@ export class Bluetooth extends Base {
   getPower() {
   }
   scan() {
-    const promise = u.promise();
-    if (this.hasBLE) {
-      u.logger.info('run scan');
-      super.scan()
-        .then(devices => promise.resolve(devices));
-    } else {
-      this.mock.scan()
-        .then(devices => promise.resolve(devices));
-    }
-    return promise.instance;
+    this.status.devices = [];
+    u.logger.info('run scan');
+    return super.scan(this.status.devices, Constant.blue.scanSeconds)
+    .then(devices => u.logger.assert(this.status.devices === devices))
+    .catch(e => u.logger.error(e.message));
   }
   connect() {
     return super.connect()
