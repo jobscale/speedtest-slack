@@ -33,7 +33,7 @@ export class Bluetooth {
       }
       // 未登録を追加
       if (!u.find(devices, { id: device.id })) devices.push(device);
-    }, reason => promise.reject(`scan failure reason:${reason}`));
+    }, reason => promise.reject(new Error(`scan failure reason:${reason}`)));
     return promise.instance;
   }
 
