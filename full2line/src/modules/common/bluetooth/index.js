@@ -5,15 +5,13 @@ export class Bluetooth {
     u.logger.info('New Instance of Bluetooth');
     this.ble = window.ble;
     this.eventHandler = {};
-    this.enable()
-    .then(res => this.hasBLE = res);
   }
   enable() {
     const promise = u.promise();
     if (this.ble) {
       this.ble.enable(
-      () => promise.resolve(true),
-      () => promise.resolve(false),
+      () => promise.resolve(this.hasBLE = true),
+      () => promise.resolve(this.hasBLE = false),
       );
     } else {
       promise.resolve(false);
