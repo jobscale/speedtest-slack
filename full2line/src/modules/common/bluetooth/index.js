@@ -3,14 +3,15 @@ import { Util as u } from '@/modules/util';
 export class Bluetooth {
   constructor() {
     u.logger.info('New Instance of Bluetooth');
+    this.ble = window.ble;
     this.eventHandler = {};
     this.enable()
     .then(res => this.hasBLE = res);
   }
   enable() {
     const promise = u.promise();
-    if (window.ble) {
-      window.ble.enable(
+    if (this.ble) {
+      this.ble.enable(
       () => promise.resolve(true),
       () => promise.resolve(false),
       );
@@ -43,11 +44,15 @@ export class Bluetooth {
   }
 
   connect() {
-
+    const promise = u.promise();
+    promise.resolve('connected');
+    return promise.instance;
   }
 
   disconnect() {
-
+    const promise = u.promise();
+    promise.resolve('disconnected');
+    return promise.instance;
   }
 
   write() {
