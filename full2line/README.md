@@ -148,6 +148,7 @@ SPA (シングルページアプリケーション)
 * ペアリング方法選択 (pairingMethod)
 * 調光回路ID変更 (dimmerid)
 * ようこそ (wizard)
+* 設定器の選択 (wizard-search)
 
 #### モーダル
 * 汎用処理中 (processing)
