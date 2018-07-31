@@ -33,7 +33,10 @@ export class Bluetooth extends Base {
     u.logger.info('run scan');
     return super.scan(this.status.devices, Constant.blue.scanSeconds)
     .then(devices => u.logger.assert(this.status.devices === devices))
-    .catch(e => u.logger.error(e.message) || e);
+    .catch(e => {
+      u.logger.error('error', e.message);
+      throw e;
+    });
   }
   connect() {
     return super.connect()
