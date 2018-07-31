@@ -17,6 +17,7 @@
     "pf:build:ios": "cordova build ios | grep -i error | tee $(date +'/tmp/%m%d-%H%M%S.log')",
     "android": "npm run build && npm run pf:build:android && cordova run android --nobuild",
     "ios": "npm run build && npm run pf:build:ios && cordova run ios --nobuild",
+    "se": "npm run build && npm run pf:build:ios && cordova run ios --nobuild --target=iPhone-SE",
     "test": "npm run lint",
     "precommit": "npm test",
     "lint": "eslint --ext .js,.vue src"
@@ -24,6 +25,7 @@
   "dependencies": {
     "cordova-android": "6.2.3",
     "cordova-ios": "4.5.4",
+    "cordova-plugin-ble-central": "^1.2.2",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-crosswalk-webview": "~2.4.0",
     "cordova-plugin-file": "^4.3.3",
@@ -95,7 +97,10 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-file": {},
-      "cordova-plugin-crosswalk-webview": {}
+      "cordova-plugin-crosswalk-webview": {},
+      "cordova-plugin-ble-central": {
+        "BLUETOOTH_USAGE_DESCRIPTION": "ble for full2way"
+      }
     },
     "platforms": [
       "android",
