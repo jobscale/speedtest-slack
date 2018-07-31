@@ -13,30 +13,21 @@ export class Bluetooth extends Base {
   }
   initialize() {
     if (!this.hasBLE) {
-      this.mock = new Mock(this);
+      Mock.assign(this);
       setInterval(() => this.status.power === -1 ? undefined : this.getPower(), 3000);
     }
   }
   getPower() {
-    if (!this.hasBLE) {
-      this.mock.getPower();
-    }
   }
-  connect(param) {
-    const promise = u.promise();
-    if (!this.hasBLE) {
-      this.mock.connect(param)
-      .then(res => promise.resolve(res));
-    }
-    return promise.instance;
+  connect() {
+    return super.connect()
+    .then(res => u.logging.info(res))
+    .catch(e => u.logging.error(e.message));
   }
   disconnect() {
-    const promise = u.promise();
-    if (!this.hasBLE) {
-      this.mock.disconnect()
-      .then(res => promise.resolve(res));
-    }
-    return promise.instance;
+    return super.disconnect()
+    .then(res => u.logging.info(res))
+    .catch(e => u.logging.error(e.message));
   }
 }
 export default {
