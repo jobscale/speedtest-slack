@@ -26,10 +26,10 @@ export class Bluetooth {
     const promise = u.promise();
     const seconds = 10;
 
-    if (window.ble) {
+    if (this.ble) {
       setTimeout(() => promise.resolve(this.devices), seconds * 1000);
       this.devices = [];
-      window.ble.scan([this.scanUuid], seconds, (device) => {
+      this.ble.scan([this.scanUuid], seconds, (device) => {
         u.logger.info(`scan success name:${device.name} id:${device.id} rssi:${device.rssi}`);
         // 異常値排除
         if (device.rssi === 127) {
