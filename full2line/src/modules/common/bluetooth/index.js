@@ -52,6 +52,100 @@ export class Bluetooth {
   write() {
 
   }
+  // 送信時のエスケープ処理
+  sendEscape(data) {
+    const array = [];
+    let pos = 0;
+    for (let p = 0; p < data.length; p++) {
+      if (data[p] === 0x7E) {
+        array[pos] = 0x7D;
+        array[pos + 1] = 0x5E;
+        pos += 2;
+      } else if (data[p] === 0x7D) {
+        array[pos] = 0x7D;
+        array[pos + 1] = 0x5D;
+        pos += 2;
+      } else {
+        array[pos] = data[p];
+        pos++;
+      }
+    }
+    return array;
+  }
+
+  // 受信時のエスケープ処理
+  receiveEscape(data) {
+    let array = [];
+    let pos = 0;
+    for (let p = 0; p < data.length; p++) {
+      // 0x7Dが出た場合は次のデータも確認する
+      if (data[p] === 0x7D) {
+        p++;
+        if (data[p] === 0x5E) {
+          array[pos] = 0x7E;
+          pos++;
+        } else if (data[p] === 0x5D) {
+          array[pos] = 0x7D;
+          pos++;
+        } else {
+          // エラー扱いなのでひとまず初期化した配列を返すようにしておく
+          return array = [];
+        }
+      } else {
+        array[pos] = data[p];
+        pos++;
+      }
+    }
+    return array;
+  }
+  // デリミタ付与処理
+  addDelimiter(data) {
+    // デリミタ分の2バイトを追加しておく
+    const length = data.length + 2;
+    const array = new Array(length);
+
+    let pos = 0;
+    for (let p = 0; p < length; p++) {
+      if (p === 0 || p === length - 1) {
+        array[p] = 0x7E;
+      } else {
+        array[p] = data[pos];
+        pos++;
+      }
+      u.logger.log(array[p]);
+    }
+    return array;
+  }
+
+  // デリミタによる分割処理
+  // デリミタを削除し、データ毎に配列で分けて返す
+  divideDelimiterArray(data) {
+    const dataSet = []; // デリミタ毎で分割したデータ配列を格納する
+    let binaryDataArray = []; // デリミタで挟まれているデータ列を入れる
+    let isEndFrame = false;
+    for (let p = 0; p < data.length; p++) {
+      if (data[p] === 0x7E) {
+        if (isEndFrame) {
+          dataSet.push(binaryDataArray);
+          binaryDataArray = []; // 次のbinaryArray初期化
+          isEndFrame = false;
+        }
+      } else {
+        binaryDataArray.push(data[p]);
+        isEndFrame = true;
+      }
+    }
+    return dataSet;
+  }
+
+  // 送信データ列を作成して返す
+  createCommandData(data) {
+    let sendData = [];
+    for (let p = 0; p < data.length; p++) {
+      sendData = sendData.concat(data[p]);
+    }
+    return sendData;
+  }
 }
 export default {
   Bluetooth,
