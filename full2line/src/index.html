@@ -4,9 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-    <title>FULL-2WAY</title>
+    <title><%= htmlWebpackPlugin.options.title || 'full-2way' %></title>
   </head>
-  <body>
+  <body
+  data-version="<%= htmlWebpackPlugin.options.version || '' %>"
+  data-commit="<%= htmlWebpackPlugin.options.commit || '' %>"
+  >
     <ons-icon icon="fa-spinner" size="30vw" spin></ons-icon>
     <%= htmlWebpackPlugin.options.cordova || '' %>
     <div id="app"></div>
