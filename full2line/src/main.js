@@ -83,12 +83,19 @@ const app = {
       },
     });
   },
-  main() {
+  ready() {
     app.initComponent();
     app.initDatabase();
     app.initBluetooth();
     app.initStorage();
     app.run();
+  },
+  main() {
+    const promise = u.promise();
+    promise.instance.then(res => u.logger.info('target', res) || app.ready(res));
+    document.addEventListener('deviceready', () => promise.resolve('on deviceready'), false);
+    setTimeout(() => promise.resolve('timeout deviceready'), 3000);
+    if (process.env.NODE_ENV === 'development') promise.resolve('on express');
   },
 };
 app.main();
