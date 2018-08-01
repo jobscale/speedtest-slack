@@ -2,6 +2,28 @@
 const path = require('path')
 const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const child_process = require('child_process');
+
+exports.getCommit = () => {
+  return new Promise(resolve => {
+    const cmd = 'echo -n $(git log 2>/dev/null | head -1 | awk \'{print $2}\')';
+    child_process.exec(cmd, (e, stdout) => e ? resolve('undefined') : resolve(stdout));
+  });
+};
+
+exports.getVersion = () => {
+  const ts = new Date();
+  const con = n => n < 10 ? `0${n}` : n;
+  const dt = {
+    Y: ts.getFullYear(),
+    m: con(ts.getMonth() + 1),
+    d: con(ts.getDate()),
+    H: con(ts.getHours()),
+    M: con(ts.getMinutes()),
+    S: con(ts.getSeconds()),
+  };
+  return `${dt.Y}.${dt.m}${dt.d}.${dt.H}${dt.M}`; // result: 2018.0831.1530
+};
 
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
