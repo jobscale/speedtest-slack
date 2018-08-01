@@ -10,7 +10,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = utils.getCommit().then(commit => {
-  let title = 'FULL-2WAY';
+  let title = 'FULL-2WAY-fast';
   const version = utils.getVersion();
   const env = config.build.env;
   const plugins = [
@@ -21,7 +21,7 @@ module.exports = utils.getCommit().then(commit => {
   ];
   let minify;
   if (!process.env.FAST) {
-    title += '-fast';
+    title = _.replace(title, '-fast', '');
     plugins.push(
     // UglifyJs do not support ES6+, you can also use babel-minify for better treeshaking: https://github.com/babel/minify
     new webpack.optimize.UglifyJsPlugin({
