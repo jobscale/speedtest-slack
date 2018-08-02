@@ -9,7 +9,7 @@ export default {
     translate: u.translate,
     open(name) {
       this.$emit('pop-page');
-      this.$emit('push-page', u.components[name]);
+      this.$emit('push-page', name);
     },
     close() {
       this.$emit('pop-page');
