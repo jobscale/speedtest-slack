@@ -1,10 +1,10 @@
-const utils = require('./utils');
 const webpack = require('webpack');
-const config = require('../config');
 const merge = require('webpack-merge');
-const baseWebpackConfig = require('./webpack.base.conf');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const utils = require('./utils');
+const config = require('../config');
+const baseWebpackConfig = require('./webpack.base.conf');
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach((name) => {
@@ -12,7 +12,9 @@ Object.keys(baseWebpackConfig.entry).forEach((name) => {
 });
 
 module.exports = utils.getCommit().then(commit => {
+  const title = 'FULL-2WAY';
   const version = utils.getVersion();
+  const logger = process.env.LOGGER || '{}';
   return merge(baseWebpackConfig, {
     module: {
       rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap }),
@@ -30,7 +32,8 @@ module.exports = utils.getCommit().then(commit => {
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'src/index.html',
-        title: 'FULL-2WAY',
+        logger,
+        title,
         version,
         commit,
         inject: true,

@@ -12,11 +12,11 @@ const config = require('../config');
 const optimizePlugins = commit => {
   let title = 'FULL-2WAY-fast';
   const version = utils.getVersion();
-  const env = config.build.env;
+  const logger = process.env.LOGGER || '';
   const plugins = [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      'process.env': env,
+      'process.env': config.build.env,
     }),
   ];
   let minify;
@@ -62,6 +62,7 @@ const optimizePlugins = commit => {
     minify,
     // necessary to consistently work with multiple chunks via CommonsChunkPlugin
     chunksSortMode: 'dependency',
+    logger,
     title,
     version,
     commit,

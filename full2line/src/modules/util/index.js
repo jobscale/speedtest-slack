@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+const dataset = document.querySelector('body').dataset;
+
 export class Util {
   constructor() {
     throw Error('only static');
@@ -51,7 +53,7 @@ _.merge(Util, {
     const nativeCode = () => {};
     const self = {};
     methods.forEach((method) => {
-      self[method] = process.env.NODE_ENV === 'production' ? nativeCode : window.console[method];
+      self[method] = dataset.logger ? window.console[method] : nativeCode;
       window.console[method] = nativeCode;
     });
     return self;
