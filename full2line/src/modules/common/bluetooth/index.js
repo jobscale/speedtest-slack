@@ -112,7 +112,6 @@ export class Bluetooth {
         array[p] = data[pos];
         pos++;
       }
-      u.logger.log(array[p]);
     }
     return array;
   }
@@ -145,6 +144,27 @@ export class Bluetooth {
       sendData = sendData.concat(data[p]);
     }
     return sendData;
+  }
+  // テスト用コード
+  commandTestCode() {
+    const sendArray = [0x01, 0x02, 0x03, 0x04, 0x7E, 0x06, 0x07, 0x7D, 0x09, 0x0A];
+    u.logger.log(sendArray);
+    const escapedArray = this.sendEscape(sendArray);
+    u.logger.log(escapedArray);
+    const addDelimitedArray = this.addDelimiter(escapedArray);
+    u.logger.log(addDelimitedArray);
+    const commandDataArray = this.createCommandData(addDelimitedArray);
+    u.logger.log(commandDataArray);
+
+    const receiveArray = [0x7E, 0x01, 0x02, 0x7D, 0x5D, 0x03, 0x04, 0x7E,
+      0x7E, 0x05, 0x06, 0x7D, 0x5E, 0x08, 0x09, 0x7E];
+    u.logger.log(receiveArray);
+    const derimiterArray = this.divideDelimiterArray(receiveArray);
+    u.logger.log(derimiterArray);
+    const escapeArray1 = this.receiveEscape(derimiterArray[0]);
+    const escapeArray2 = this.receiveEscape(derimiterArray[1]);
+    u.logger.log(escapeArray1);
+    u.logger.log(escapeArray2);
   }
 }
 export default {
