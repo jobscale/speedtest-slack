@@ -66,11 +66,17 @@
 		"listItem": "調光回路ID："
 	},
 	"pairedItems": {
+		"title": "系統",
 		"changeId": "調光回路ID変更",
 		"text": "ペアリング済器具",
 		"add": "追加",
-		"delete": "削除",
-		"confirm": "動作確認"
+		"delete": "削除実行",
+		"confirm": "動作確認",
+		"cancel": "キャンセル"
+	},
+	"selectItems": {
+		"title": "器具選択",
+		"pairing": "ペアリング実行"
 	},
 	"pairingMethod": {
 		"caption": "ペアリング",
