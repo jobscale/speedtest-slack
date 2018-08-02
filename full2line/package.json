@@ -12,7 +12,6 @@
     "build:custom": "cross-env FAST=true node build/build.js",
     "build:watch": "cross-env WEBPACK_WATCH=true node build/build.js",
     "build:watch:custom": "cross-env FAST=true WEBPACK_WATCH=true node build/build.js",
-    "pf:android": "scripts/pf-android",
     "pf:build:android": "cordova build android | grep -i error | tee $(date +'/tmp/%m%d-%H%M%S.log')",
     "pf:build:ios": "cordova build ios | grep -i error | tee $(date +'/tmp/%m%d-%H%M%S.log')",
     "android": "npm run build && npm run pf:build:android && cordova run android --nobuild",
