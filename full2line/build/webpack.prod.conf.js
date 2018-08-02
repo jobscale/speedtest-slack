@@ -1,27 +1,27 @@
 const path = require('path');
-const utils = require('./utils');
 const webpack = require('webpack');
-const config = require('../config');
 const merge = require('webpack-merge');
-const baseWebpackConfig = require('./webpack.base.conf');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+const baseWebpackConfig = require('./webpack.base.conf');
+const utils = require('./utils');
+const config = require('../config');
 
-module.exports = utils.getCommit().then(commit => {
+const optimizePlugins = commit => {
   let title = 'FULL-2WAY-fast';
   const version = utils.getVersion();
-  const env = config.build.env;
+  const logger = process.env.LOGGER || '';
   const plugins = [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      'process.env': env,
+      'process.env': config.build.env,
     }),
   ];
   let minify;
   if (!process.env.FAST) {
-    title = _.replace(title, '-fast', '');
+    title = title.replace(/-fast/, '');
     plugins.push(
     // UglifyJs do not support ES6+, you can also use babel-minify for better treeshaking: https://github.com/babel/minify
     new webpack.optimize.UglifyJsPlugin({
@@ -62,10 +62,11 @@ module.exports = utils.getCommit().then(commit => {
     minify,
     // necessary to consistently work with multiple chunks via CommonsChunkPlugin
     chunksSortMode: 'dependency',
+    logger,
     title,
     version,
     commit,
-    cordova: '<script src="cordova.js"></script>',
+    cordova: `<script src="${'cordova.js'}"></script>`,
   }));
   plugins.push(
   // keep module.id stable when vender modules does not change
@@ -99,6 +100,10 @@ module.exports = utils.getCommit().then(commit => {
       ignore: ['.*'],
     },
   ]));
+  return plugins;
+};
+
+module.exports = utils.getCommit().then(commit => {
   const webpackConfig = merge(baseWebpackConfig, {
     watch: process.env.WEBPACK_WATCH === 'true',
     module: {
@@ -113,12 +118,11 @@ module.exports = utils.getCommit().then(commit => {
       filename: utils.assetsPath('js/[name].[chunkhash].js'),
       chunkFilename: utils.assetsPath('js/[id].[chunkhash].js'),
     },
-    plugins,
+    plugins: optimizePlugins(commit),
   });
 
   if (config.build.productionGzip) {
     const CompressionWebpackPlugin = require('compression-webpack-plugin');
-
     webpackConfig.plugins.push(new CompressionWebpackPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
