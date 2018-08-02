@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const childProcess = require('child_process');
 
 exports.getCommit = () => new Promise(resolve => {
-  const cmd = 'echo -n $(git log 2>/dev/null | head -1 | awk \'{print $2}\')';
+  const cmd = 'echo $(git log 2>/dev/null | head -1 | awk \'{print $2}\' | xargs)';
   childProcess.exec(cmd, (e, stdout) => e ? resolve('undefined') : resolve(stdout));
 });
 
