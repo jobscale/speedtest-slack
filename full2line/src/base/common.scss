@@ -1,156 +1,327 @@
-body {
-  align-items: center;
+/*
+ * フル二線 2018
+ *
+ * Masanori Kawase
+ *
+ */
+
+/* Custom Style
+ -------------------------------- */
+.f2l-flex {
   display: flex;
+  align-items: center;
+}
+.f2l-flex--stretch {
+  align-items: stretch;
+}
+.f2l-flex--center {
   justify-content: center;
-  margin: 0;
-  color: #ececec;
-  font-family: Quattrocento, serif;
-  line-height: 1.8925;
-  background: url(../assets/logo.png) no-repeat center center;
-  background-size: contain;
-  text-align: center;
 }
-div.center {
-  text-align: center;
+.f2l-flex--column {
+  flex-direction: column;
 }
-.toolbar__title.toolbar--material__center {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  width: 70vw;
+.f2l-flex--wrap {
+  flex-wrap: wrap;
 }
-.page__content.page--material__content > div.center {
-  padding: 2vw;
+.f2l-flex--grow {
+  flex-grow: 1;
 }
-ons-button.button {
-  margin: 2vw;
-  border-radius: 2vw;
+.f2l-flex--shrink {
+  flex-shrink: 0;
 }
-ons-button.button--large {
-  line-height: 8vh;
-  margin: 1.4vh 2vw;
-  width: 90vw;
-  font-size: 5vw;
-  display: inline-block;
+.f2l-overflow-y--scroll {
+  overflow-y: scroll;
 }
-ons-button.button {
-  background-color: #19c;
-}
-ons-button.orange.button {
-  background-color: orangered;
-}
-ons-icon.ons-icon {
-  color: #19c;
-}
-.carousel-dots {
-  cursor: pointer;
-  color: #19c;
-}
-.back-button.back-button {
-  color: #19c;
-}
-.back-button.back-button polygon {
-  fill: #19c;
-}
-.tips-content ons-button.button--large {
-  width: 80vw;
-  margin: 0 2vw 3vh 2vw;
-}
-ons-page.small .page__background {
-  background-color: #373764;
-  opacity: 0.7;
-}
-.tips-content h3 {
-  margin-top: 3vh;
-  padding-top: 3vh;
-}
-.tips-content {
-  color: black;
-  position: relative;
-  border-radius: 4vw;
-  margin: 8vh 4vw 3vh 4vw;
-  height: 88vh;
-  background-color: whitesmoke;
-  text-align: center;
-}
-ons-carousel ons-carousel-item.small {
-  font-size: 4.8vw;
-}
-.tips-content h3.center {
-  font-size: 5.2vw;
-}
-.toast.toast--material {
-  border-radius: 2vw;
-}
-.hide {
+.f2l-display--none {
   display: none;
 }
-.margin-min {
-  margin: 1vw;
+.f2l-visibility--hidden {
+  visibility: hidden;
 }
-.margin-mid {
-  margin: 2vw 1vw;
+.f2l-margin-top--1vw {
+  margin-top: 1vw !important;
 }
-#home .status {
-  background-color: orangered;
-  color: white;
+.f2l-margin-bottom--1vw {
+  margin-bottom: 1vw !important;
+}
+.f2l-margin-top--2vw {
+  margin-top: 2vw !important;
+}
+.f2l-margin-bottom--2vw {
+  margin-bottom: 2vw !important;
+}
+.f2l-font-family--monospace {
+  font-family: monospace, sans-serif;
+}
+
+
+
+
+
+/* Theme Override
+ -------------------------------- */
+.page__background {
+  background-color: #d9e1e7;
+}
+.toolbar__title, 
+.toolbar__center, 
+.toolbar, 
+.page, 
+.back-button, 
+.list-item, 
+.list-header {
+  color:#495363;
+}
+
+
+
+
+
+/* Button
+ -------------------------------- */
+.button {
+  background-color: #354052;
+}
+.button:active {
+  background-color: #354052;
+}
+.button.orange {
+  background-color: #ffb62a;
+  color:#000;
+}
+.button.button--outline {
+  background-color: transparent;
+  border: 2px solid #354052;
+  color: #495363;
+}
+.button.button--outline:active {
+  background-color: #d7d9dc;
+}
+.button.orange.button--outline {
+  background-color: transparent;
+  border: 2px solid #ffb62a;
+}
+.button.orange.button--outline:active {
+  background-color: #fff0d4;
+}
+
+.button.f2l-button-small {
+  min-width:50px;
+  height:24px;
+  border-radius:12px;
+  font-size:12px;
+  line-height: 24px;
+  padding:0 10px;
+  text-align:center;
+}
+.button.button--outline.f2l-button-small {
+  line-height: 20px;
+}
+.button.f2l-button-large {
+  height:48px;
+  border-radius:24px;
+/*  width:145px;*/
+  padding:0 20px;
+  line-height: 48px;
+  text-align:center;
+}
+
+
+
+
+
+/* Tool Bar
+ -------------------------------- */
+.back-button polygon {
+  fill: #495363;
+}
+.toolbar__right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.f2l-toolbar-icon {
+  height:44px;
+}
+
+
+
+
+
+/* Bottom Tool Bar
+ -------------------------------- */
+.f2l-bottom-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height:70px;
+  padding:0 15px;
+  background-color: #d9e1e7;
+}
+.page-with-bottom-toolbar > .page__content {
+  bottom: 70px;
+}
+.f2l-bottom-toolbar > .button {
+  min-width:40vw;
+  margin:0 1.5vw;
+  flex-grow: 1;
+}
+
+
+
+
+
+/* Text Block
+ -------------------------------- */
+.f2l-textblock--small {
+  padding:8px 15px;
+  font-size:12px;
+  line-height:16px;
+  text-align:center;
+}
+
+
+
+
+
+/* List
+ -------------------------------- */
+.list-item--chevron::before, .list-item__expand-chevron {
+  border-right: 2px solid #354052;
+  border-bottom: 2px solid #354052;
+}
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color:#fff;
+  background:#354052;
+}
+.list:not(.list--inset) > .list-header, 
+.list:not(.list--inset) > .list-item {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+.list:not(.list--inset) > .list-item > .list-item__right {
+  padding-right: 0;
+}
+
+
+
+
+
+
+/* Checkbox
+ -------------------------------- */
+.checkbox__checkmark:before {
+  content: '';
   position: absolute;
-  height: 8vh;
-  width: 100vw;
+  box-sizing: border-box;
+  background-clip: padding-box;
+  width: 20px;
+  height: 20px;
+  background: #f5fdff;
+  border: 2px solid #c9d4dd;
+  border-radius: 0;
+  left: 1px;
+  top: 1px;
 }
-#home .status.active {
-  background-color: #1c9;
+:checked + .checkbox__checkmark:before {
+  background: #ffb62a;
+  border: none;
 }
-#home .status .first {
+.checkbox__checkmark:after {
+  content: '';
   position: absolute;
-  width: 100%;
+  top: 5px;
+  left: 5px;
+  width: 11px;
+  height: 5px;
+  background: transparent;
+  border: 2px solid #fff;
+/*  border-width: 1px;*/
+  border-top: none;
+  border-right: none;
+  border-radius: 0;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  opacity: 0;
 }
-#home .status .second {
-  top: 3.5vh;
-  position: absolute;
-  width: 100%;
+
+
+
+
+
+/* iPhoneX
+ -------------------------------- */
+@media (orientation: portrait) {
+  html[onsflag-iphonex-portrait] .page-with-bottom-toolbar > .page__content {
+    bottom: 104px;
+  }
 }
-#home .status img.left {
-  position: absolute;
-  left: 1vw;
-  height: 80%;
-  top: 10%;
+@media (orientation: landscape) {
+  html[onsflag-iphonex-landscape] .page-with-bottom-toolbar > .page__content {
+    bottom: 91px;
+  }
+  html[onsflag-iphonex-landscape] .page__content > .list:not(.list--inset) > .list-header, 
+  html[onsflag-iphonex-landscape] .page__content > .list:not(.list--inset) > .list-item {
+    padding-left: 58px;
+    padding-right: 58px;
+  }
+  html[onsflag-iphonex-landscape] .page__content > .list:not(.list--inset) > .list-item > .list-item__right {
+    padding-right: 0;
+  }
 }
-#home .status img.right {
-  position: absolute;
-  right: 3vw;
-  height: 50%;
-  top: 25%;
+
+
+
+
+
+/* Page
+ -------------------------------- */
+/* pairedItems */
+#pairedItems .page__content {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
 }
-#home .middle {
-  position: absolute;
-  width: 100%;
-  top: 8.5vh;
-  bottom:1vh;
-  overflow: scroll;
+#pairedItems .f2l-list-3col .left {
+  min-width:52px;
 }
-#home ons-icon.ons-icon.fa-angle-right.fa {
-  position: absolute;
-  right: 1vw;
-  top: 10%;
-  font-size: 2vw;
-  color: white;
+#pairedItems .f2l-icon-color {
+  fill:#354052;
 }
-#home .home-icon {
-  margin-top: 3vh;
+#pairedItems .delmode .f2l-icon-color {
+  fill:#ffb62a;
 }
-#home .home-icon > span {
-  width: 40vw;
-  display: inline-grid;
+#pairedItems .f2l-delmode-obj-hide {
+  visibility:hidden;
 }
-#home .home-icon > span span {
-  font-size: 4vw;
-  display: block;
+#pairedItems .f2l-delmode-obj-hide.delmode {
+  visibility:visible;
 }
-#home .home-icon > span:nth-child(even) {
-  width: 1.5vw;
-  display: inline-block;
+#pairedItems .f2l-delmode-obj-show {
+  visibility:visible;
+}
+#pairedItems .f2l-delmode-obj-show.delmode {
+  visibility:hidden;
+}
+#pairedItems .f2l-bottom-toolbar > .button.f2l-delmode-obj-hide.delmode, 
+#pairedItems .f2l-bottom-toolbar > .button.f2l-delmode-obj-show {
+	display:block;
+}
+#pairedItems .f2l-bottom-toolbar > .button.f2l-delmode-obj-hide, 
+#pairedItems .f2l-bottom-toolbar > .button.f2l-delmode-obj-show.delmode {
+	display:none;
+}
+
+
+/* selectItems */
+#selectItems .page__content {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+#selectItems .f2l-list-3col .left {
+  min-width:52px;
 }

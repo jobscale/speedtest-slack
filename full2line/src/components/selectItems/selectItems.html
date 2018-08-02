@@ -1,0 +1,60 @@
+<v-ons-page id="selectItems">
+
+
+
+  <v-ons-toolbar>
+    <v-ons-back-button @click.prevent="close" class="left">{{translate('common.backButton')}}</v-ons-back-button>
+    <div class="center">{{translate('selectItems.title')}}</div>
+    <div class="right">
+      <img src="../../assets/images/ic_quest.svg" class="f2l-toolbar-icon" @click="isTips=true">
+    </div>
+  </v-ons-toolbar>
+
+
+
+  <div class="f2l-flex--shrink f2l-textblock--small">〇〇台検出しました。登録する器具を選択してください。<br />
+MACアドレスが不明な場合は、[点滅]ボタンを押すと<br />
+該当の器具を点滅させる事ができます。</div>
+
+
+
+  <v-ons-list class="f2l-list-3col f2l-flex--shrink">
+    <v-ons-list-header>
+      <div class="left">登録</div>
+      <div class="center">個体番号</div>
+      <div class="right">位置確認</div>
+    </v-ons-list-header>
+  </v-ons-list>
+
+  <v-ons-list class="f2l-list-3col f2l-flex--grow f2l-overflow-y--scroll">
+    <v-ons-list-item v-for="(itemid, $index) in itemid" :key="itemid" tappable modifier="longdivider">
+      <label class="left">
+        <v-ons-checkbox
+          :input-id="'checkbox-' + $index"
+          :value="itemid"
+          v-model="checkedItemid"
+        >
+        </v-ons-checkbox>
+      </label>
+      <label class="center f2l-font-family--monospace" :for="'checkbox-' + $index">
+        {{ itemid }}
+      </label>
+      <div class="right">
+        <v-ons-button modifier="outline" class="f2l-button-small orange" @click="">点滅</v-ons-button>
+      </div>
+    </v-ons-list-item>
+  </v-ons-list>
+
+
+
+  <v-ons-bottom-toolbar class="f2l-bottom-toolbar">
+<!--    <v-ons-button class="f2l-button-large f2l-delmode-obj-show" @click="$emit('push-page', 'pairingMethod')" :class="{delmode:isDelMode}">{{translate('selectItems.add')}}</v-ons-button>
+    <v-ons-button class="f2l-button-large orange f2l-delmode-obj-show" @click="" :class="{delmode:isDelMode}">{{translate('selectItems.confirm')}}</v-ons-button>
+
+    <v-ons-button class="f2l-button-large f2l-delmode-obj-hide" @click="isDelMode=false;checkedItemid=[]" :class="{delmode:isDelMode}">{{translate('selectItems.cancel')}}</v-ons-button>-->
+    <v-ons-button class="f2l-button-large orange" @click="" :disabled="checkedItemid.length > 0 ? false : true">{{translate('selectItems.pairing')}}</v-ons-button>
+  </v-ons-bottom-toolbar>
+
+
+
+</v-ons-page>

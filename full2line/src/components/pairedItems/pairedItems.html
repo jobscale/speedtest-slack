@@ -1,39 +1,74 @@
 <v-ons-page id="pairedItems">
+
+
+
   <v-ons-toolbar>
-    <v-ons-back-button @click.prevent="close" class="left">{{translate('selectLines.title')}}</v-ons-back-button>
+    <v-ons-back-button @click.prevent="close" class="left">{{translate('common.backButton')}}</v-ons-back-button>
     <div class="center">系統１</div>
     <div class="right">
-      <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
+      <svg viewBox="0 0 44 44" id="ic-trash" class="f2l-toolbar-icon" :class='{delmode:isDelMode}' @click="isDelMode=!isDelMode;checkedItemid=[]">
+        <g>
+          <rect class="f2l-icon-color" x="19.92" y="8.5" width="4.17" height="3.13" rx="0.69" ry="0.69"/>
+          <rect class="f2l-icon-color" x="9.85" y="10.24" width="24.31" height="2.08" rx="1.04" ry="1.04"/>
+          <path class="f2l-icon-color" d="M30.28,16.06,29.15,33H14.85L13.72,16H30.28m1.14-1.9H12.58a.92.92,0,0,0-.93,1L12.92,33.9a1.08,1.08,0,0,0,1.06,1H30a1.08,1.08,0,0,0,1.06-1l1.27-18.84a.92.92,0,0,0-.93-1Z"/>
+        </g>
+      </svg>
+      <img src="../../assets/images/ic_quest.svg" class="f2l-toolbar-icon" @click="isTips=true">
     </div>
   </v-ons-toolbar>
 
-  <v-ons-list>
-    <v-ons-list-item modifier="chevron" tappable @click="$emit('push-page', 'dimmerid')">{{translate('pairedItems.changeId')}}</v-ons-list-item>
-  </v-ons-list>
-  <v-ons-list modifier="inset">
-    <v-ons-list-header>{{translate('pairedItems.text')}}</v-ons-list-header>
-    <v-ons-list-item modifier="longdivider">
-      <div>
-        <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
-      </div>
-      <div>1</div>
-      <div class="right">
-        <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
-      </div>
-    </v-ons-list-item>
-    <v-ons-list-item modifier="longdivider">
-      <div>
-        <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
-      </div>
-      <div>2</div>
-      <div class="right">
-        <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
-      </div>
+
+
+  <v-ons-list modifier="inset" class="f2l-flex--shrink f2l-list--inset f2l-margin-top--2vw">
+    <v-ons-list-item modifier="chevron" tappable @click="$emit('push-page', 'dimmerid')">
+      <div class="center">{{translate('pairedItems.changeId')}}</div>
+      <div class="right">1</div>
     </v-ons-list-item>
   </v-ons-list>
-  <div>
-    <v-ons-button modifier="large" @click="$emit('push-page', 'pairingMethod')">{{translate('pairedItems.add')}}</v-ons-button>
-    <v-ons-button modifier="large" @click="">{{translate('pairedItems.delete')}}</v-ons-button>
-    <v-ons-button modifier="large" @click="">{{translate('pairedItems.confirm')}}</v-ons-button>
-  </div>
+
+
+
+  <div class="f2l-flex--shrink f2l-textblock--small">ペアリング済器具台数：〇〇台</div>
+
+
+
+  <v-ons-list class="f2l-list-3col f2l-flex--shrink">
+    <v-ons-list-header>
+      <div class="left f2l-delmode-obj-hide" :class="{delmode:isDelMode}">削除</div>
+      <div class="center">個体番号</div>
+      <div class="right">位置確認</div>
+    </v-ons-list-header>
+  </v-ons-list>
+
+  <v-ons-list class="f2l-list-3col f2l-flex--grow f2l-overflow-y--scroll">
+    <v-ons-list-item v-for="(itemid, $index) in itemid" :key="itemid" tappable modifier="longdivider">
+      <label class="left f2l-delmode-obj-hide" :class="{delmode:isDelMode}">
+        <v-ons-checkbox :disabled="!isDelMode"
+          :input-id="'checkbox-' + $index"
+          :value="itemid"
+          v-model="checkedItemid"
+        >
+        </v-ons-checkbox>
+      </label>
+      <label class="center f2l-font-family--monospace" :for="'checkbox-' + $index">
+        {{ itemid }}
+      </label>
+      <div class="right">
+        <v-ons-button modifier="outline" class="f2l-button-small orange" @click="">点滅</v-ons-button>
+      </div>
+    </v-ons-list-item>
+  </v-ons-list>
+
+
+
+  <v-ons-bottom-toolbar class="f2l-bottom-toolbar">
+    <v-ons-button class="f2l-button-large f2l-delmode-obj-show" @click="$emit('push-page', 'pairingMethod')" :class="{delmode:isDelMode}">{{translate('pairedItems.add')}}</v-ons-button>
+    <v-ons-button class="f2l-button-large orange f2l-delmode-obj-show" @click="" :class="{delmode:isDelMode}">{{translate('pairedItems.confirm')}}</v-ons-button>
+
+    <v-ons-button class="f2l-button-large f2l-delmode-obj-hide" @click="isDelMode=false;checkedItemid=[]" :class="{delmode:isDelMode}">{{translate('pairedItems.cancel')}}</v-ons-button>
+    <v-ons-button class="f2l-button-large orange f2l-delmode-obj-hide" @click="" :disabled="checkedItemid.length > 0 ? false : true" :class="{delmode:isDelMode}">{{translate('pairedItems.delete')}}</v-ons-button>
+  </v-ons-bottom-toolbar>
+
+
+
 </v-ons-page>
