@@ -15,7 +15,6 @@ export class Bluetooth extends Base {
     };
   }
   initialize() {
-    this.commandTestCode();
     return this.enable()
     .then(res => {
       if (res) return;
