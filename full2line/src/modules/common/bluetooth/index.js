@@ -37,15 +37,28 @@ export class Bluetooth {
     return promise.instance;
   }
 
-  connect() {
+  connect(device) {
     const promise = u.promise();
-    promise.resolve('connected');
+    this.ble.connect(device.id, () => {
+      u.logger.info('connect Success');
+      promise.resolve(device);
+      this.status.active = true;
+      this.status.device = device;
+    }, reason => {
+      u.logger.log('Connect lost');
+      this.eventHandler.disconnect();
+      promise.reject(new Error(`scan failure reason:${reason}`));
+    });
     return promise.instance;
   }
 
   disconnect() {
     const promise = u.promise();
-    promise.resolve('disconnected');
+    this.ble.disconnect(this.status.device.id, () => {
+      u.logger.info('disConnect Succees');
+      promise.resolve();
+      this.status.active = false;
+    }, reason => promise.reject(new Error(`scan failure reason:${reason}`)));
     return promise.instance;
   }
 
