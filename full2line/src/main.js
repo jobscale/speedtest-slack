@@ -70,7 +70,6 @@ const app = {
           html.setAttribute('onsflag-iphonex-landscape', '');
         }
         this.$ons.platform.select('ios');
-        this.$ons.disableAutoStatusBarFill();
       },
       methods: {
         disconnect() {
