@@ -2,7 +2,11 @@
 	"common": {
 		"home": "ホーム",
 		"backButton": "戻る",
-		"next": "次へ"
+		"next": "次へ",
+		"register": "登録",
+		"uuid": "個体番号",
+		"blinkHeader": "位置確認",
+		"blink": "点滅"
 	},
 	"wizard": {
 		"title": "フル２線　設定・保守アプリ",
@@ -76,7 +80,8 @@
 	},
 	"selectItems": {
 		"title": "器具選択",
-		"pairing": "ペアリング実行"
+		"pairing": "ペアリング実行",
+		"text": "台検出しました。登録する器具を選択してください。<br>MACアドレスが不明な場合は、[点滅]ボタンを押すと<br>該当の器具を点滅させる事ができます。"
 	},
 	"pairingMethod": {
 		"caption": "ペアリング",
