@@ -18,9 +18,11 @@ export class Util {
     });
     return val.join('-');
   }
-  static translate(source) {
+  static translate(source, params) {
     /* eslint-disable no-eval */
-    return eval(`Util.lang.${source}`); /* eslint-enable no-eval */
+    let result = eval(`Util.lang.${source}`); /* eslint-enable no-eval */
+    _.each(params, (value, key) => result = _.replace(result, `{{${key}}}`, value));
+    return result;
   }
   static stringToDatetime(timestamp) {
     return new Date(timestamp);

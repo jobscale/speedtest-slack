@@ -3,7 +3,7 @@ import { Util as u } from '@/modules/util';
 export default {
   data() {
     return {
-      itemid: [
+      itemId: [
         '11:11:11:11:11:11',
         '22:22:22:22:22:22',
         '33:33:33:33:33:33',
@@ -14,9 +14,7 @@ export default {
         '88:88:88:88:88:88',
         '99:99:99:99:99:99',
       ],
-      checkedItemid: [
-//        '22:22:22:22:22:22'
-      ],
+      checkedItemId: [],
       isDelMode: false,
     };
   },
