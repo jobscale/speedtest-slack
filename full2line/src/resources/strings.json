@@ -4,6 +4,7 @@
 		"backButton": "戻る",
 		"next": "次へ",
 		"register": "登録",
+		"delete": "削除",
 		"uuid": "個体番号",
 		"blinkHeader": "位置確認",
 		"blink": "点滅"
@@ -72,7 +73,7 @@
 	"pairedItems": {
 		"title": "系統",
 		"changeId": "調光回路ID変更",
-		"text": "ペアリング済器具",
+		"text": "ペアリング済器具台数：{{count}}台",
 		"add": "追加",
 		"delete": "削除実行",
 		"confirm": "動作確認",

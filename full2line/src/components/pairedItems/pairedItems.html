@@ -6,7 +6,7 @@
     <v-ons-back-button @click.prevent="close" class="left">{{translate('common.backButton')}}</v-ons-back-button>
     <div class="center">系統１</div>
     <div class="right">
-      <svg viewBox="0 0 44 44" id="ic-trash" class="f2l-toolbar-icon" :class='{delmode:isDelMode}' @click="isDelMode=!isDelMode;checkedItemid=[]">
+      <svg viewBox="0 0 44 44" id="ic-trash" class="f2l-toolbar-icon" :class='{delmode:isDelMode}' @click="isDelMode=!isDelMode;checkedItemId=[]">
         <g>
           <rect class="f2l-icon-color" x="19.92" y="8.5" width="4.17" height="3.13" rx="0.69" ry="0.69"/>
           <rect class="f2l-icon-color" x="9.85" y="10.24" width="24.31" height="2.08" rx="1.04" ry="1.04"/>
@@ -28,33 +28,33 @@
 
 
 
-  <div class="f2l-flex--shrink f2l-textblock--small">ペアリング済器具台数：〇〇台</div>
+  <div class="f2l-flex--shrink f2l-textblock--small">{{translate('pairedItems.text', {count:itemId.length})}}</div>
 
 
 
   <v-ons-list class="f2l-list-3col f2l-flex--shrink">
     <v-ons-list-header>
-      <div class="left f2l-delmode-obj-hide" :class="{delmode:isDelMode}">削除</div>
-      <div class="center">個体番号</div>
-      <div class="right">位置確認</div>
+      <div class="left f2l-delmode-obj-hide" :class="{delmode:isDelMode}">{{translate('common.delete')}}</div>
+      <div class="center">{{translate('common.uuid')}}</div>
+      <div class="right">{{translate('common.blinkHeader')}}</div>
     </v-ons-list-header>
   </v-ons-list>
 
   <v-ons-list class="f2l-list-3col f2l-flex--grow f2l-overflow-y--scroll">
-    <v-ons-list-item v-for="(itemid, $index) in itemid" :key="itemid" tappable modifier="longdivider">
+    <v-ons-list-item v-for="(itemId, $index) in itemId" :key="itemId" tappable modifier="longdivider">
       <label class="left f2l-delmode-obj-hide" :class="{delmode:isDelMode}">
         <v-ons-checkbox :disabled="!isDelMode"
           :input-id="'checkbox-' + $index"
-          :value="itemid"
-          v-model="checkedItemid"
+          :value="itemId"
+          v-model="checkedItemId"
         >
         </v-ons-checkbox>
       </label>
       <label class="center f2l-font-family--monospace" :for="'checkbox-' + $index">
-        {{ itemid }}
+        {{ itemId }}
       </label>
       <div class="right">
-        <v-ons-button modifier="outline" class="f2l-button-small orange" @click="">点滅</v-ons-button>
+        <v-ons-button modifier="outline" class="f2l-button-small orange" @click="">{{translate('common.blink')}}</v-ons-button>
       </div>
     </v-ons-list-item>
   </v-ons-list>
@@ -65,8 +65,8 @@
     <v-ons-button class="f2l-button-large f2l-delmode-obj-show" @click="$emit('push-page', 'pairingMethod')" :class="{delmode:isDelMode}">{{translate('pairedItems.add')}}</v-ons-button>
     <v-ons-button class="f2l-button-large orange f2l-delmode-obj-show" @click="" :class="{delmode:isDelMode}">{{translate('pairedItems.confirm')}}</v-ons-button>
 
-    <v-ons-button class="f2l-button-large f2l-delmode-obj-hide" @click="isDelMode=false;checkedItemid=[]" :class="{delmode:isDelMode}">{{translate('pairedItems.cancel')}}</v-ons-button>
-    <v-ons-button class="f2l-button-large orange f2l-delmode-obj-hide" @click="" :disabled="checkedItemid.length > 0 ? false : true" :class="{delmode:isDelMode}">{{translate('pairedItems.delete')}}</v-ons-button>
+    <v-ons-button class="f2l-button-large f2l-delmode-obj-hide" @click="isDelMode=false;checkedItemId=[]" :class="{delmode:isDelMode}">{{translate('pairedItems.cancel')}}</v-ons-button>
+    <v-ons-button class="f2l-button-large orange f2l-delmode-obj-hide" @click="" :disabled="checkedItemId.length > 0 ? false : true" :class="{delmode:isDelMode}">{{translate('pairedItems.delete')}}</v-ons-button>
   </v-ons-bottom-toolbar>
 
 
