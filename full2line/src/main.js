@@ -57,11 +57,11 @@ const app = {
       template: '<navigator v-bind:class="{hide:isCold}"/>',
       data() { return { isCold: true }; },
       created() {
+        this.initEvent();
         setTimeout(() => {
           this.isCold = false;
           this.componentTest();
         }, 2000);
-        u.blue.on('disconnect', this.disconnect);
       },
       beforeMount() {
         if (this.$ons.platform.isIPhoneX()) {
@@ -72,6 +72,9 @@ const app = {
         this.$ons.platform.select('ios');
       },
       methods: {
+        initEvent() {
+          u.blue.on('disconnect', this.disconnect);
+        },
         disconnect() {
           u.logger.info('info', 'disconnect ble.');
         },

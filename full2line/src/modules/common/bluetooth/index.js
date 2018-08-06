@@ -47,7 +47,7 @@ export class Bluetooth {
     }, reason => {
       u.logger.log('Connect lost');
       this.eventHandler.disconnect();
-      promise.reject(new Error(`scan failure reason:${reason}`));
+      promise.reject(new Error(`connect failure reason:${reason}`));
     });
     return promise.instance;
   }
@@ -58,7 +58,7 @@ export class Bluetooth {
       u.logger.info('disConnect Succees');
       promise.resolve();
       this.status.active = false;
-    }, reason => promise.reject(new Error(`scan failure reason:${reason}`)));
+    }, reason => promise.reject(new Error(`disconnect failure reason:${reason}`)));
     return promise.instance;
   }
 
