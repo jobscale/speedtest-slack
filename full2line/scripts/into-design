@@ -3,24 +3,24 @@
 pwd
 
 fixCode() {
-  zip -rll _work src
+  zip -ryll _work src >/dev/null
   rm -r src
-  unzip _work
+  unzip _work >/dev/null
   rm _work.zip
 }
 
 fixMode() {
-  find -type d -exec chmod 775 {} +
-  find -type f -exec chmod 664 {} +
+  find . -type d -exec chmod 775 {} +
+  find . -type f -exec chmod 664 {} +
 }
 
 fixTrash() {
-  if [ $(find -name desktop.ini | wc -l) -ne 0 ]
+  if [ $(find . -name $1 | wc -l) -ne 0 ]
   then
-    files=($(find . -name desktop.ini))
+    files=($(find . -name $1))
     for f in ${files[@]}
     do
-      cmd="rm $f"
+      cmd="rm -r $f"
       echo "$cmd"
       $cmd
     done
@@ -28,9 +28,11 @@ fixTrash() {
 }
 
 main() {
-  fixCode
+  fixTrash desktop.ini
+  fixTrash Thumbs.db
+  fixTrash .DS_Store
   fixMode
-  fixTrash
+  fixCode
 }
 
 main
