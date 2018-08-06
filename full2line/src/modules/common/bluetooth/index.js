@@ -1,4 +1,5 @@
 import { Util as u } from '@/modules/util';
+import { Constant } from '@/base/common';
 
 export class Bluetooth {
   constructor() {
@@ -25,7 +26,7 @@ export class Bluetooth {
   scan(devices, seconds) {
     const promise = u.promise();
     setTimeout(() => promise.resolve(devices), seconds * 1000);
-    this.ble.scan([this.scanUuid], seconds, device => {
+    this.ble.scan([Constant.blue.scanUuid], seconds, device => {
       u.logger.info(`scan success name:${device.name} id:${device.id} rssi:${device.rssi}`);
       // 異常値排除
       if (device.rssi === 127) {
@@ -47,7 +48,7 @@ export class Bluetooth {
     }, reason => {
       u.logger.log('Connect lost');
       this.eventHandler.disconnect();
-      promise.reject(new Error(`scan failure reason:${reason}`));
+      promise.reject(new Error(`connect failure reason:${reason}`));
     });
     return promise.instance;
   }
@@ -58,7 +59,7 @@ export class Bluetooth {
       u.logger.info('disConnect Succees');
       promise.resolve();
       this.status.active = false;
-    }, reason => promise.reject(new Error(`scan failure reason:${reason}`)));
+    }, reason => promise.reject(new Error(`disconnect failure reason:${reason}`)));
     return promise.instance;
   }
 
