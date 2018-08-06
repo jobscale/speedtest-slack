@@ -9,6 +9,9 @@
 		"blinkHeader": "位置確認",
 		"blink": "点滅"
 	},
+	"event": {
+		"disconnect": "Bluetoothの接続が切れました。再接続を行ってください。"
+	},
 	"wizard": {
 		"title": "フル２線　設定・保守アプリ",
 		"caption": "ようこそ",
