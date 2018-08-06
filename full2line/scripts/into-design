@@ -1,0 +1,36 @@
+#!/bin/bash -eu
+
+pwd
+
+fixCode() {
+  zip -rll _work src
+  rm -r src
+  unzip _work
+  rm _work.zip
+}
+
+fixMode() {
+  find -type d -exec chmod 775 {} +
+  find -type f -exec chmod 664 {} +
+}
+
+fixTrash() {
+  if [ $(find -name desktop.ini | wc -l) -ne 0 ]
+  then
+    files=($(find . -name desktop.ini))
+    for f in ${files[@]}
+    do
+      cmd="rm $f"
+      echo "$cmd"
+      $cmd
+    done
+  fi
+}
+
+main() {
+  fixCode
+  fixMode
+  fixTrash
+}
+
+main
