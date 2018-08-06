@@ -23,31 +23,17 @@ export const ExampleStore = {
   example() {
     const test = () => {
       const promise = u.promise();
-      this.$store.commit('setInterface', {
-        idInterface: 1,
-        name: 'first interface',
-        macAddress: 'mac-address',
-      });
       this.$store.commit('setSensor', {
-        idInterface: 1,
         idSensor: 1,
-        name: 'first sensor',
         macAddress: 'mac-address',
       });
       this.$store.commit('setLine', {
-        idInterface: 1,
         idSensor: 1,
         idLine: 1,
-        /** circuit:number 1〜28, 予備として 29〜32
-         * 設定器内ユニークである必要がある */
-        circuit: Math.floor(Math.random() * 27) + 1,
       });
       this.$store.commit('setItem', {
-        idInterface: 1,
         idSensor: 1,
         idLine: 1,
-        id: 1,
-        name: 'first item',
         macAddress: 'mac-address',
       });
       promise.resolve('store test ok.');
@@ -67,42 +53,65 @@ const Mutation = {
      * 現在設定中の対象ID
      */
     (o => o)(state).current = {
-      idInterface: 1,
       idSensor: 1,
       idLine: 1,
-      nameCSV: 'Aチーム用',
     };
     /**
      * データ構造
      */
-    (o => o)(state).interfaces = [ // maxInterface
+    (o => o)(state).sensors = [ // Aセンサー
       {
-        id: 1,
-        name: 'interface',
-        macAddress: 'm-a-c-a-d-d-r-e-s-s',
-        sensors: [ // maxSensor
+        idSensor: 10,                      // センサーID
+        freqCh: 920,                       // 周波数CH
+        macAddress: '00-11-22-33-44-55',  // MACアドレス
+        controlModeChangerAddress: 1000,  // 制御モード切替アドレス
+        illuminanceControl: {   // 一定値照度制御設定
+          state: 1,             // 状態値 1:照度記憶 2:明るさ記憶
+          illuminance: {        // 照度記憶
+            measurement: 200,   // 輝度計測
+            reference: 250,     // 基準照度
+            normal: {           // 通常運転
+              target: 220,      // 目標照度
+              max: 300,         // 制御上限値
+              min: 50,          // 制御下限値
+            },
+            scene: {            // シーン運転
+              target: 220,      // 目標照度
+              max: 300,         // 制御上限値
+              min: 50,          // 制御下限値
+            },
+          },
+          brightness: {         // 明るさ記憶
+            normal: {           // 通常運転
+              target: 80,      // 目標調光率
+              max: 300,         // 制御上限値
+              min: 50,          // 制御下限値
+            },
+            scene: {            // シーン運転
+              target: 60,       // 目標比率
+              max: 300,         // 制御上限値
+              min: 50,          // 制御下限値
+            },
+          },
+        },
+        lines: [                  // 系統
           {
-            lux: 1000, // 輝度計測
-            id: 1,
-            name: 'sensor',
-            macAddress: 'm-a-c-a-d-d-r-e-s-s',
-            lines: [ // maxLine
+            idLine: 112,          // 調光回路ID
+            address: 240,         // 調光用アドレス
+            items: [              // 器具
               {
-                torque: { // 出力輝度設定
-                  set: 700,
-                  min: 20,
-                  max: 80,
+                idItem: 123,      // 器具ID
+                macAddress: '66-55-44-33-22-11',  // MACアドレス
+                hop: {            // ホップ設定
+                  idHop: 221,     // ホップ回路ID
+                  source: 201,    // 中継元器具ID
+                  destinations: [  // ホップ中継先
+                    {
+                      idDest: 203,  // 中継先器具ID
+                      macAddress: '33-44-55-11-22-66',  // MACアドレス
+                    },
+                  ],
                 },
-                color: 90,
-                id: 1,
-                circuit: 1, // 調光回路ID
-                items: [ // maxItem
-                  {
-                    id: 1,
-                    name: 'item',
-                    macAddress: 'm-a-c-a-d-d-r-e-s-s',
-                  },
-                ],
               },
             ],
           },
