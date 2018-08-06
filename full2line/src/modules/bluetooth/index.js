@@ -7,7 +7,6 @@ export class Bluetooth extends Base {
   constructor() {
     super();
     u.logger.info('start', 'Bluetooth', this.hasBLE);
-    this.scanUuid = 'ee5ffac6-eca7-46b4-99cf-eca4ad20e594';
     this.status = {
       active: false,
       power: -1,
