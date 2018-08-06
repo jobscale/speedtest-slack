@@ -12,6 +12,7 @@ export class Bluetooth extends Base {
       active: false,
       power: -1,
       devices: [],
+      device: null,
     };
   }
   initialize() {
@@ -37,8 +38,8 @@ export class Bluetooth extends Base {
       throw e;
     });
   }
-  connect() {
-    return super.connect()
+  connect(device) {
+    return super.connect(device)
     .then(res => u.logger.info(res))
     .catch(e => u.logger.error(e.message));
   }

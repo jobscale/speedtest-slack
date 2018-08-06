@@ -45,7 +45,6 @@ const app = {
   initBluetooth() {
     u.blue = new Bluetooth();
     u.blue.initialize();
-    u.blue.on('disconnect', this.disconnect);
   },
   initStorage() {
     u.storage = new Storage();
@@ -62,6 +61,7 @@ const app = {
           this.isCold = false;
           this.componentTest();
         }, 2000);
+        u.blue.on('disconnect', this.disconnect);
       },
       beforeMount() {
         if (this.$ons.platform.isIPhoneX()) {
