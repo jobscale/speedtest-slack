@@ -22,6 +22,12 @@ export class Bluetooth {
   on(event, callback) {
     this.eventHandler[event] = callback;
   }
+  fire(name, event) {
+    if (!this.eventHandler[name]) {
+      return;
+    }
+    setTimeout(() => this.eventHandler[name](event), 0);
+  }
 
   scan(devices, seconds) {
     const promise = u.promise();
@@ -47,7 +53,7 @@ export class Bluetooth {
       this.status.device = device;
     }, reason => {
       u.logger.log('Connect lost');
-      this.eventHandler.disconnect();
+      this.fire('disconnect');
       promise.reject(new Error(`connect failure reason:${reason}`));
     });
     return promise.instance;
