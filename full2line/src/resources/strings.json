@@ -9,8 +9,14 @@
 		"blinkHeader": "位置確認",
 		"blink": "点滅"
 	},
+	"message": {
+		"disconnect": "BLEを切断しました。"
+	},
+	"error": {
+		"connect": "BLEの接続に失敗しました。"
+	},
 	"event": {
-		"disconnect": "Bluetoothの接続が切れました。再接続を行ってください。"
+		"disconnect": "BLEの接続が切れました。<br>再接続を行ってください。"
 	},
 	"wizard": {
 		"title": "フル２線　設定・保守アプリ",

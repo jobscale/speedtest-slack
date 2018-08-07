@@ -17,8 +17,8 @@ export default {
     },
     disconnect() {
       u.logger.info('info', 'disconnect ble.');
-      u.modalText = u.translate('event.disconnect');
       this.pageStack.length = 1;
+      u.modalText = u.translate('event.disconnect');
       this.pageStack.push('Modal');
     },
   },

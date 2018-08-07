@@ -19,13 +19,20 @@ export default {
   methods: {
     translate: u.translate,
     close() {
+      u.blue.writeData(closure => {
+        u.logger.info(`closure :${closure}`);
+      });
       this.$emit('pop-page');
     },
     connect(id) {
       this.current = u.find(this.status.devices, { id });
       u.blue.connect(this.current)
       .then(() => this.isTips = true)
-      .catch(e => u.logger.error(e.message));
+      .catch(e => {
+        u.logger.error(e.message);
+        u.modalText = u.translate('error.connect');
+        this.$emit('push-page', 'Modal');
+      });
     },
   },
 };

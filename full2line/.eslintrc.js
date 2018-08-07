@@ -40,5 +40,6 @@ module.exports = {
     "no-plusplus": "off",
     "no-confusing-arrow": "off",
     "class-methods-use-this": "off",
+    "no-await-in-loop": "off",
   },
 };
