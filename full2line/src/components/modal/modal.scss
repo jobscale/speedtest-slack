@@ -1,0 +1,18 @@
+#modal .full-height {
+  height: 100vh;
+}
+#modal .flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+#modal .position-ref {
+  position: relative;
+}
+#modal .content {
+  text-align: center;
+}
+#modal .title {
+  font-size: 6vw;
+  padding: 6vw;
+}
