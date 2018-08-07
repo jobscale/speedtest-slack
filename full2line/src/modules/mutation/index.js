@@ -165,14 +165,14 @@ const Mutation = {
       obj.macAddress = param.macAddress;
       return;
     }
-    let items = Finder.findLine(state, param).items;
-    if (items.length >= Constant.maxItem) throw new Error('application error');
-    items.push(obj = {
+    const line = Finder.findLine(state, param);
+    if (line.items.length >= Constant.maxItem) throw new Error('application error');
+    line.items.push(obj = {
       id: param.id,
       name: param.name,
       macAddress: param.macAddress,
     });
-    items = u.sortBy(items, ['id']);
+    line.items = u.sortBy(line.items, ['id']);
   },
   removeSensor(state, param) {
     u.remove(state.sensors, { id: param.idSensor });
