@@ -47,6 +47,24 @@ export const Mock = {
     setTimeout(cb, 200);
     return promise.instance;
   },
+  findingSensor() {
+    this.promiseindingSensor = u.promise();
+    const cb = () => {
+      const sensor = {
+        id: '11-22-33-44-55-66',
+        status: 'found',
+      };
+      this.promiseindingSensor.resolve(sensor);
+    };
+    setTimeout(cb, 5000);
+    return this.promiseindingSensor.instance;
+  },
+  cancelFindingSensor() {
+    const sensor = {
+      status: 'canceled',
+    };
+    this.promiseindingSensor.resolve(sensor);
+  },
 };
 export default {
   Mock,

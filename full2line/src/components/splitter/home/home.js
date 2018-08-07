@@ -5,7 +5,6 @@ export default {
   data() {
     return {
       status: u.blue.status,
-      interface: this.$store.getters.getInterface,
     };
   },
   created() {

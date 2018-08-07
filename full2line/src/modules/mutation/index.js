@@ -2,11 +2,8 @@ import { Util as u } from '@/modules/util';
 import { Constant } from '@/base/common';
 
 const Finder = {
-  findInterface(state, param) {
-    return u.find(state.interfaces, { id: param.idInterface }) || {};
-  },
   findSensor(state, param) {
-    return u.find(this.findInterface(state, param).sensors, { id: param.idSensor }) || {};
+    return u.find(state.sensors, { id: param.idSensor }) || {};
   },
   findLine(state, param) {
     return u.find(this.findSensor(state, param).lines, { id: param.idLine }) || {};
@@ -121,13 +118,10 @@ const Mutation = {
   },
   initialize(state) {
     (o => o)(state).current = {};
-    (o => o)(state).interfaces = [];
+    (o => o)(state).sensors = [];
   },
   dump(state) {
     u.logger.info(JSON.stringify(state));
-  },
-  setCurrentInterface(state, param) {
-    (o => o)(state).current.idInterface = param.id;
   },
   setCurrentSensor(state, param) {
     (o => o)(state).current.idSensor = param.id;
@@ -135,29 +129,13 @@ const Mutation = {
   setCurrentLine(state, param) {
     (o => o)(state).current.idLine = param.id;
   },
-  setInterface(state, param) {
-    let obj = Finder.findInterface(state, param);
-    if (u.keys(obj).length) {
-      obj.name = param.name;
-      return;
-    }
-    const interfaces = state.interfaces;
-    if (interfaces.length >= Constant.maxInterface) throw new Error('application error');
-    interfaces.push(obj = {
-      id: param.idInterface,
-      name: param.name,
-      macAddress: param.macAddress,
-      sensors: [],
-    });
-    u.sortBy(interfaces, ['id']);
-  },
   setSensor(state, param) {
     let obj = Finder.findSensor(state, param);
     if (u.keys(obj).length) {
       obj.name = param.name;
       return;
     }
-    const sensors = Finder.findInterface(state, param).sensors;
+    const sensors = state.sensors;
     if (sensors.length >= Constant.maxSensor) throw new Error('application error');
     sensors.push(obj = {
       id: param.idSensor,
@@ -187,22 +165,17 @@ const Mutation = {
       obj.macAddress = param.macAddress;
       return;
     }
-    const items = Finder.findLine(state, param).items;
+    let items = Finder.findLine(state, param).items;
     if (items.length >= Constant.maxItem) throw new Error('application error');
     items.push(obj = {
       id: param.id,
       name: param.name,
       macAddress: param.macAddress,
     });
-    u.sortBy(items, ['id']);
-  },
-  removeInterface(state, param) {
-    const interfaces = state.interfaces;
-    u.remove(interfaces, { id: param.idInterface });
+    items = u.sortBy(items, ['id']);
   },
   removeSensor(state, param) {
-    const sensors = Finder.findInterface(state, param).sensors;
-    u.remove(sensors, { id: param.idSensor });
+    u.remove(state.sensors, { id: param.idSensor });
   },
   removeItem(state, param) {
     const items = Finder.findLine(state, param).items;
@@ -216,11 +189,6 @@ const Getters = {
   getNameCSV(state) {
     return state.current.nameCSV;
   },
-  getInterface(state) {
-    return Finder.findInterface(state, {
-      idInterface: state.current.idInterface,
-    });
-  },
   getSensor(state) {
     return Finder.findSensor(state, {
       idSensor: state.current.idSensor,
@@ -228,7 +196,6 @@ const Getters = {
   },
   getLine(state) {
     return Finder.findLine(state, {
-      idInterface: state.current.idInterface,
       idSensor: state.current.idSensor,
       idLine: state.current.idLine,
     });
@@ -241,11 +208,8 @@ const Getters = {
     for (let i = 1; i <= 28; i++) {
       circuits.push(i);
     }
-    const obj = Finder.findInterface(state, {
-      idInterface: state.current.idInterface,
-    });
     const busy = [];
-    u.each(obj ? obj.sensors : [], sensor => {
+    u.each(state.sensors ? state.sensors : [], sensor => {
       u.each(sensor.lines, line => {
         if (line.circuit) busy.push(line.circuit);
       });
