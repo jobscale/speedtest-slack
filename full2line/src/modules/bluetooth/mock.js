@@ -56,7 +56,7 @@ export const Mock = {
       };
       this.promiseindingSensor.resolve(sensor);
     };
-    setTimeout(cb, 2000);
+    setTimeout(cb, 5000);
     return this.promiseindingSensor.instance;
   },
   cancelFindingSensor() {
