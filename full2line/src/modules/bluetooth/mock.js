@@ -11,29 +11,26 @@ export const Mock = {
     const promise = u.promise();
     this.status.devices = [
       {
-        id: 1,
         name: 'first interface',
-        macAddress: '12-34-56-78',
+        id: '12-34-56-78',
       },
       {
-        id: 2,
         name: 'second interface',
-        macAddress: '34-56-78-12',
+        id: '34-56-78-12',
       },
       {
-        id: 3,
         name: 'third interface',
-        macAddress: '56-78-12-34',
+        id: '56-78-12-34',
       },
     ];
     promise.resolve(this.status.devices);
     return promise.instance;
   },
-  connect(param) {
+  connect(device) {
     const promise = u.promise();
     const cb = () => {
-      u.merge(this.status, param);
       this.status.active = true;
+      this.status.device = device;
       this.status.power = 5;
       promise.resolve('ok');
     };

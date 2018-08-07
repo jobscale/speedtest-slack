@@ -57,7 +57,6 @@ const app = {
       template: '<navigator v-bind:class="{hide:isCold}"/>',
       data() { return { isCold: true }; },
       created() {
-        this.initEvent();
         setTimeout(() => {
           this.isCold = false;
           this.componentTest();
@@ -72,12 +71,6 @@ const app = {
         this.$ons.platform.select('ios');
       },
       methods: {
-        initEvent() {
-          u.blue.on('disconnect', this.disconnect);
-        },
-        disconnect() {
-          u.logger.info('info', 'disconnect ble.');
-        },
         componentTest() {
           this.$store.commit('initialize');
           ExampleStore.example.bind(this)()

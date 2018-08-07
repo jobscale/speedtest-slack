@@ -1,0 +1,38 @@
+#!/bin/bash -eu
+
+pwd
+
+fixCode() {
+  zip -ryll _work src >/dev/null
+  rm -r src
+  unzip _work >/dev/null
+  rm _work.zip
+}
+
+fixMode() {
+  find . -type d -exec chmod 775 {} +
+  find . -type f -exec chmod 664 {} +
+}
+
+fixTrash() {
+  if [ $(find . -name $1 | wc -l) -ne 0 ]
+  then
+    files=($(find . -name $1))
+    for f in ${files[@]}
+    do
+      cmd="rm -r $f"
+      echo "$cmd"
+      $cmd
+    done
+  fi
+}
+
+main() {
+  fixTrash desktop.ini
+  fixTrash Thumbs.db
+  fixTrash .DS_Store
+  fixMode
+  fixCode
+}
+
+main
