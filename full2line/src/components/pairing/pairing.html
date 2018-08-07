@@ -3,12 +3,15 @@
     <v-ons-back-button @click.prevent="close" class="left">{{translate('common.home')}}</v-ons-back-button>
     <div class="center">{{translate('pairing.title')}}</div>
     <div class="right">
-      <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
+      <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="findingSensor()"></v-ons-icon>
     </div>
   </v-ons-toolbar>
-  <p style="text-align: center">
-    <v-ons-button modifier="large" @click="isProcessing=true" >{{translate('pairing.submit')}}</v-ons-button>
-  </p>
+  <div class="content">
+    <div v-for="(v, index) in sensors" :key="index" class="sensors"><span>target</span><span>{{v.id ? v.id : v.status}}</span></div>
+    <div style="text-align: center">
+      <v-ons-button modifier="large" @click="isProcessing=true" >{{translate('pairing.submit')}}</v-ons-button>
+    </div>
+  </div>
   <processing :visible="isProcessing" :close="()=>isProcessing=false"></processing>
-  <pairing-tips :visible="isTips" :close="()=>isTips=false"></pairing-tips>
+  <pairing-tips :visible="isTips" :stopFind="stopFind"></pairing-tips>
 </v-ons-page>

@@ -7,6 +7,7 @@
     >
       <v-ons-carousel-item class="small" v-for="(text, index) in tips" :key="index">
         <div v-html="text"></div>
+        <v-ons-icon icon="fa-spinner" size="8vw" spin></v-ons-icon>
       </v-ons-carousel-item>
     </v-ons-carousel>
     <div :style="dots">
@@ -14,7 +15,7 @@
         {{ carouselIndex === index ? '\u25CF' : '\u25CB' }}
       </span>
       <v-ons-button v-if="carouselIndex < tips.length-1" modifier="large" @click="carouselIndex++" >{{translate('common.next')}}</v-ons-button>
-      <v-ons-button v-else="carouselIndex < tips.length-1" modifier="large" @click="close();carouselIndex=0">{{translate('pairing.tips.cancel')}}</v-ons-button>
+      <v-ons-button v-else="carouselIndex < tips.length-1" modifier="large" @click="stopFind();carouselIndex=0">{{translate('pairing.tips.cancel')}}</v-ons-button>
     </div>
   </div>
 </v-ons-modal>

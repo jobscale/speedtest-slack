@@ -15,7 +15,9 @@ export default {
       },
     };
   },
-  props: ['visible', 'close'],
+  props: ['visible', 'stopFind'],
+  created() {
+  },
   methods: {
     translate: u.translate,
   },
