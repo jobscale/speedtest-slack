@@ -6,6 +6,7 @@ export class Bluetooth {
     u.logger.info('New Instance of Bluetooth');
     this.ble = window.ble;
     this.eventHandler = {};
+    this.indicateHandler = null;
   }
   enable() {
     const promise = u.promise();
@@ -69,9 +70,69 @@ export class Bluetooth {
     return promise.instance;
   }
 
-  write() {
-
+  write(data) {
+    const promise = u.promise();
+    u.logger.log(`writeData:${data}`);
+    const writeData = this.createCommandData(data);
+    this.ble.isConnected(this.status.device.id, () => {
+      this.ble.write(this.status.device.id, Constant.blue.serviceUuid,
+        Constant.blue.writeCharacteristicUuid, writeData, (rawData) => {
+          u.logger.log('write Success');
+          promise.resolve(rawData);
+        }, reason => {
+          u.logger.log('write failure');
+          promise.reject(new Error(`write failure reason:${reason}`));
+        });
+    }, () => {
+      u.logger.log('isConnected failure');
+    });
+    return promise.instance;
   }
+
+  writeWithBle(data, handler) {
+    // 先にエスケープ処理、デリミタを付与してから分割する
+    const promise = u.promise();
+    this.indicateHandler = handler;
+    const writeData = u.chunk(this.addDelimiter(this.sendEscape(data)), Constant.bleDataSize);
+    for (let p = 0; p < writeData.length; p++) {
+      promise.resolve(this.write(writeData[p]));
+    }
+    return promise.instance;
+  }
+
+  indicate() {
+    const promise = u.promise();
+    this.ble.isConnected(this.status.device.id, () => {
+      u.logger.log('Connect Success');
+      this.ble.startNotification(this.status.device.id, Constant.blue.serviceUuid,
+        Constant.blue.indicateCharacteristicUuid, (rawData) => {
+          u.logger.log('Notification Success');
+          this.combineData = this.combine(rawData);
+          if (this.combineData[this.combineData.length - 1] === 0x7E) {
+            const receiveData = this.receiveEscape(this.divideDelimiterArray(this.combineData));
+            promise.resolve(receiveData);
+            this.indicateHandler(receiveData);
+          }
+        }, reason => {
+          u.logger.log(`Notification failure reason:${reason}`);
+        });
+    }, () => {
+      u.logger.log('Connect failed');
+    });
+    return promise.instance;
+  }
+
+  // 受信したデータを変換して結合する処理
+  combine(data) {
+    const data1 = new Uint8Array(data);
+    // const dataView = new DataView(buffer);
+    for (let p = 0; p < data1.byteLength; p++) {
+      u.logger.log(`Combine :${data1[p]}`);
+      this.responseData.push(data1[p]);
+    }
+    return this.responseData;
+  }
+
   // 送信時のエスケープ処理
   sendEscape(data) {
     const array = [];
@@ -159,10 +220,13 @@ export class Bluetooth {
 
   // 送信データ列を作成して返す
   createCommandData(data) {
-    let sendData = [];
-    for (let p = 0; p < data.length; p++) {
-      sendData = sendData.concat(data[p]);
+    const buffer = new ArrayBuffer(data.length);
+    const dataView = new DataView(buffer);
+
+    for (let p = 0; p < dataView.byteLength; p++) {
+      dataView.setUint8(p, data[p]);
     }
+    const sendData = buffer;
     return sendData;
   }
   // テスト用コード

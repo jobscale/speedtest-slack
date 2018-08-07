@@ -13,6 +13,8 @@ export class Bluetooth extends Base {
       devices: [],
       device: null,
     };
+    this.responseData = [];
+    this.conbineData = null;
   }
   initialize() {
     return this.enable()
@@ -39,11 +41,33 @@ export class Bluetooth extends Base {
   }
   connect(device) {
     return super.connect(device)
-    .then(res => u.logger.info(res))
+    .then(res => {
+      this.indicate();
+      u.logger.info(res);
+    })
     .catch(e => u.logger.error(e.message));
   }
   disconnect() {
     return super.disconnect()
+    .then(res => u.logger.info(res))
+    .catch(e => u.logger.error(e.message));
+  }
+
+  // データを作成する処理
+  writeData(closure) {
+    const data = null;
+    // 各種データを作成する
+    super.writeWithBle(data, recvData => {
+      u.logger.info(`closure :${recvData}`);
+      // 先頭3バイトを確認し、４バイト目以降を返すように実装する
+      closure(recvData);
+    })
+    .then(res => u.logger.info(res))
+    .catch(e => u.logger.error(e.message));
+  }
+
+  indicate() {
+    return super.indicate()
     .then(res => u.logger.info(res))
     .catch(e => u.logger.error(e.message));
   }
