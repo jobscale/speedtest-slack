@@ -15,8 +15,9 @@ export default {
     disconnect() {
       u.blue.disconnect()
       .then(() => {
-        this.$ons.notification.toast('切断しました。', { timeout: 3000 });
         this.$emit('pop-page');
+        u.modalText = u.translate('message.disconnect');
+        this.$emit('push-page', 'Modal');
       })
       .catch(e => u.logger.error(e.message));
     },
