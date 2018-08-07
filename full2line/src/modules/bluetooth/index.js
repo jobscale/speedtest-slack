@@ -54,15 +54,15 @@ export class Bluetooth extends Base {
   }
 
   // データを作成する処理
-  writeData(closure) {
+  writeData() {
     const data = null;
     // 各種データを作成する
-    super.writeWithBle(data, recvData => {
-      u.logger.info(`closure :${recvData}`);
+    return super.writeWithBle(data)
+    .then(recvData => {
+      u.logger.info(`recvData :${recvData}`);
       // 先頭3バイトを確認し、４バイト目以降を返すように実装する
-      closure(recvData);
+      return recvData;
     })
-    .then(res => u.logger.info(res))
     .catch(e => u.logger.error(e.message));
   }
 

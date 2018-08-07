@@ -89,37 +89,46 @@ export class Bluetooth {
     return promise.instance;
   }
 
-  writeWithBle(data, handler) {
+  async writeWithBle(data) {
     // 先にエスケープ処理、デリミタを付与してから分割する
     const promise = u.promise();
-    this.indicateHandler = handler;
+    if (this.indicateHandler) {
+      promise.reject(new Error('ERROR: busy.'));
+    }
+    this.indicateHandler = recvData => {
+      promise.resolve(recvData);
+    };
     const writeData = u.chunk(this.addDelimiter(this.sendEscape(data)), Constant.bleDataSize);
     for (let p = 0; p < writeData.length; p++) {
-      promise.resolve(this.write(writeData[p]));
+      await this.write(writeData[p]);
     }
     return promise.instance;
   }
 
   indicate() {
-    const promise = u.promise();
+    const finishIndicate = () => {
+      const receiveData = this.receiveEscape(this.divideDelimiterArray(this.combineData));
+      this.indicateHandler(receiveData);
+      this.indicateHandler = undefined;
+    };
+    const startNotification = id => {
+      this.ble.startNotification(id, Constant.blue.serviceUuid,
+      Constant.blue.indicateCharacteristicUuid, rawData => {
+        u.logger.log('Notification Success');
+        this.combineData = this.combine(rawData);
+        if (this.combineData[this.combineData.length - 1] === 0x7E) {
+          finishIndicate();
+        }
+      }, reason => {
+        u.logger.log(`Notification failure reason:${reason}`);
+      });
+    };
     this.ble.isConnected(this.status.device.id, () => {
       u.logger.log('Connect Success');
-      this.ble.startNotification(this.status.device.id, Constant.blue.serviceUuid,
-        Constant.blue.indicateCharacteristicUuid, (rawData) => {
-          u.logger.log('Notification Success');
-          this.combineData = this.combine(rawData);
-          if (this.combineData[this.combineData.length - 1] === 0x7E) {
-            const receiveData = this.receiveEscape(this.divideDelimiterArray(this.combineData));
-            promise.resolve(receiveData);
-            this.indicateHandler(receiveData);
-          }
-        }, reason => {
-          u.logger.log(`Notification failure reason:${reason}`);
-        });
+      startNotification(this.status.device.id);
     }, () => {
       u.logger.log('Connect failed');
     });
-    return promise.instance;
   }
 
   // 受信したデータを変換して結合する処理
