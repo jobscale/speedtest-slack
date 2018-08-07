@@ -57,7 +57,11 @@ export class Bluetooth extends Base {
   writeData(closure) {
     const data = null;
     // 各種データを作成する
-    super.writeWithBle(data, closure)
+    super.writeWithBle(data, recvData => {
+      u.logger.info(`closure :${recvData}`);
+      // 先頭3バイトを確認し、４バイト目以降を返すように実装する
+      closure(recvData);
+    })
     .then(res => u.logger.info(res))
     .catch(e => u.logger.error(e.message));
   }
