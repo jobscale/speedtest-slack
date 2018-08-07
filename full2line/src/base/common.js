@@ -3,6 +3,7 @@ export const Constant = {
   maxSensor: 64,
   maxLine: 4,
   maxItem: 64,
+  bleDataSize: 4,
   blue: {
     powerInterval: 60 * 1000,
     scanSeconds: 10,

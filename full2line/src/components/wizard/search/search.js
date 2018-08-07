@@ -19,6 +19,9 @@ export default {
   methods: {
     translate: u.translate,
     close() {
+      u.blue.writeData(closure => {
+        u.logger.info(`closure :${closure}`);
+      });
       this.$emit('pop-page');
     },
     connect(id) {
