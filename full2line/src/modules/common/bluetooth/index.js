@@ -24,6 +24,7 @@ export class Bluetooth {
     this.eventHandler[event] = callback;
   }
   fire(name, event) {
+    u.logger.info(name, event);
     if (!this.eventHandler[name]) {
       return;
     }
