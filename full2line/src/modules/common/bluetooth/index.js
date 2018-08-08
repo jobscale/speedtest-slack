@@ -55,7 +55,7 @@ export class Bluetooth {
     }, reason => {
       u.logger.log('Connect lost');
       this.indicateHandler = undefined;
-      this.active = false;
+      this.status.active = false;
       this.fire('disconnect');
       promise.reject(new Error(`connect failure reason:${reason}`));
     });
