@@ -41,4 +41,5 @@
     </div>
     <v-ons-button modifier="large" class="orange" @click="disconnect()">切断</v-ons-button>
   </div>
+  <modal v-if="isModal" :callback="close" :text="text"></modal>
 </v-ons-page>
