@@ -115,6 +115,7 @@ export class Bluetooth {
       this.ble.startNotification(id, Constant.blue.serviceUuid,
       Constant.blue.indicateCharacteristicUuid, rawData => {
         u.logger.log('Notification Success');
+        this.responseData = [];
         this.combineData = this.combine(rawData);
         if (this.combineData[this.combineData.length - 1] === 0x7E) {
           finishIndicate();
@@ -255,19 +256,8 @@ export class Bluetooth {
 
   // 設定データをセット
   setQueryDataForArray(adrs, query) {
-    return adrs.concat(query);
-  }
-
-  // 設定データをセット
-  setQueryData(adrs, query) {
-    const data = [];
-    for (let p = 0; p < adrs.length; p++) {
-      data.concat(adrs[p]);
-    }
-    for (let p = 0; p < query.length; p++) {
-      data.concat(query);
-    }
-    return data;
+    const data = adrs.slice();
+    return data.concat(query);
   }
 
   // テスト用コード

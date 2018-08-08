@@ -53,26 +53,13 @@ export class Bluetooth extends Base {
       .then(res => u.logger.info(res))
       .catch(e => u.logger.error(e.message));
   }
-  // データを作成する処理
-  writeData() {
-    // テスト送信用データ作成
-    const adrs = [0x01, 0x02, 0x03];
-    const data = [0x06, 0x07, 0x08, 0x09, 0x10];
-    return super.writeWithBle(super.setQueryDataForArray(adrs, data))
-    .then(recvData => {
-      u.logger.info(`recvData :${recvData}`);
-      // 先頭3バイトを確認し、４バイト目以降を返す
-      return this.getQueryData(recvData);
-    })
-    .catch(e => u.logger.error(e.message));
-  }
 
   // 調光AセンサIDデータ確認
   makeCommandConfirmDimmingSensorId() {
     // 送信用データ作成
     const adrs = [0x02, 0x00, 0x3A];
-    const data = 0x00; // データIDが入る
-    return super.writeWithBle(super.setQueryData(adrs, data))
+    const data = [0x00]; // データIDが入る
+    return super.writeWithBle(super.setQueryDataForArray(adrs, data))
     .then(recvData => {
       u.logger.info(`recvData :${recvData}`);
       return this.getQueryData(recvData);
@@ -83,8 +70,9 @@ export class Bluetooth extends Base {
   // 無線CH確認
   makeCommandconfirmWirelessChannel() {
     // 送信用データ作成
-    const adrs = [0x02, 0x80, 0x3A];
-    return super.writeWithBle(super.setQueryData(adrs, 0x00))
+    const adrs = [0x02, 0x00, 0x01];
+    const data = [0x00]; // 無線CHが入る
+    return super.writeWithBle(super.setQueryDataForArray(adrs, data))
     .then(recvData => {
       u.logger.info(`recvData :${recvData}`);
       return this.getQueryData(recvData);
@@ -96,8 +84,8 @@ export class Bluetooth extends Base {
   makeCommandSettingWirelessChannel() {
     // 送信用データ作成
     const adrs = [0x02, 0x20, 0x01];
-    const data = 0x00; // 無線CHが入る
-    return super.writeWithBle(super.setQueryData(adrs, data))
+    const data = [0x00]; // 無線CHが入る
+    return super.writeWithBle(super.setQueryDataForArray(adrs, data))
     .then(recvData => {
       u.logger.info(`recvData :${recvData}`);
       return this.getQueryData(recvData);
@@ -109,7 +97,8 @@ export class Bluetooth extends Base {
   makeCommandGetSendSwitchState() {
     // 送信用データ作成
     const adrs = [0x01, 0x00, 0x02];
-    return super.writeWithBle(super.setQueryData(adrs, 0x00))
+    const data = [0x00]; // 固定
+    return super.writeWithBle(super.setQueryDataForArray(adrs, data))
     .then(recvData => {
       u.logger.info(`recvData :${recvData}`);
       return this.getQueryData(recvData);
@@ -122,7 +111,7 @@ export class Bluetooth extends Base {
     // 送信用データ作成
     const adrs = [0x01, 0x20, 0x02];
     const data = [0xD0, 0xB0, 0x00]; // 0x00は仮CHが入る
-    return super.writeWithBle(super.setQueryData(adrs, data))
+    return super.writeWithBle(super.setQueryDataForArray(adrs, data))
     .then(recvData => {
       u.logger.info(`recvData :${recvData}`);
       return this.getQueryData(recvData);
@@ -134,8 +123,8 @@ export class Bluetooth extends Base {
   makeCommandEndSettingMode() {
     // 送信用データ作成
     const adrs = [0x01, 0x20, 0x02];
-    const data = [0xD0, 0xB0, 0xFF];
-    return super.writeWithBle(super.setQueryData(adrs, data))
+    const data = [0xD0, 0xB0, 0xFF];  // 固定
+    return super.writeWithBle(super.setQueryDataForArray(adrs, data))
     .then(recvData => {
       u.logger.info(`recvData :${recvData}`);
       return this.getQueryData(recvData);
