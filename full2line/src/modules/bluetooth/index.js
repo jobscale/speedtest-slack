@@ -19,15 +19,15 @@ export class Bluetooth extends Base {
   }
   initialize() {
     return this.enable()
-      .then(res => {
-        if (res) return;
-        u.logger.warn('assign mock.');
-        Mock.assign(this);
-      })
-      .then(() => {
-        setInterval(() => this.status.active ? this.getPower() : undefined,
+    .then(res => {
+      if (res) return;
+      u.logger.warn('assign mock.');
+      Mock.assign(this);
+    })
+    .then(() => {
+      setInterval(() => this.status.active ? this.getPower() : undefined,
           Constant.blue.powerInterval);
-      });
+    });
   }
   getPower() {
   }
@@ -35,25 +35,24 @@ export class Bluetooth extends Base {
     this.status.devices.length = 0;
     u.logger.info('run scan');
     return super.scan(this.status.devices, Constant.blue.scanSeconds)
-      .catch(e => {
-        u.logger.error('error', e.message);
-        throw e;
-      });
+    .catch(e => {
+      u.logger.error('error', e.message);
+      throw e;
+    });
   }
   connect(device) {
     return super.connect(device)
-      .then(res => {
-        this.indicate();
-        u.logger.info(res);
-      })
-      .catch(e => u.logger.error(e.message));
+    .then(res => {
+      this.indicate();
+      u.logger.info(res);
+    })
+    .catch(e => u.logger.error(e.message));
   }
   disconnect() {
     return super.disconnect()
-      .then(res => u.logger.info(res))
-      .catch(e => u.logger.error(e.message));
+    .then(res => u.logger.info(res))
+    .catch(e => u.logger.error(e.message));
   }
-
   // 調光AセンサIDデータ確認
   makeCommandConfirmDimmingSensorId() {
     // 送信用データ作成
@@ -66,7 +65,6 @@ export class Bluetooth extends Base {
     })
     .catch(e => u.logger.error(e.message));
   }
-
   // 無線CH確認
   makeCommandconfirmWirelessChannel() {
     // 送信用データ作成
@@ -79,7 +77,6 @@ export class Bluetooth extends Base {
     })
     .catch(e => u.logger.error(e.message));
   }
-
   // 無線CH設定
   makeCommandSettingWirelessChannel() {
     // 送信用データ作成
@@ -92,7 +89,6 @@ export class Bluetooth extends Base {
     })
     .catch(e => u.logger.error(e.message));
   }
-
   // 送信SW押下状態取得
   makeCommandGetSendSwitchState() {
     // 送信用データ作成
@@ -105,7 +101,6 @@ export class Bluetooth extends Base {
     })
     .catch(e => u.logger.error(e.message));
   }
-
   // 設定モード移行（赤外線送信設定）
   makeCommandTransSettingMode() {
     // 送信用データ作成
@@ -118,7 +113,6 @@ export class Bluetooth extends Base {
     })
     .catch(e => u.logger.error(e.message));
   }
-
   // 設定モード解除（赤外線解除設定）
   makeCommandEndSettingMode() {
     // 送信用データ作成

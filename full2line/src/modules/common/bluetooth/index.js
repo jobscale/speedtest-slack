@@ -222,17 +222,14 @@ export class Bluetooth {
     }
     return dataSet;
   }
-
   // デリミタを削除する処理
   divideDelimiter(data) {
     const dataSet = data.slice();
     u.logger.log(`recv :${dataSet}`);
     dataSet.shift();
     dataSet.pop();
-
     return dataSet;
   }
-
   // 送信データ列を作成して返す
   createCommandData(data) {
     const buffer = new ArrayBuffer(data.length);
@@ -243,7 +240,6 @@ export class Bluetooth {
     const sendData = buffer;
     return sendData;
   }
-
   // 3バイト目までを破棄し、4バイト目以降のデータ部分を返す
   getQueryData(recv) {
     u.logger.log(`recv :${recv.length}`);
@@ -253,13 +249,11 @@ export class Bluetooth {
     }
     return data;
   }
-
   // 設定データをセット
   setQueryDataForArray(adrs, query) {
     const data = adrs.slice();
     return data.concat(query);
   }
-
   // テスト用コード
   commandTestCode() {
     const sendArray = [0x01, 0x02, 0x03, 0x04, 0x7E, 0x06, 0x07, 0x7D, 0x09, 0x0A];
