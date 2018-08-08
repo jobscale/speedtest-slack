@@ -1,0 +1,35 @@
+#home .status-base {
+  min-height: 8vh;
+  text-align: center;
+}
+#home .status {
+  background-color: orangered;
+  color: white;
+  position: absolute;
+  height: 8vh;
+  width: 100vw;
+}
+#home .status.active {
+  background-color: #1c9;
+}
+#home .status .first {
+  position: absolute;
+  width: 100%;
+}
+#home .status .second {
+  top: 3.5vh;
+  position: absolute;
+  width: 100%;
+}
+#home .status img.left {
+  position: absolute;
+  left: 1vw;
+  height: 80%;
+  top: 10%;
+}
+#home .status img.right {
+  position: absolute;
+  right: 3vw;
+  height: 50%;
+  top: 25%;
+}

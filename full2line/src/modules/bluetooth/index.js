@@ -9,6 +9,7 @@ export class Bluetooth extends Base {
     u.logger.info('start', 'Bluetooth', this.hasBLE);
     this.status = {
       active: false,
+      level: 0,
       power: -1,
       devices: [],
       device: null,
@@ -52,7 +53,6 @@ export class Bluetooth extends Base {
       .then(res => u.logger.info(res))
       .catch(e => u.logger.error(e.message));
   }
-
   // データを作成する処理
   writeData() {
     // テスト送信用データ作成

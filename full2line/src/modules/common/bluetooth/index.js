@@ -29,7 +29,6 @@ export class Bluetooth {
     }
     setTimeout(() => this.eventHandler[name](event), 0);
   }
-
   scan(devices, seconds) {
     const promise = u.promise();
     setTimeout(() => promise.resolve(devices), seconds * 1000);
@@ -44,32 +43,35 @@ export class Bluetooth {
     }, reason => promise.reject(new Error(`scan failure reason:${reason}`)));
     return promise.instance;
   }
-
   connect(device) {
     const promise = u.promise();
     this.ble.connect(device.id, () => {
       u.logger.info('connect Success');
       promise.resolve(device);
       this.status.active = true;
+      this.status.level = 1;
       this.status.device = device;
     }, reason => {
       u.logger.log('Connect lost');
+      this.indicateHandler = undefined;
+      this.status.active = false;
+      this.status.level = 0;
       this.fire('disconnect');
       promise.reject(new Error(`connect failure reason:${reason}`));
     });
     return promise.instance;
   }
-
   disconnect() {
     const promise = u.promise();
     this.ble.disconnect(this.status.device.id, () => {
       u.logger.info('disConnect Succees');
       promise.resolve();
+      this.indicateHandler = undefined;
       this.status.active = false;
+      this.status.level = 0;
     }, reason => promise.reject(new Error(`disconnect failure reason:${reason}`)));
     return promise.instance;
   }
-
   write(data) {
     const promise = u.promise();
     u.logger.log(`writeData:${data}`);
@@ -88,7 +90,6 @@ export class Bluetooth {
     });
     return promise.instance;
   }
-
   async writeWithBle(data) {
     // 先にエスケープ処理、デリミタを付与してから分割する
     const promise = u.promise();
@@ -104,7 +105,6 @@ export class Bluetooth {
     }
     return promise.instance;
   }
-
   indicate() {
     const finishIndicate = () => {
       const receiveData = this.receiveEscape(this.divideDelimiter(this.combineData));
@@ -130,7 +130,6 @@ export class Bluetooth {
       u.logger.log('Connect failed');
     });
   }
-
   // 受信したデータを変換して結合する処理
   combine(data) {
     const data1 = new Uint8Array(data);
@@ -141,7 +140,6 @@ export class Bluetooth {
     }
     return this.responseData;
   }
-
   // 送信時のエスケープ処理
   sendEscape(data) {
     const array = [];
@@ -162,7 +160,6 @@ export class Bluetooth {
     }
     return array;
   }
-
   // 受信時のエスケープ処理
   receiveEscape(data) {
     let array = [];
@@ -193,7 +190,6 @@ export class Bluetooth {
     // デリミタ分の2バイトを追加しておく
     const length = data.length + 2;
     const array = new Array(length);
-
     let pos = 0;
     for (let p = 0; p < length; p++) {
       if (p === 0 || p === length - 1) {
@@ -205,7 +201,6 @@ export class Bluetooth {
     }
     return array;
   }
-
   // デリミタによる分割処理
   // デリミタを削除し、データ毎に配列で分けて返す
   divideDelimiterArray(data) {
@@ -241,7 +236,6 @@ export class Bluetooth {
   createCommandData(data) {
     const buffer = new ArrayBuffer(data.length);
     const dataView = new DataView(buffer);
-
     for (let p = 0; p < dataView.byteLength; p++) {
       dataView.setUint8(p, data[p]);
     }
@@ -286,7 +280,6 @@ export class Bluetooth {
     u.logger.log(addDelimitedArray);
     const commandDataArray = this.createCommandData(addDelimitedArray);
     u.logger.log(commandDataArray);
-
     const receiveArray = [0x7E, 0x01, 0x02, 0x7D, 0x5D, 0x03, 0x04, 0x7E,
       0x7E, 0x05, 0x06, 0x7D, 0x5E, 0x08, 0x09, 0x7E];
     u.logger.log(receiveArray);

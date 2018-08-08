@@ -1,7 +1,4 @@
 <v-ons-page id="pairedItems">
-
-
-
   <v-ons-toolbar>
     <v-ons-back-button @click.prevent="close" class="left">{{translate('common.backButton')}}</v-ons-back-button>
     <div class="center">系統１</div>
@@ -16,22 +13,13 @@
       <img src="../../assets/images/ic_quest.svg" class="f2l-toolbar-icon" @click="isTips=true">
     </div>
   </v-ons-toolbar>
-
-
-
   <v-ons-list modifier="inset" class="f2l-flex--shrink f2l-list--inset f2l-margin-top--2vw">
     <v-ons-list-item modifier="chevron" tappable @click="$emit('push-page', 'dimmerid')">
       <div class="center">{{translate('pairedItems.changeId')}}</div>
       <div class="right">1</div>
     </v-ons-list-item>
   </v-ons-list>
-
-
-
   <div class="f2l-flex--shrink f2l-textblock--small">{{translate('pairedItems.text', {count:itemId.length})}}</div>
-
-
-
   <v-ons-list class="f2l-list-3col f2l-flex--shrink">
     <v-ons-list-header>
       <div class="left f2l-delmode-obj-hide" :class="{delmode:isDelMode}">{{translate('common.delete')}}</div>
@@ -39,7 +27,6 @@
       <div class="right">{{translate('common.blinkHeader')}}</div>
     </v-ons-list-header>
   </v-ons-list>
-
   <v-ons-list class="f2l-list-3col f2l-flex--grow f2l-overflow-y--scroll">
     <v-ons-list-item v-for="(itemId, $index) in itemId" :key="itemId" tappable modifier="longdivider">
       <label class="left f2l-delmode-obj-hide" :class="{delmode:isDelMode}">
@@ -58,17 +45,10 @@
       </div>
     </v-ons-list-item>
   </v-ons-list>
-
-
-
   <v-ons-bottom-toolbar class="f2l-bottom-toolbar">
     <v-ons-button class="f2l-button-large f2l-delmode-obj-show" @click="$emit('push-page', 'pairingMethod')" :class="{delmode:isDelMode}">{{translate('pairedItems.add')}}</v-ons-button>
     <v-ons-button class="f2l-button-large orange f2l-delmode-obj-show" @click="" :class="{delmode:isDelMode}">{{translate('pairedItems.confirm')}}</v-ons-button>
-
     <v-ons-button class="f2l-button-large f2l-delmode-obj-hide" @click="isDelMode=false;checkedItemId=[]" :class="{delmode:isDelMode}">{{translate('pairedItems.cancel')}}</v-ons-button>
     <v-ons-button class="f2l-button-large orange f2l-delmode-obj-hide" @click="" :disabled="checkedItemId.length > 0 ? false : true" :class="{delmode:isDelMode}">{{translate('pairedItems.delete')}}</v-ons-button>
   </v-ons-bottom-toolbar>
-
-
-
 </v-ons-page>

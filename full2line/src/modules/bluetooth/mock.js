@@ -9,38 +9,43 @@ export const Mock = {
   },
   scan() {
     const promise = u.promise();
-    this.status.devices = [
-      {
-        name: 'first interface',
-        id: '12-34-56-78',
-      },
-      {
-        name: 'second interface',
-        id: '34-56-78-12',
-      },
-      {
-        name: 'third interface',
-        id: '56-78-12-34',
-      },
-    ];
-    promise.resolve(this.status.devices);
+    const cb = () => {
+      this.status.devices = [
+        {
+          name: 'first interface',
+          id: '12-34-56-78',
+        },
+        {
+          name: 'second interface',
+          id: '34-56-78-12',
+        },
+        {
+          name: 'third interface',
+          id: '56-78-12-34',
+        },
+      ];
+      promise.resolve(this.status.devices);
+    };
+    setTimeout(cb, 1500);
     return promise.instance;
   },
   connect(device) {
     const promise = u.promise();
     const cb = () => {
       this.status.active = true;
+      this.status.level = 1;
       this.status.device = device;
       this.status.power = 5;
       promise.resolve('ok');
     };
-    setTimeout(cb, 200);
+    setTimeout(cb, 1200);
     return promise.instance;
   },
   disconnect() {
     const promise = u.promise();
     const cb = () => {
       this.status.active = false;
+      this.status.level = 0;
       this.status.power = -1;
       promise.resolve('ok');
     };
@@ -64,6 +69,17 @@ export const Mock = {
       status: 'canceled',
     };
     this.promiseindingSensor.resolve(sensor);
+  },
+  // コマンド送信のサンプル
+  writeData() {
+    u.logger.info('run writeData');
+    const promise = u.promise();
+    const cb = () => {
+      const data = [0x00, 0x01, 0x02, 0x03, 0x04, 0x05];
+      promise.resolve(data);
+    };
+    setTimeout(cb, 200);
+    return promise.instance;
   },
 };
 export default {

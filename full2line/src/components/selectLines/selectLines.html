@@ -6,7 +6,6 @@
       <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="isTips=true"></v-ons-icon>
     </div>
   </v-ons-toolbar>
-
   <v-ons-list>
     <v-ons-list-header>{{translate('selectLines.text')}}</v-ons-list-header>
     <v-ons-list-item modifier="chevron" tappable @click="$emit('push-page', 'pairedItems')">1 ({{translate('selectLines.listItem')}})</v-ons-list-item>
@@ -14,5 +13,4 @@
     <v-ons-list-item modifier="chevron" tappable @click="$emit('push-page', 'pairedItems')">3 ({{translate('selectLines.listItem')}})</v-ons-list-item>
     <v-ons-list-item modifier="chevron" tappable @click="$emit('push-page', 'pairedItems')">4 ({{translate('selectLines.listItem')}})</v-ons-list-item>
   </v-ons-list>
-
 </v-ons-page>

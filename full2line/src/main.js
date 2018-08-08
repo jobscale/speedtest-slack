@@ -10,14 +10,12 @@ import { Database } from './modules/database';
 import { Bluetooth } from './modules/bluetooth';
 import { Storage } from './modules/storage';
 import { ExampleStore } from './modules/mutation';
-
 /**
  * アプリ内共通インスタンス
  * u.db データベース
  * u.blue ブルートゥース通信
  * u.storage ストレージ操作
  */
-
 const app = {
   registerComponent(name, componentConfig) {
     const config = u.assignIn({ key: u.key }, componentConfig.default || componentConfig);

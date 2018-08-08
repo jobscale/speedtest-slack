@@ -2,37 +2,57 @@
 
 pwd
 
+lint() {
+  $(npm bin)/eslint --ext .js,.vue src --fix
+}
+
 fixCode() {
-  zip -ryll _work src >/dev/null
+  zip -rlly _work src >/dev/null
   rm -r src
   unzip _work >/dev/null
   rm _work.zip
 }
 
+fixBlank() {
+  for f in $(find src -type f -name "$1")
+  do
+  echo -n .
+    awk '$0' < $f > $f.swp
+    mv $f.swp $f
+  done
+  echo
+}
+
 fixMode() {
-  find . -type d -exec chmod 775 {} +
-  find . -type f -exec chmod 664 {} +
+  find src -type d -exec chmod 775 {} +
+  find src -type f -exec chmod 664 {} +
 }
 
 fixTrash() {
-  if [ $(find . -name $1 | wc -l) -ne 0 ]
+  if [ $(find src -name "$1" | wc -l) -ne 0 ]
   then
     files=($(find . -name $1))
     for f in ${files[@]}
     do
+      echo -n .
       cmd="rm -r $f"
       echo "$cmd"
       $cmd
     done
+    echo
   fi
 }
 
 main() {
+  lint
   fixTrash desktop.ini
   fixTrash Thumbs.db
   fixTrash .DS_Store
+  fixBlank '*.js'
+  fixBlank '*.html'
   fixMode
   fixCode
+  lint
 }
 
 main
