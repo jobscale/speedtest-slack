@@ -1,117 +1,117 @@
 {
-	"common": {
-		"home": "ホーム",
-		"backButton": "戻る",
-		"next": "次へ",
-		"register": "登録",
-		"delete": "削除",
-		"uuid": "個体番号",
-		"blinkHeader": "位置確認",
-		"blink": "点滅"
-	},
-	"message": {
-		"disconnect": "BLEを切断しました。"
-	},
-	"error": {
-		"connect": "BLEの接続に失敗しました。"
-	},
-	"event": {
-		"disconnect": "BLEの接続が切れました。<br>再接続を行ってください。"
-	},
-	"status": {
-		"label": {
-			"level": "接続機器との接続状態："
-		},
-		"level": [
-			"切断",
-			"良好",
-			"不安定"
-		]
-	},
-	"wizard": {
-		"title": "フル２線　設定・保守アプリ",
-		"caption": "ようこそ",
-		"text": "接続を行います。",
-		"sure": "通信I/Fとの接続設定を開始する",
-		"cancel": "後で接続設定を行う",
-		"search": {
-			"caption": "設定器の選択",
-			"text": "番号を選択してください。",
-			"notFound": "設定器が見つからない"
-		}
-	},
-	"channel": {
-		"caption": "電波確認",
-		"title": "現場調査",
-		"start": "チャンネル調査開始",
-		"tips": {
-			"title": "操作方法",
-			"text": [
-				"導入後の無線環境トラブルを未然に防ぐため、現場の無線環境を調査します。<br>使用可能なチャンネルを確認することができます。",
-				"チャンネル調査開始ボタンを押すと、<br>現場の使用可能なチャンネル調査を開始します。",
-				"この状態で、、、",
-				"最後に、、、"
-			],
-			"start": "開始",
-			"cancel": "チャンネル調査終了"
-		}
-	},
-	"pairing": {
-		"caption": "端末確認",
-		"title": "ペアリング",
-		"submit": "設定内容を送信",
-		"tips": {
-			"title": "操作方法",
-			"text": [
-				"設定器を対象のセンサーに向け、設定機器の「通信」ボタンを押してください。<br>センサーの情報を取得します。"
-			],
-			"start": "開始",
-			"cancel": "調光センサー設定中止"
-		}
-	},
-	"system": {
-		"caption": "システムデータ"
-	},
-	"operation": {
-		"caption": "器具設定"
-	},
-	"maintenance": {
-		"caption": "保守機能"
-	},
-	"help": {
-		"caption": "アプリの使い方"
-	},
-	"manage": {
-		"caption": "データ保守・管理"
-	},
-	"selectLines": {
-		"title": "登録情報",
-		"text": "系統選択",
-		"listItem": "調光回路ID："
-	},
-	"pairedItems": {
-		"title": "系統",
-		"changeId": "調光回路ID変更",
-		"text": "ペアリング済器具台数：{{count}}台",
-		"add": "追加",
-		"delete": "削除実行",
-		"confirm": "動作確認",
-		"cancel": "キャンセル"
-	},
-	"selectItems": {
-		"title": "器具選択",
-		"pairing": "ペアリング実行",
-		"text": "{{count}}台検出しました。登録する器具を選択してください。<br>MACアドレスが不明な場合は、[点滅]ボタンを押すと<br>該当の器具を点滅させる事ができます。"
-	},
-	"pairingMethod": {
-		"caption": "ペアリング",
-		"reliableSettings": "確実設定（赤外あり）",
-		"easySettings": "簡単設定（赤外なし）"
-	},
-	"dimmerid": {
-		"caption": "調光回路ID変更",
-		"text": "番号を入力してください。",
-		"placeholder": "番号",
-		"submit": "送信"
-	}
+  "common": {
+    "home": "ホーム",
+    "backButton": "戻る",
+    "next": "次へ",
+    "register": "登録",
+    "delete": "削除",
+    "uuid": "個体番号",
+    "blinkHeader": "位置確認",
+    "blink": "点滅"
+  },
+  "message": {
+    "disconnect": "BLEを切断しました。"
+  },
+  "error": {
+    "connect": "BLEの接続に失敗しました。"
+  },
+  "event": {
+    "disconnect": "BLEの接続が切れました。<br>再接続を行ってください。"
+  },
+  "status": {
+    "label": {
+      "level": "接続機器との接続状態："
+    },
+    "level": [
+      "切断",
+      "良好",
+      "不安定"
+    ]
+  },
+  "wizard": {
+    "title": "フル２線　設定・保守アプリ",
+    "caption": "ようこそ",
+    "text": "接続を行います。",
+    "sure": "通信I/Fとの接続設定を開始する",
+    "cancel": "後で接続設定を行う",
+    "search": {
+      "caption": "設定器の選択",
+      "text": "番号を選択してください。",
+      "notFound": "設定器が見つからない"
+    }
+  },
+  "channel": {
+    "caption": "電波確認",
+    "title": "現場調査",
+    "start": "チャンネル調査開始",
+    "tips": {
+      "title": "操作方法",
+      "text": [
+        "導入後の無線環境トラブルを未然に防ぐため、現場の無線環境を調査します。<br>使用可能なチャンネルを確認することができます。",
+        "チャンネル調査開始ボタンを押すと、<br>現場の使用可能なチャンネル調査を開始します。",
+        "この状態で、、、",
+        "最後に、、、"
+      ],
+      "start": "開始",
+      "cancel": "チャンネル調査終了"
+    }
+  },
+  "pairing": {
+    "caption": "端末確認",
+    "title": "ペアリング",
+    "submit": "設定内容を送信",
+    "tips": {
+      "title": "操作方法",
+      "text": [
+        "設定器を対象のセンサーに向け、設定機器の「通信」ボタンを押してください。<br>センサーの情報を取得します。"
+      ],
+      "start": "開始",
+      "cancel": "調光センサー設定中止"
+    }
+  },
+  "system": {
+    "caption": "システムデータ"
+  },
+  "operation": {
+    "caption": "器具設定"
+  },
+  "maintenance": {
+    "caption": "保守機能"
+  },
+  "help": {
+    "caption": "アプリの使い方"
+  },
+  "manage": {
+    "caption": "データ保守・管理"
+  },
+  "selectLines": {
+    "title": "登録情報",
+    "text": "系統選択",
+    "listItem": "調光回路ID："
+  },
+  "pairedItems": {
+    "title": "系統",
+    "changeId": "調光回路ID変更",
+    "text": "ペアリング済器具台数：{{count}}台",
+    "add": "追加",
+    "delete": "削除実行",
+    "confirm": "動作確認",
+    "cancel": "キャンセル"
+  },
+  "selectItems": {
+    "title": "器具選択",
+    "pairing": "ペアリング実行",
+    "text": "{{count}}台検出しました。登録する器具を選択してください。<br>MACアドレスが不明な場合は、[点滅]ボタンを押すと<br>該当の器具を点滅させる事ができます。"
+  },
+  "pairingMethod": {
+    "caption": "ペアリング",
+    "reliableSettings": "確実設定（赤外あり）",
+    "easySettings": "簡単設定（赤外なし）"
+  },
+  "dimmerid": {
+    "caption": "調光回路ID変更",
+    "text": "番号を入力してください。",
+    "placeholder": "番号",
+    "submit": "送信"
+  }
 }
