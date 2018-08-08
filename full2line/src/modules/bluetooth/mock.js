@@ -1,4 +1,5 @@
 import { Util as u } from '@/modules/util';
+import { Constant } from '@/base/common';
 
 export const Mock = {
   assign(blue) {
@@ -26,11 +27,11 @@ export const Mock = {
     const cb = () => {
       this.status.devices.push(data.shift());
       if (data.length) {
-        promise.resolve(this.status.devices);
         setTimeout(cb, 1000);
       }
     };
     setTimeout(cb, 1500);
+    setTimeout(() => promise.resolve(this.status.devices), Constant.blue.scanSeconds * 1000);
     return promise.instance;
   },
   connect(device) {
