@@ -1,7 +1,6 @@
 import _ from 'lodash';
 
 const dataset = document.querySelector('body').dataset;
-
 export class Util {
   constructor() {
     throw Error('only static');
