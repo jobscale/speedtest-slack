@@ -52,7 +52,6 @@ export class Bluetooth extends Base {
     .then(res => u.logger.info(res))
     .catch(e => u.logger.error(e.message));
   }
-
   // データを作成する処理
   writeData() {
     const data = null;
@@ -65,7 +64,6 @@ export class Bluetooth extends Base {
     })
     .catch(e => u.logger.error(e.message));
   }
-
   indicate() {
     return super.indicate()
     .then(res => u.logger.info(res))
