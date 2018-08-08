@@ -49,11 +49,13 @@ export class Bluetooth {
       u.logger.info('connect Success');
       promise.resolve(device);
       this.status.active = true;
+      this.status.level = 1;
       this.status.device = device;
     }, reason => {
       u.logger.log('Connect lost');
       this.indicateHandler = undefined;
       this.status.active = false;
+      this.status.level = 0;
       this.fire('disconnect');
       promise.reject(new Error(`connect failure reason:${reason}`));
     });
@@ -66,6 +68,7 @@ export class Bluetooth {
       promise.resolve();
       this.indicateHandler = undefined;
       this.status.active = false;
+      this.status.level = 0;
     }, reason => promise.reject(new Error(`disconnect failure reason:${reason}`)));
     return promise.instance;
   }

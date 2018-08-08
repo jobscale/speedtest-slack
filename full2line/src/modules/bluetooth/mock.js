@@ -30,6 +30,7 @@ export const Mock = {
     const promise = u.promise();
     const cb = () => {
       this.status.active = true;
+      this.status.level = 1;
       this.status.device = device;
       this.status.power = 5;
       promise.resolve('ok');
@@ -41,6 +42,7 @@ export const Mock = {
     const promise = u.promise();
     const cb = () => {
       this.status.active = false;
+      this.status.level = 0;
       this.status.power = -1;
       promise.resolve('ok');
     };

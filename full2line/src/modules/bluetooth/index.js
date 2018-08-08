@@ -9,6 +9,7 @@ export class Bluetooth extends Base {
     u.logger.info('start', 'Bluetooth', this.hasBLE);
     this.status = {
       active: false,
+      level: 0,
       power: -1,
       devices: [],
       device: null,
