@@ -9,22 +9,26 @@ export const Mock = {
   },
   scan() {
     const promise = u.promise();
+    const data = [
+      {
+        name: 'first interface',
+        id: '12-34-56-78',
+      },
+      {
+        name: 'second interface',
+        id: '34-56-78-12',
+      },
+      {
+        name: 'third interface',
+        id: '56-78-12-34',
+      },
+    ];
     const cb = () => {
-      this.status.devices = [
-        {
-          name: 'first interface',
-          id: '12-34-56-78',
-        },
-        {
-          name: 'second interface',
-          id: '34-56-78-12',
-        },
-        {
-          name: 'third interface',
-          id: '56-78-12-34',
-        },
-      ];
-      promise.resolve(this.status.devices);
+      this.status.devices.push(data.shift());
+      if (data.length) {
+        promise.resolve(this.status.devices);
+        setTimeout(cb, 1000);
+      }
     };
     setTimeout(cb, 1500);
     return promise.instance;
