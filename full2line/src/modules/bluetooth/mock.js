@@ -86,6 +86,78 @@ export const Mock = {
     setTimeout(cb, 200);
     return promise.instance;
   },
+
+  // 調光AセンサIDデータ確認
+  makeCommandConfirmDimmingSensorId() {
+    u.logger.info('run makeCommandConfirmDimmingSensorId');
+    const promise = u.promise();
+    const cb = () => {
+      const data = [0x02, 0x80, 0x3A, 0x01, 0x01, 0x01, 0xFF];
+      promise.resolve(data);
+    };
+    setTimeout(cb, 200);
+    return promise.instance;
+  },
+
+  // 無線CH確認
+  makeCommandconfirmWirelessChannel() {
+    u.logger.info('run makeCommandconfirmWirelessChannel');
+    const promise = u.promise();
+    const cb = () => {
+      const data = [0x02, 0x80, 0x01, 0xFF];
+      promise.resolve(data);
+    };
+    setTimeout(cb, 200);
+    return promise.instance;
+  },
+
+  // 無線CH設定
+  makeCommandSettingWirelessChannel() {
+    u.logger.info('run makeCommandSettingWirelessChannel');
+    const promise = u.promise();
+    const cb = () => {
+      const data = [0x02, 0xA0, 0x01, 0x01];
+      promise.resolve(data);
+    };
+    setTimeout(cb, 200);
+    return promise.instance;
+  },
+
+  // 送信SW押下状態取得
+  makeCommandGetSendSwitchState() {
+    u.logger.info('run makeCommandGetSendSwitchState');
+    const promise = u.promise();
+    const cb = () => {
+      const data = [0x01, 0x80, 0x02, 0x01];
+      promise.resolve(data);
+    };
+    setTimeout(cb, 200);
+    return promise.instance;
+  },
+
+  // 設定モード移行（赤外線送信設定）
+  makeCommandTransSettingMode() {
+    u.logger.info('run makeCommandTransSettingMode');
+    const promise = u.promise();
+    const cb = () => {
+      const data = [0x01, 0xA0, 0x02, 0x00];
+      promise.resolve(data);
+    };
+    setTimeout(cb, 200);
+    return promise.instance;
+  },
+
+  // 設定モード解除（赤外線解除設定）
+  makeCommandEndSettingMode() {
+    u.logger.info('run makeCommandEndSettingMode');
+    const promise = u.promise();
+    const cb = () => {
+      const data = [0x01, 0xA0, 0x02, 0x00];
+      promise.resolve(data);
+    };
+    setTimeout(cb, 200);
+    return promise.instance;
+  },
 };
 export default {
   Mock,
