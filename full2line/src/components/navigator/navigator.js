@@ -15,11 +15,16 @@ export default {
     initEvent() {
       u.blue.on('disconnect', this.disconnect);
     },
+    goHome() {
+      for (let i = 0; this.pageStack.length > 1; i++) this.pageStack.pop();
+    },
     disconnect() {
       u.logger.info('info', 'disconnect ble.');
-      this.pageStack.length = 1;
-      u.modalText = u.translate('event.disconnect');
-      this.pageStack.push('Modal');
+      this.$ons.notification.alert({
+        title: null,
+        messageHTML: `<div>${u.translate('event.disconnect')}</div>`,
+        callback: () => this.goHome(),
+      });
     },
   },
 };

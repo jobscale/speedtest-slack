@@ -8,7 +8,6 @@ export default {
     };
   },
   created() {
-    this.$emit('push-page', 'Wizard');
   },
   methods: {
     translate: u.translate,
