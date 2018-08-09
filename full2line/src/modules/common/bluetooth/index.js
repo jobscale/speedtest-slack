@@ -229,7 +229,7 @@ export class Bluetooth {
     u.logger.log(`recv :${dataSet}`);
     dataSet.shift();
     dataSet.pop();
-    return dataSet;
+    return this.confirmCheckSum(dataSet);
   }
   // 送信データ列を作成して返す
   createCommandData(data) {
@@ -253,8 +253,38 @@ export class Bluetooth {
   // 設定データをセット
   setQueryDataForArray(adrs, query) {
     const data = adrs.slice();
-    return data.concat(query);
+    return this.setCheckSum(data.concat(query));
   }
+
+  // checkSumの確認
+  confirmCheckSum(data) {
+    const dataArray = data.slice();
+    // 受信チェックサム取得
+    const checkSum = dataArray.pop();
+    let dataSum = 0;
+    // 1列めはアドレスなので飛ばす
+    for (let p = 1; p < data.length - 1; p++) {
+      dataSum += data[p];
+    }
+    if ((dataSum % 0xFF) === checkSum) {
+      return dataArray;
+    }
+    throw new Error('checkSum error');
+  }
+
+  // checkSum付加
+  setCheckSum(data) {
+    const dataArray = data.slice();
+    let sum = 0;
+    // 1列めはアドレスなので飛ばす
+    for (let p = 1; p < data.length; p++) {
+      sum += data[p];
+    }
+
+    dataArray[data.length] = sum;
+    return dataArray;
+  }
+
   // テスト用コード
   commandTestCode() {
     const sendArray = [0x01, 0x02, 0x03, 0x04, 0x7E, 0x06, 0x07, 0x7D, 0x09, 0x0A];
