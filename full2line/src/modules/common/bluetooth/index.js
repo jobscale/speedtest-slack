@@ -266,7 +266,7 @@ export class Bluetooth {
     for (let p = 1; p < data.length - 1; p++) {
       dataSum += data[p];
     }
-    if ((dataSum % 0xFF) === checkSum) {
+    if ((dataSum % 0x100) === checkSum) {
       return dataArray;
     }
     throw new Error('checkSum error');
