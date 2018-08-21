@@ -30,8 +30,9 @@ export const Mock = {
         setTimeout(cb, 1000);
       }
     };
-    setTimeout(cb, 1500);
+    setTimeout(cb, 1000);
     setTimeout(() => promise.resolve(this.status.devices), Constant.blue.scanSeconds * 1000);
+    this.status.devices.length = 0;
     return promise.instance;
   },
   connect(device) {

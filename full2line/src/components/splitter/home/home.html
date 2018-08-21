@@ -24,17 +24,13 @@
         <v-ons-button modifier="large" @click="$emit('push-page', 'Maintenance')">{{translate('maintenance.caption')}}</v-ons-button>
         <v-ons-button modifier="large" @click="$emit('push-page', 'pairedItems')">{{translate('pairedItems.title')}}</v-ons-button>
         <v-ons-button modifier="large" @click="$emit('push-page', 'selectItems')">{{translate('selectItems.title')}}</v-ons-button>
-        <v-ons-button modifier="large" @click="$emit('push-page', 'selectLines')">系統選択</v-ons-button>
+        <v-ons-button modifier="large" @click="isManage=true">系統選択</v-ons-button>
         <div class="home-icon">
-      <span>
-        <v-ons-icon icon="fa-question-circle" size="10vw" @click="$emit('push-page', 'Help')"><br><span>{{translate('help.caption')}}</span></v-ons-icon>
-      </span>
-          <span></span>
-          <span>
-        <v-ons-icon icon="fa-archive" size="10vw" @click="$emit('push-page', 'Manage')"><br><span>{{translate('manage.caption')}}</span></v-ons-icon>
-      </span>
+          <v-ons-icon icon="fa-question-circle" size="5vw" @click="$emit('push-page', 'Help')"><br><span>{{translate('help.caption')}}</span></v-ons-icon>
+          <v-ons-icon icon="fa-archive" size="5vw" @click="isManage=true"><br><span>{{translate('manage.caption')}}</span></v-ons-icon>
         </div>
       </div>
     </div>
   </div>
+  <manage v-if="isManage" :action="action"></manage>
 </v-ons-page>
