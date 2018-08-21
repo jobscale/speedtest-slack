@@ -1,6 +1,7 @@
-import { Util as u } from '@/modules/util';
+import { Util as u, mixin } from '@/modules/util';
 
 export default {
+  mixins: [mixin],
   data() {
     return {
       sensors: [],
@@ -12,10 +13,6 @@ export default {
     this.findingSensor();
   },
   methods: {
-    translate: u.translate,
-    close() {
-      this.$emit('pop-page');
-    },
     findingSensor() {
       this.isTips = true;
       u.blue.findingSensor()

@@ -1,10 +1,11 @@
-import { Util as u } from '@/modules/util';
+import { mixin } from '@/modules/util';
 
 export default {
+  mixins: [mixin],
   data() {
     return {
       carouselIndex: 0,
-      tips: u.translate('channel.tips.text'),
+      tips: this.translate('channel.tips.text'),
       dots: {
         textAlign: 'center',
         fontSize: '10vw',
@@ -16,7 +17,4 @@ export default {
     };
   },
   props: ['visible', 'close'],
-  methods: {
-    translate: u.translate,
-  },
 };

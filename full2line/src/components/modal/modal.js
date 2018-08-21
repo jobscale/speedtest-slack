@@ -1,8 +1,6 @@
-import { Util as u } from '@/modules/util';
+import { mixin } from '@/modules/util';
 
 export default {
+  mixins: [mixin],
   props: ['callback', 'text'],
-  methods: {
-    translate: u.translate,
-  },
 };
