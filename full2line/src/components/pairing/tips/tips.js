@@ -16,5 +16,5 @@ export default {
       },
     };
   },
-  props: ['visible', 'stopFind'],
+  props: ['stopFind'],
 };

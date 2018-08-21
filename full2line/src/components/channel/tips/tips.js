@@ -16,5 +16,5 @@ export default {
       },
     };
   },
-  props: ['visible', 'close'],
+  props: ['callback'],
 };

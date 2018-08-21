@@ -13,5 +13,5 @@
     </div>
   </div>
   <processing :visible="isProcessing" :close="()=>isProcessing=false"></processing>
-  <pairing-tips :visible="isTips" :stopFind="stopFind"></pairing-tips>
+  <pairing-tips v-if="isTips" :stopFind="stopFind"></pairing-tips>
 </v-ons-page>
