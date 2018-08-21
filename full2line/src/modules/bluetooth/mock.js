@@ -1,5 +1,5 @@
 import { Util as u } from '@/modules/util';
-import { Constant } from '@/base/common';
+import { Constant } from '@/modules/common';
 
 export const Mock = {
   assign(blue) {
