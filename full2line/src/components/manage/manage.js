@@ -1,6 +1,7 @@
 import { Util as u } from '@/modules/util';
 
 export default {
+  props: ['action'],
   data() {
     return {
       isExpanded: false,
@@ -10,14 +11,10 @@ export default {
   },
   methods: {
     translate: u.translate,
-    close() {
-      this.$emit('pop-page');
-    },
     prompt() {
       this.$ons.notification.prompt({
         title: '保存',
         messageHTML: this.$el.querySelector('#manage-prompt').innerHTML,
-        modifier: 'material',
         placeholder: '標準の初期設定',
         buttonLabels: ['キャンセル', '保存'],
         callback: name => name !== null && this.save(),

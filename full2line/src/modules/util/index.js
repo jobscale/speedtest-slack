@@ -1,11 +1,8 @@
 import _ from 'lodash';
 
 const dataset = document.querySelector('body').dataset;
-export class Util {
-  constructor() {
-    throw Error('only static');
-  }
-  static get key() {
+export const Util = {
+  get key() {
     const data = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     const val = [];
     [8, 4, 4, 4, 12].forEach(len => {
@@ -16,17 +13,17 @@ export class Util {
       val.push(x);
     });
     return val.join('-');
-  }
-  static translate(source, params) {
+  },
+  translate(source, params) {
     /* eslint-disable no-eval */
     let result = eval(`Util.lang.${source}`); /* eslint-enable no-eval */
     _.each(params, (value, key) => result = _.replace(result, `{{${key}}}`, value));
     return result;
-  }
-  static stringToDatetime(timestamp) {
+  },
+  stringToDatetime(timestamp) {
     return new Date(timestamp);
-  }
-  static dateToString(ts) {
+  },
+  dateToString(ts) {
     const con = n => n < 10 ? `0${n}` : n;
     const dt = {
       Y: ts.getFullYear(),
@@ -37,16 +34,30 @@ export class Util {
       S: con(ts.getSeconds()),
     };
     return `${dt.Y}-${dt.m}-${dt.d} ${dt.H}:${dt.M}:${dt.S}`;
-  }
-  static promise() {
+  },
+  promise() {
     const promise = {};
     promise.instance = new Promise((resolve, reject) => {
       promise.resolve = resolve;
       promise.reject = reject;
     });
     return promise;
-  }
-}
+  },
+  ui: {
+    eventHandler: {},
+    on(name, callback) {
+      this.eventHandler[name] = callback;
+    },
+    fire(name, event) {
+      Util.logger.info(name, event);
+      if (!this.eventHandler[name]) {
+        Util.logger.warn(`can not trigger ${name}`);
+        return;
+      }
+      setTimeout(() => this.eventHandler[name](event), 0);
+    },
+  },
+};
 _.merge(Util, {
   /* eslint-disable global-require */
   lang: require('@/resources/strings'), /* eslint-enable global-require */
@@ -60,7 +71,8 @@ _.merge(Util, {
     return self;
   })(['log', 'info', 'warn', 'error', 'assert']),
   ..._,
-}, _);
+});
+Util.logger.warn(Util.ui);
 export const mixin = {
   data() {
     return {

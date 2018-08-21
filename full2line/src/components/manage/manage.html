@@ -1,25 +1,18 @@
-<v-ons-page id="manage">
-  <v-ons-toolbar>
-    <v-ons-back-button @click.prevent="close" class="left">{{translate('common.home')}}</v-ons-back-button>
-    <div class="center">新規</div>
-  </v-ons-toolbar>
+<v-ons-modal id="manage" :visible="true">
   <div class="background"></div>
   <div class="content">
+    <div class="center">データメニュー</div>
     <v-ons-list>
-      <v-ons-list-item expandable :expanded.sync="isExpanded">
-        開く
-        <div class="expandable-content">
-          <v-ons-list-item modifier="chevron" tappable @click="$ons.notification.toast(`「機器A設定を読み込みました。`, {timeout:3000})">機器A設定</v-ons-list-item>
-          <v-ons-list-item modifier="chevron" tappable @click="$ons.notification.toast(`「機器B設定を読み込みました。`, {timeout:3000})">機器B設定</v-ons-list-item>
-        </div>
-      </v-ons-list-item>
+      <v-ons-list-item modifier="chevron" tappable @click="action.create()">データを新規作成する</v-ons-list-item>
+      <v-ons-list-item modifier="chevron" tappable @click="$ons.notification.toast(`「機器A設定を読み込みました。`, {timeout:3000})">スマートフォン本体から</v-ons-list-item>
+      <v-ons-list-item modifier="chevron" tappable @click="$ons.notification.toast(`「機器B設定を読み込みました。`, {timeout:3000})">通信I/Fから</v-ons-list-item>
       <v-ons-list-item modifier="chevron" tappable @click="isExpanded=false;prompt()">
         保存する
       </v-ons-list-item>
     </v-ons-list>
   </div>
-  <templat id="manage-prompt">
+  <templat id="manage-prompt" style="display: none">
     <div>保存する名前を入力</div>
     <div class=margin-mid><small>既存の名前を指定すると上書きされます。</small></div>
   </templat>
-</v-ons-page>
+</v-ons-modal>

@@ -18,9 +18,6 @@ export default {
   },
   methods: {
     translate: u.translate,
-    close() {
-      this.$emit('pop-page');
-    },
     connect(id) {
       this.current = u.find(this.status.devices, { id });
       u.blue.connect(this.current)
@@ -30,6 +27,10 @@ export default {
         u.modalText = u.translate('error.connect');
         this.$emit('push-page', 'Modal');
       });
+    },
+    connected() {
+      u.ui.fire('connected');
+      this.$emit('pop-page');
     },
   },
 };
