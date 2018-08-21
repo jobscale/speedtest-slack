@@ -1,11 +1,12 @@
-import { Util as u } from '@/modules/util';
+import { mixin } from '@/modules/util';
 
 export default {
+  mixins: [mixin],
   data() {
     return {
       current: 'SplitterHome',
       pages: [{
-        caption: u.translate('common.home'),
+        caption: this.translate('common.home'),
         name: 'SplitterHome',
       }, {
         caption: 'News',
@@ -16,8 +17,5 @@ export default {
       }],
       openSide: false,
     };
-  },
-  methods: {
-    translate: u.translate,
   },
 };

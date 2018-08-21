@@ -1,6 +1,7 @@
-import { Util as u } from '@/modules/util';
+import { Util as u, mixin } from '@/modules/util';
 
 export default {
+  mixins: [mixin],
   data() {
     return {
       text: 'sample',
@@ -10,10 +11,6 @@ export default {
     };
   },
   methods: {
-    translate: u.translate,
-    close() {
-      this.$emit('pop-page');
-    },
     disconnect() {
       u.blue.disconnect()
       .then(() => {

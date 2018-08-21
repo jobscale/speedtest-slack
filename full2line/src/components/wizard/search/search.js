@@ -1,6 +1,7 @@
-import { Util as u } from '@/modules/util';
+import { Util as u, mixin } from '@/modules/util';
 
 export default {
+  mixins: [mixin],
   data() {
     return {
       isTips: false,
@@ -17,7 +18,6 @@ export default {
     .catch(e => this.$ons.notification.toast(`エラー: ${e.message}`, { timeout: 3000 }));
   },
   methods: {
-    translate: u.translate,
     connect(id) {
       this.current = u.find(this.status.devices, { id });
       u.blue.connect(this.current)
@@ -30,7 +30,7 @@ export default {
     },
     connected() {
       u.ui.fire('connected');
-      this.$emit('pop-page');
+      this.close();
     },
   },
 };

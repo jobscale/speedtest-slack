@@ -1,10 +1,11 @@
-import { Util as u } from '@/modules/util';
+import { mixin } from '@/modules/util';
 
 export default {
+  mixins: [mixin],
   data() {
     return {
       carouselIndex: 0,
-      tips: u.translate('pairing.tips.text'),
+      tips: this.translate('pairing.tips.text'),
       dots: {
         textAlign: 'center',
         fontSize: '10vw',
@@ -15,10 +16,5 @@ export default {
       },
     };
   },
-  props: ['visible', 'stopFind'],
-  created() {
-  },
-  methods: {
-    translate: u.translate,
-  },
+  props: ['stopFind'],
 };

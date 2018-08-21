@@ -1,16 +1,11 @@
-import { Util as u } from '@/modules/util';
+import { mixin } from '@/modules/util';
 
 export default {
+  mixins: [mixin],
   data() {
     return {
       isProcessing: false,
       isTips: true,
     };
-  },
-  methods: {
-    translate: u.translate,
-    close() {
-      this.$emit('pop-page');
-    },
   },
 };

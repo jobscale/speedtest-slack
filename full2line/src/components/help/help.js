@@ -1,6 +1,7 @@
-import { Util as u } from '@/modules/util';
+import { mixin } from '@/modules/util';
 
 export default {
+  mixins: [mixin],
   data() {
     return {
       email: '',
@@ -14,10 +15,6 @@ export default {
     };
   },
   methods: {
-    translate: u.translate,
-    close() {
-      this.$emit('pop-page');
-    },
     next(name) {
       this.style[`fix${name}`] = true;
     },

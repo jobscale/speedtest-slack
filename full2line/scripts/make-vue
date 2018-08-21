@@ -1,0 +1,42 @@
+#!/bin/bash -eu
+
+name=$1
+mkdir $name
+
+# touch files
+touch $name/$name.scss
+
+vueTemplate() {
+  echo '<template src="./'$name'.html"></template>'
+  echo '<script src="./'$name'.js"></script>'
+  echo '<style src="./'$name'.scss"></style>'
+}
+
+htmlTemplate() {
+  echo '<v-ons-page id="'$name'">'
+  echo '  <div class="background"></div>'
+  echo '  <div class="content">'
+  echo '    <div class="center" @click="close">'
+  echo "      I am $name"
+  echo '    </div>'
+  echo '  </div>'
+  echo '</v-ons-page>'
+}
+
+jsTemplate() {
+  echo "import { mixin } from '@/modules/util';"
+  echo ''
+  echo 'export default {'
+  echo '  mixins: [mixin],'
+  echo '};'
+}
+
+main() {
+  vueTemplate > $name/index.vue
+  htmlTemplate > $name/$name.html
+  jsTemplate > $name/$name.js
+}
+
+main
+echo 'created files'
+find $name -type f -ls

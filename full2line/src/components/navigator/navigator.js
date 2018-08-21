@@ -1,6 +1,7 @@
-import { Util as u } from '@/modules/util';
+import { Util as u, mixin } from '@/modules/util';
 
 export default {
+  mixins: [mixin],
   data() {
     return {
       pageStack: ['Splitter'],
@@ -11,7 +12,6 @@ export default {
     this.initEvent();
   },
   methods: {
-    translate: u.translate,
     initEvent() {
       u.blue.on('disconnect', this.disconnect);
     },

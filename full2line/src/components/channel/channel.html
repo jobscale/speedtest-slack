@@ -9,6 +9,6 @@
   <p style="text-align: center">
     <v-ons-button modifier="large" @click="isProcessing=true" >{{translate('channel.start')}}</v-ons-button>
   </p>
-  <processing :visible="isProcessing" :close="()=>isProcessing=false"></processing>
-  <channel-tips :visible="isTips" :close="()=>isTips=false"></channel-tips>
+  <processing v-if="isProcessing" :callback="()=>isProcessing=false"></processing>
+  <channel-tips v-if="isTips" :callback="()=>isTips=false"></channel-tips>
 </v-ons-page>

@@ -1,14 +1,5 @@
-import { Util as u } from '@/modules/util';
+import { mixin } from '@/modules/util';
 
 export default {
-  data() {
-    return {
-    };
-  },
-  methods: {
-    translate: u.translate,
-    close() {
-      this.$emit('pop-page');
-    },
-  },
+  mixins: [mixin],
 };

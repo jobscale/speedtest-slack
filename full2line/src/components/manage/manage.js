@@ -1,6 +1,7 @@
-import { Util as u } from '@/modules/util';
+import { mixin } from '@/modules/util';
 
 export default {
+  mixins: [mixin],
   props: ['action'],
   data() {
     return {
@@ -10,7 +11,6 @@ export default {
     };
   },
   methods: {
-    translate: u.translate,
     prompt() {
       this.$ons.notification.prompt({
         title: '保存',

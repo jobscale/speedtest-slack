@@ -1,6 +1,7 @@
-import { Util as u } from '@/modules/util';
+import { Util as u, mixin } from '@/modules/util';
 
 export default {
+  mixins: [mixin],
   props: ['toggle'],
   data() {
     return {
@@ -15,7 +16,6 @@ export default {
     u.ui.on('connected', this.connected);
   },
   methods: {
-    translate: u.translate,
     connected() {
       this.isManage = true;
     },

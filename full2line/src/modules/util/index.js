@@ -72,12 +72,21 @@ _.merge(Util, {
   })(['log', 'info', 'warn', 'error', 'assert']),
   ..._,
 });
-Util.logger.warn(Util.ui);
 export const mixin = {
   data() {
     return {
-      translate: Util.translate,
+      u: Util,
+      key: Util.key,
     };
+  },
+  created() {
+    Util.logger.info(`create Vue Component ${this.key}`);
+  },
+  methods: {
+    translate: Util.translate,
+    close() {
+      this.$emit('pop-page');
+    },
   },
 };
 export default {

@@ -1,6 +1,7 @@
-import { Util as u } from '@/modules/util';
+import { mixin } from '@/modules/util';
 
 export default {
+  mixins: [mixin],
   data() {
     return {
       itemId: [],
@@ -32,11 +33,5 @@ export default {
     ];
     this.itemId.length = 0;
     this.itemId.push(...items);
-  },
-  methods: {
-    translate: u.translate,
-    close() {
-      this.$emit('pop-page');
-    },
   },
 };
