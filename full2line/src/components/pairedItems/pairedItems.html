@@ -1,6 +1,6 @@
 <v-ons-page id="pairedItems">
   <v-ons-toolbar>
-    <v-ons-back-button @click.prevent="close" class="left">{{translate('common.backButton')}}</v-ons-back-button>
+    <v-ons-back-button class="left">{{translate('common.backButton')}}</v-ons-back-button>
     <div class="center">系統１</div>
     <div class="right">
       <svg viewBox="0 0 44 44" id="ic-trash" class="f2l-toolbar-icon" :class='{delmode:isDelMode}' @click="isDelMode=!isDelMode;checkedItemId=[]">

@@ -138,7 +138,8 @@ const Mutation = {
     const sensors = state.sensors;
     if (sensors.length >= Constant.maxSensor) throw new Error('application error');
     sensors.push(obj = {
-      id: param.idSensor,
+      idSensor: param.idSensor,
+      freqCh: param.freqCh,
       name: param.name,
       macAddress: param.macAddress,
       lines: [
@@ -186,6 +187,9 @@ const Mutation = {
   },
 };
 const Getters = {
+  getData(state) {
+    return state;
+  },
   getNameCSV(state) {
     return state.current.nameCSV;
   },

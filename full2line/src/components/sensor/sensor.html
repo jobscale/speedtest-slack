@@ -1,0 +1,21 @@
+<v-ons-page id="sensor">
+  <v-ons-toolbar>
+    <v-ons-back-button class="left">{{translate('common.backButton')}}</v-ons-back-button>
+    <div class="center"></div>
+    <div class="right">
+      <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click=""></v-ons-icon>
+    </div>
+  </v-ons-toolbar>
+  <div class="content">
+    <div class="center">編集中のセンサー</div>
+    使用CH：{{sensor.freqCh}}　AセンサID：{{sensor.idSensor}} ({{sensor.macAddress}})
+    <div>無線到達確認</div>
+    動作設定
+    <v-ons-list>
+      <v-ons-list-item modifier="chevron" tappable @click="">無線通信</v-ons-list-item>
+      <v-ons-list-item modifier="chevron" tappable @click="">フル２線</v-ons-list-item>
+      <v-ons-list-item modifier="chevron" tappable @click="">一定値照度</v-ons-list-item>
+      <v-ons-list-item modifier="chevron" tappable @click="">詳細設定</v-ons-list-item>
+    </v-ons-list>
+  </div>
+</v-ons-page>

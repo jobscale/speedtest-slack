@@ -71,6 +71,9 @@
       ],
       "start": "開始",
       "cancel": "調光センサー設定中止"
+    },
+    "processing": {
+      "text": "通信中"
     }
   },
   "system": {

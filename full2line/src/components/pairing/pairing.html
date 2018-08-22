@@ -1,6 +1,6 @@
 <v-ons-page id="pairing">
   <v-ons-toolbar>
-    <v-ons-back-button @click.prevent="close" class="left">{{translate('common.home')}}</v-ons-back-button>
+    <v-ons-back-button class="left">{{translate('common.home')}}</v-ons-back-button>
     <div class="center">{{translate('pairing.title')}}</div>
     <div class="right">
       <v-ons-icon icon="fa-question-circle" size="2em" fixed-width="true" @click="findingSensor()"></v-ons-icon>
@@ -12,6 +12,6 @@
       <v-ons-button modifier="large" @click="isProcessing=true" >{{translate('pairing.submit')}}</v-ons-button>
     </div>
   </div>
-  <common-processing v-if="isProcessing" :callback="()=>isProcessing=false"></common-processing>
+  <common-processing v-if="isProcessing" :text="translate('pairing.processing.text')" :callback="()=>isProcessing=false"></common-processing>
   <pairing-tips v-if="isTips" :stopFind="stopFind"></pairing-tips>
 </v-ons-page>

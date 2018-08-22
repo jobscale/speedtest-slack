@@ -63,11 +63,12 @@ export const Mock = {
     const cb = () => {
       const sensor = {
         id: '11-22-33-44-55-66',
+        freqCh: 11,
         status: 'found',
       };
       this.promiseindingSensor.resolve(sensor);
     };
-    setTimeout(cb, 5000);
+    setTimeout(cb, 3000);
     return this.promiseindingSensor.instance;
   },
   cancelFindingSensor() {

@@ -25,20 +25,16 @@ export default {
       this.current = u.find(this.status.devices, { id });
       this.text.processing = u.translate('message.connecting');
       u.blue.connect(this.current)
-      .then(() => {
-        this.text.modal = this.translate('wizard.search.modal.text', { macAddress: this.current.id });
-        u.logger.warn(this.text.modal);
-      })
-      .catch(e => {
-        u.logger.error(e.message);
-        this.$ons.notification.alert({
-          title: null,
-          messageHTML: `<div>${u.translate('error.connect')}</div>`,
-          callback: () => undefined,
-        });
-      })
-      .then(() => {
-        this.text.processing = undefined;
+      .then(() => this.text.modal = this.translate('wizard.search.modal.text', { macAddress: this.current.id }))
+      .catch(e => this.alert(e))
+      .then(() => this.text.processing = undefined);
+    },
+    alert(e) {
+      u.logger.error(e.message);
+      this.$ons.notification.alert({
+        title: null,
+        messageHTML: `<div>${u.translate('error.connect')}</div>`,
+        callback: () => undefined,
       });
     },
     connected() {
