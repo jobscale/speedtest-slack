@@ -1,9 +1,10 @@
-<v-ons-modal :visible="true" id="modal" @click="callback()">
+<v-ons-modal id="processing" :visible="true" @click="callback()">
   <div class="background"></div>
   <div class="content">
     <div class="flex-center position-ref full-height">
       <div class="content">
         <div class="title" v-html="text"></div>
+        <v-ons-icon icon="fa-spinner" size="30vw" spin></v-ons-icon>
       </div>
     </div>
   </div>

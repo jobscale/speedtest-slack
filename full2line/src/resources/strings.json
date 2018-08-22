@@ -10,6 +10,7 @@
     "blink": "点滅"
   },
   "message": {
+    "connecting": "BLEと接続しています。",
     "disconnect": "BLEを切断しました。"
   },
   "error": {
@@ -37,7 +38,10 @@
     "search": {
       "caption": "設定器の選択",
       "text": "番号を選択してください。",
-      "notFound": "設定器が見つからない"
+      "notFound": "設定器が見つからない",
+      "modal": {
+        "text": "<h3>接続完了</h3>通信I/F「{{macAddress}}」との接続が完了しました。"
+      }
     }
   },
   "channel": {

@@ -16,11 +16,6 @@
       <v-ons-button modifier="large" @click="close()">{{translate('wizard.search.notFound')}}</v-ons-button>
     </div>
   </div>
-  <v-ons-modal :visible="isTips">
-    <div class="tips-content">
-      <h3 class="center">接続完了</h3>
-      通信I/F「{{current.macAddress}}」との接続が完了しました。
-      <v-ons-button modifier="large" @click="connected()">アプリの使用を開始</v-ons-button>
-    </div>
-  </v-ons-modal>
+  <common-processing v-if="text.processing" :text="text.processing" :callback="() => undefined"></common-processing>
+  <common-modal v-if="text.modal" :text="text.modal" :callback="connected"></common-modal>
 </v-ons-page>

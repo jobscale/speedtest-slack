@@ -1,6 +1,6 @@
 import { Util as u } from '@/modules/util';
 import { Bluetooth as Base } from '@/modules/common/bluetooth';
-import { Constant } from '@/base/common';
+import { Constant } from '@/modules/common';
 import { Mock } from './mock';
 
 export class Bluetooth extends Base {
