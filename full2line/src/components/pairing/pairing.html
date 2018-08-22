@@ -12,6 +12,6 @@
       <v-ons-button modifier="large" @click="isProcessing=true" >{{translate('pairing.submit')}}</v-ons-button>
     </div>
   </div>
-  <common-processing v-if="isProcessing" :callback="()=>isProcessing=false"></common-processing>
+  <common-processing v-if="isProcessing" :text="translate('pairing.processing.text')" :callback="()=>isProcessing=false"></common-processing>
   <pairing-tips v-if="isTips" :stopFind="stopFind"></pairing-tips>
 </v-ons-page>
