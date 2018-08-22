@@ -24,13 +24,14 @@
     "form-data": "^2.3.2",
     "lodash": "^4.17.10",
     "node-fetch": "^2.1.2",
-    "speedtest-cli": "^0.1.0"
+    "speedtest-cli": "^0.1.0",
+    "weather-js": "^2.0.0"
   },
   "devDependencies": {
-    "http-proxy-agent": "^2.1.0",
-    "https-proxy-agent": "^2.2.1",
-    "eslint": "^5.2.0",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.13.0",
-    "eslint-config-airbnb-base": "^13.0.0"
+    "http-proxy-agent": "^2.1.0",
+    "https-proxy-agent": "^2.2.1"
   }
 }

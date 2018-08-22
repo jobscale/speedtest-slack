@@ -1,6 +1,7 @@
 const env = require('env.json');
 const { SpeedTest } = require('speedtest');
 const { Slack } = require('slack');
+const { Weather } = require('weather');
 const _ = require('lodash');
 
 const datas = [{
@@ -25,13 +26,20 @@ const getData = text => {
 };
 const main = () => {
   const slack = new Slack(env.slack);
+  const weather = new Weather();
   let text;
   new SpeedTest().run()
   .then(res => getData(text = res))
   .then(data => slack.send(data))
+  .then(() => weather.find('Osaka, Japan'))
+  .then(res => res.forEach(data => {
+    const d = data.current;
+    const t = `${d.skytext} ${d.temperature}℃ / ${d.humidity}％ ${d.winddisplay} \`${d.imageUrl}\``;
+    slack.send(getData(t));
+    return t;
+  }))
   .then(res => {
-    slack.logger.info(text);
-    slack.logger.info(res);
+    slack.logger.info(text, res);
   });
 };
 (() => {
