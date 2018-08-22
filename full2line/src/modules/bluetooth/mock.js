@@ -44,7 +44,9 @@ export const Mock = {
       this.status.power = 5;
       promise.resolve('ok');
     };
-    setTimeout(cb, 1200);
+    setTimeout(cb, 1200000);
+    this.changeMode();
+
     return promise.instance;
   },
   disconnect() {
@@ -76,16 +78,37 @@ export const Mock = {
     };
     this.promiseindingSensor.resolve(sensor);
   },
-  // コマンド送信のサンプル
-  writeData() {
-    u.logger.info('run writeData');
-    const promise = u.promise();
+  // 設定モード移行
+  changeMode() {
+    u.logger.info('run changeMode');
+    const p = u.promise();
+    // ボタン押下状態
     const cb = () => {
-      const data = [0x00, 0x01, 0x02, 0x03, 0x04, 0x05];
-      promise.resolve(data);
+      u.logger.info(this.makeCommandGetSendSwitchState());
+      this.makeCommandGetSendSwitchState()
+      .then(res => {
+        if (res[0] === 0x01) {
+          u.logger.info('pushed button');
+          p.resolve('pushed button');
+        } else {
+          setTimeout(cb, 1000);
+        }
+      });
     };
-    setTimeout(cb, 200);
-    return promise.instance;
+    setTimeout(cb, 1000);
+    p.instance
+    .then(() => this.makeCommandTransSettingMode())       // 設定モード移行
+    // 無線CPU状態確認
+    .then(() => this.makeCommandConfirmDimmingSensorId()) // AセンサID確認
+    .then(() => this.makeCommandconfirmWirelessChannel()) // 無線CH確認
+    // 無線ペアリング設定確認
+    // 調光回路ID確認
+    // ペアリング情報
+    .then(() => this.makeCommandSettingWirelessChannel()) // 無線CH設定
+    // フル２線アドレス確認
+    // 一定値照度制御設定
+    // ホップ設定確認
+    .catch(e => u.logger.error(e.message));
   },
 
   // 調光AセンサIDデータ確認
@@ -93,7 +116,7 @@ export const Mock = {
     u.logger.info('run makeCommandConfirmDimmingSensorId');
     const promise = u.promise();
     const cb = () => {
-      const data = [0x02, 0x80, 0x3A, 0x01, 0x01, 0x01, 0xFF];
+      const data = [0x01, 0x01, 0x01, 0xFF];
       promise.resolve(data);
     };
     setTimeout(cb, 200);
@@ -105,7 +128,7 @@ export const Mock = {
     u.logger.info('run makeCommandconfirmWirelessChannel');
     const promise = u.promise();
     const cb = () => {
-      const data = [0x02, 0x80, 0x01, 0xFF];
+      const data = [0xFF];
       promise.resolve(data);
     };
     setTimeout(cb, 200);
@@ -117,7 +140,7 @@ export const Mock = {
     u.logger.info('run makeCommandSettingWirelessChannel');
     const promise = u.promise();
     const cb = () => {
-      const data = [0x02, 0xA0, 0x01, 0x01];
+      const data = [0x01];
       promise.resolve(data);
     };
     setTimeout(cb, 200);
@@ -129,7 +152,7 @@ export const Mock = {
     u.logger.info('run makeCommandGetSendSwitchState');
     const promise = u.promise();
     const cb = () => {
-      const data = [0x01, 0x80, 0x02, 0x01];
+      const data = [0x01];
       promise.resolve(data);
     };
     setTimeout(cb, 200);
@@ -141,7 +164,7 @@ export const Mock = {
     u.logger.info('run makeCommandTransSettingMode');
     const promise = u.promise();
     const cb = () => {
-      const data = [0x01, 0xA0, 0x02, 0x00];
+      const data = [0x00];
       promise.resolve(data);
     };
     setTimeout(cb, 200);
@@ -153,7 +176,7 @@ export const Mock = {
     u.logger.info('run makeCommandEndSettingMode');
     const promise = u.promise();
     const cb = () => {
-      const data = [0x01, 0xA0, 0x02, 0x00];
+      const data = [0x00];
       promise.resolve(data);
     };
     setTimeout(cb, 200);
