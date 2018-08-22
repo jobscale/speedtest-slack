@@ -4,7 +4,7 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      text: 'sample',
+      text: undefined,
       isModal: false,
       status: u.blue.status,
       nameCSV: this.$store.getters.getNameCSV,

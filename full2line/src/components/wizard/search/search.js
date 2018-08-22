@@ -4,7 +4,10 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      isTips: false,
+      text: {
+        processing: undefined,
+        modal: undefined,
+      },
       current: {},
       status: u.blue.status,
     };
@@ -20,12 +23,22 @@ export default {
   methods: {
     connect(id) {
       this.current = u.find(this.status.devices, { id });
+      this.text.processing = u.translate('message.connecting');
       u.blue.connect(this.current)
-      .then(() => this.isTips = true)
+      .then(() => {
+        this.text.modal = this.translate('wizard.search.modal.text', { macAddress: this.current.id });
+        u.logger.warn(this.text.modal);
+      })
       .catch(e => {
         u.logger.error(e.message);
-        u.modalText = u.translate('error.connect');
-        this.$emit('push-page', 'Modal');
+        this.$ons.notification.alert({
+          title: null,
+          messageHTML: `<div>${u.translate('error.connect')}</div>`,
+          callback: () => undefined,
+        });
+      })
+      .then(() => {
+        this.text.processing = undefined;
       });
     },
     connected() {
