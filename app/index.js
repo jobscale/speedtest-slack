@@ -26,21 +26,19 @@ const getData = text => {
 };
 const main = () => {
   const slack = new Slack(env.slack);
-  const weather = new Weather();
   let text;
   new SpeedTest().run()
   .then(res => getData(text = res))
   .then(data => slack.send(data))
-  .then(() => weather.find('Osaka, Japan'))
-  .then(res => res.forEach(data => {
+  .then(() => new Weather().find('Osaka, Japan'))
+  .then(res => res.forEach(async data => {
     const d = data.current;
-    const t = `${d.skytext} ${d.temperature}℃ / ${d.humidity}％ ${d.winddisplay} \`${d.imageUrl}\``;
-    slack.send(getData(t));
-    return t;
+    const t = `${d.skytext} ${d.temperature}℃ / ${d.humidity}％ ${d.winddisplay} <${d.imageUrl}|icon>`;
+    await slack.send(getData(t));
   }))
-  .then(res => {
-    slack.logger.info(text, res);
-  });
+  .then(() => new Weather().run())
+  .then(res => slack.send(getData(`${res.caption} - ${res.date} <${res.image}|icon>`)))
+  .then(res => slack.logger.info(text, res));
 };
 (() => {
   main();
