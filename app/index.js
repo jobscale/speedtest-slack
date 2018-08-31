@@ -1,8 +1,8 @@
-const env = require('env.json');
+const _ = require('lodash');
+const env = require('env');
 const { SpeedTest } = require('speedtest');
 const { Slack } = require('slack');
 const { Weather } = require('weather');
-const _ = require('lodash');
 
 const datas = [{
   icon_emoji: ':email:',
