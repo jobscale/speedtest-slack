@@ -15,9 +15,9 @@
   "homepage": "https://github.com/jobscale/speedtest-slack#readme",
   "main": "app/index.js",
   "scripts": {
-    "start": "NODE_PATH=./app/config:./app/modules node app/index",
-    "channel:clear": "NODE_PATH=./app/config:./app/modules node app/clear-channel",
-    "test": "NODE_PATH=./app/config:./app/modules node app/fetch",
+    "start": "NODE_PATH=./app:./modules node app/index",
+    "channel:clear": "NODE_PATH=./app:./modules node app/clear-channel",
+    "test": "NODE_PATH=./app:./modules node app/fetch",
     "lint": "eslint app"
   },
   "dependencies": {
