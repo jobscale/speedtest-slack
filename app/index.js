@@ -3,6 +3,7 @@ const env = require('env');
 const { SpeedTest } = require('speedtest');
 const { Slack } = require('slack');
 const { Weather } = require('weather');
+const { DownDetector } = require('downdetector');
 
 const datas = [{
   icon_emoji: ':email:',
@@ -19,6 +20,7 @@ const getData = text => {
   const data = _.cloneDeep(datas[0]);
   const urls = getUrls(text);
   data.text = text;
+  if (!urls) return data;
   data.attachments = [{
     fallback: '',
     thumb_url: urls[0],
@@ -28,7 +30,10 @@ const getData = text => {
 const main = () => {
   const slack = new Slack(env.slack);
   let text;
-  new Weather().run()
+  Promise.resolve()
+  .then(() => new DownDetector().run())
+  .then(res => slack.send(getData(`${res.caption} - <${res.image}|icon>`)))
+  .then(() => new Weather().run())
   .then(res => slack.send(getData(`${res.caption} - ${res.date} <${res.image}|icon>`)))
   .then(() => new SpeedTest().run())
   .then(res => getData(text = res))
