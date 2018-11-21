@@ -29,12 +29,13 @@ const getData = text => {
 };
 const main = () => {
   const slack = new Slack(env.slack);
+  const sender = param => slack.send(getData(`${param.caption} - <${param.image}|icon>`));
   let text;
   Promise.resolve()
   .then(() => new DownDetector().run())
-  .then(res => slack.send(getData(`${res.caption} - <${res.image}|icon>`)))
+  .then(record => record.map(res => sender(res)))
   .then(() => new Weather().run())
-  .then(res => slack.send(getData(`${res.caption} - ${res.date} <${res.image}|icon>`)))
+  .then(res => sender(res))
   .then(() => new SpeedTest().run())
   .then(res => getData(text = res))
   .then(data => slack.send(data))
