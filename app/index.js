@@ -28,8 +28,11 @@ const getData = text => {
   return data;
 };
 const main = () => {
+  let delay = 1;
   const slack = new Slack(env.slack);
-  const sender = param => slack.send(getData(`${param.caption} - <${param.image}|icon>`));
+  const sender = param => setTimeout(
+    data => slack.send(data), (delay++) * 3000, getData(`${param.caption} - <${param.image}|icon>`),
+  );
   let text;
   Promise.resolve()
   .then(() => new DownDetector().run())
@@ -37,9 +40,8 @@ const main = () => {
   .then(() => new Weather().run())
   .then(res => sender(res))
   .then(() => new SpeedTest().run())
-  .then(res => getData(text = res))
-  .then(data => slack.send(data))
-  .then(res => slack.logger.info(text, res));
+  .then(res => slack.send(getData(text = res)))
+  .then(() => slack.logger.info(text));
 };
 (() => {
   main();
