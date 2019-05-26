@@ -1,3 +1,4 @@
+require('core');
 const env = require('env');
 const { SpeedTest } = require('speedtest');
 const { Slack } = require('slack');
