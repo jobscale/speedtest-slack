@@ -4,9 +4,9 @@ const { Slack } = require('slack');
 const main = () => {
   const slack = new Slack(env.slack);
   slack.getHistory(1)
-  .then(json => slack.logger.info(json))
-  .catch(e => slack.logger.error(e.message))
-  .then(() => slack.logger.info('finish.'));
+  .then(json => logger.info(json))
+  .catch(e => logger.error(e.message))
+  .then(() => logger.info('finish.'));
 };
 (() => {
   main();

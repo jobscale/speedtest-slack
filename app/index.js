@@ -1,11 +1,9 @@
-const _ = require('lodash');
 const env = require('env');
 const { SpeedTest } = require('speedtest');
 const { Slack } = require('slack');
 const { Weather } = require('weather');
 const { DownDetector } = require('downdetector');
 const { Shell } = require('shell');
-
 const datas = [{
   icon_emoji: ':email:',
   username: 'Speed',
@@ -18,7 +16,7 @@ const getUrls = text => {
   return text.match(search);
 };
 const getData = text => {
-  const data = _.cloneDeep(datas[0]);
+  const data = Object.assign({}, datas[0]);
   const urls = getUrls(text);
   data.text = text;
   if (!urls) return data;
@@ -43,7 +41,7 @@ const main = () => {
   .then(res => slack.send(getData(res)))
   .then(() => new SpeedTest().run())
   .then(res => slack.send(getData(text = res)))
-  .then(() => slack.logger.info(text));
+  .then(() => logger.info(text));
 };
 (() => {
   main();
