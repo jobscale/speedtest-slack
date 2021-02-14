@@ -38,7 +38,7 @@ const main = () => {
   .then(record => record.map(res => sender(res)))
   .then(() => new Weather().run())
   .then(res => sender(res))
-  .then(() => new Shell().spawn('curl', ['ifconfig.io']))
+  .then(() => new Shell().spawn('curl', ['-s', 'ifconfig.io']))
   .then(res => slack.send(getData(res)))
   .then(() => new SpeedTest().run())
   .then(res => slack.send(getData(text = res)))

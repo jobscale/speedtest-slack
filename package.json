@@ -19,10 +19,11 @@
     "lint": "eslint app"
   },
   "dependencies": {
-    "downdetector": "github:jobscale/downdetector",
+    "@slack/web-api": "^6.0.0",
     "core": "github:jobscale/core",
-    "slack": "github:jobscale/slack",
+    "downdetector": "github:jobscale/downdetector",
     "shell": "github:jobscale/shell",
+    "slack": "github:jobscale/slack",
     "speedtest": "github:jobscale/speedtest",
     "weather": "github:jobscale/weather"
   },

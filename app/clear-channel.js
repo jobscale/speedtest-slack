@@ -1,13 +1,41 @@
-const env = require('env');
-const { Slack } = require('slack');
+require('core');
+const { slack } = require('env');
+const { WebClient, LogLevel } = require('@slack/web-api');
+const { logger } = require('core');
+const client = new WebClient(slack.token, {
+  logLevel: LogLevel.DEBUG,
+});
 
-const main = () => {
-  const slack = new Slack(env.slack);
-  slack.getHistory(1000)
-  .then(json => slack.deleteChat(json.messages))
-  .catch(e => logger.error(e.message))
-  .then(json => logger.info(json));
+const delay = 1000;
+
+const delayRemove = ts => new Promise(resolve => {
+  setTimeout(() => {
+    resolve(client.chat.delete({
+      channel: slack.channel,
+      ts,
+    }));
+  }, delay);
+});
+
+const main = async () => {
+  const res = {
+    length: 1,
+  };
+  for (; res.length;) {
+    await client.conversations.history({
+      channel: slack.channel,
+    })
+    .then(async json => {
+      logger.info({ length: json.messages.length });
+      res.length = json.messages.length;
+      // eslint-disable-next-line
+      for (const message of json.messages) {
+        await delayRemove(message.ts);
+      }
+    });
+  }
 };
 (() => {
-  main();
+  main()
+  .catch(e => logger.error(e.message));
 })();
