@@ -1,7 +1,6 @@
 require('core');
-const { slack } = require('env');
 const { WebClient, LogLevel } = require('@slack/web-api');
-const { logger } = require('core');
+const { slack } = require('./env.json');
 const client = new WebClient(slack.token, {
   logLevel: LogLevel.DEBUG,
 });

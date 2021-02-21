@@ -13,10 +13,11 @@
   "homepage": "https://github.com/jobscale/speedtest-slack#readme",
   "main": "app/index.js",
   "scripts": {
-    "start": "NODE_PATH=./app node app/index",
-    "channel:clear": "NODE_PATH=./app node app/clear-channel",
-    "test": "NODE_PATH=./app node app/fetch",
-    "lint": "eslint app"
+    "start": "node app/index",
+    "channel:clear": "node app/clear-channel",
+    "fetch": "node app/fetch",
+    "lint": "eslint app",
+    "test": "npm run lint && npm run fetch"
   },
   "dependencies": {
     "@slack/web-api": "^6.0.0",
@@ -28,11 +29,9 @@
     "weather": "github:jobscale/weather"
   },
   "devDependencies": {
-    "eslint": "^5.4.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "http-proxy-agent": "^2.1.0",
-    "https-proxy-agent": "^2.2.1"
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
   },
   "author": "jobscale <jobscale@jsx.jp>",
   "license": "MIT"
