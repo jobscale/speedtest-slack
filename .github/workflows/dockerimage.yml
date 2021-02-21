@@ -11,4 +11,13 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: |
+        cat /etc/*release
+        grep MH /proc/cpuinfo
+        free -h
+        curl -s https://inet-ip.info/ip
+        dig jsx.jp
+        dig proxy.secure.jsx.jp
+        dig gcp.jsx.jp
+        dig aws.jsx.jp
+        docker build . --file Dockerfile --tag my-image-name:$(date +%s)
