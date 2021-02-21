@@ -7,5 +7,5 @@ COPY package.json package.json
 COPY app app
 RUN chown -R node. .
 USER node
-RUN npm i --production
+RUN npm i --production && cat node_modules/speedtest/index.js
 CMD ["npm", "start"]
