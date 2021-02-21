@@ -7,5 +7,6 @@ COPY package.json package.json
 COPY app app
 RUN chown -R node. .
 USER node
-RUN npm i --production && cat node_modules/speedtest/index.js
+RUN npm i --production
+RUN echo "require('core'); const { SpeedTest } = require('speedtest'); new SpeedTest().run().then(logger.info);" | node
 CMD ["npm", "start"]

@@ -53,7 +53,7 @@ class App {
   }
   routine(env) {
     let delay = 1;
-    const slack = new Slack(env.slack);
+    const slack = new Slack(env);
     const sender = param => setTimeout(
       data => slack.send(data), (delay++) * 6000, this.getData(`${param.caption} - <${param.image}|icon>`),
     );
