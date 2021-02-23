@@ -54,14 +54,14 @@ class App {
   routine() {
     const stack = [];
     const sender = param => stack.push(this.getData(`${param.caption} - <${param.image}|icon>`));
-    return new DownDetector().run()
-    .then(record => record.map(res => sender(res)))
-    .then(() => new Weather().run())
-    .then(res => logger.info(res) || sender(res))
-    .then(() => new Shell().spawn('curl', ['-s', 'https://inet-ip.info/ip']))
-    .then(res => logger.info(res) || sender(res))
-    .then(() => new SpeedTest().run())
+    return new Shell().spawn('curl', ['-s', 'https://inet-ip.info/ip'])
     .then(res => logger.info(res) || stack.push(res))
+    .then(() => new SpeedTest().run())
+    .then(res => logger.info(res) || stack.push(this.getData(res)))
+    .then(() => new Weather().run())
+    .then(res => logger.info(res.caption) || sender(res))
+    .then(() => new DownDetector().run())
+    .then(record => record.map(res => sender(res)))
     .then(() => stack);
   }
   async send(env, stack) {
