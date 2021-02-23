@@ -61,7 +61,7 @@ class App {
     .then(() => new Shell().spawn('curl', ['-s', 'https://inet-ip.info/ip']))
     .then(res => logger.info(res) || sender(res))
     .then(() => new SpeedTest().run())
-    .then(res => logger.info(res) || sender(res))
+    .then(res => logger.info(res) || stack.push(res))
     .then(() => stack);
   }
   async send(env, stack) {
