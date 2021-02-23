@@ -15,15 +15,11 @@ const delay = 1000;
 class App {
   fetchEnv() {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
-    const pattern = [/=/g, '', 'base64'];
-    return fetch(`${conf.host}/env.json`, {
+    return fetch(`${conf.host}/slack.json`, {
       method: 'GET',
       headers: { Cookie: conf.cookie },
     })
-    .then(res => res.json())
-    .then(res => JSON.parse(
-      Buffer.from(res.env.replace(...pattern), pattern[2]).toString(),
-    ).slack);
+    .then(res => res.json());
   }
   delayRemove(ts, slack, client) {
     return new Promise(resolve => {
