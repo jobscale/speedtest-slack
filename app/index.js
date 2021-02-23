@@ -72,7 +72,7 @@ class App {
     }
   }
   start() {
-    return new Promise.All([this.fetchEnv(), this.routine()])
+    return Promise.All([this.fetchEnv(), this.routine()])
     .then(args => this.send(...args));
   }
 }
