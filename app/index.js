@@ -64,11 +64,16 @@ class App {
     .then(record => record.map(res => sender(res)))
     .then(() => stack);
   }
+  wait(index, data) {
+    const { pending, resolve } = promiseGen();
+    setTimeout(resolve, index ? 3000 : 0, data);
+    return pending;
+  }
   async send(env, stack) {
     const slack = new Slack(env);
-    // eslint-disable-next-line
-    for (const data of stack) {
-      await slack.send(data);
+    for (let i = 0; i < stack.length; i++) {
+      await this.wait(i, stack[i])
+      .then(data => slack.send(data));
     }
   }
   start() {
