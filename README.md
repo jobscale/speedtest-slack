@@ -1,22 +1,27 @@
 ## speed test of container
 
-## getting start
+### getting start
 ```bash
 git clone https://github.com/jobscale/speed-test.git
 cd speed-test
 ```
 
-## local test
+### local test
 ```bash
 npm i
 npm run lint
 npm start
 ```
 
-## container build and run
+### container build and run
 ```bash
 docker build . -t local/speed-test
 docker run --rm -e NODE_ENV=LOCAL -it local/speed-test
+```
+
+### LOCAL debug port forward
+```bash
+kubectl port-forward -n credentials --address 0.0.0.0 svc/partner 3443:443
 ```
 
 ### create cronjob
