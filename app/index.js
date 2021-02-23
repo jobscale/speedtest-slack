@@ -53,7 +53,7 @@ class App {
   }
   routine() {
     const stack = [];
-    const sender = param => stack.push(this.getData(`${param.caption} - <${param.image}|icon>`))
+    const sender = param => stack.push(this.getData(`${param.caption} - <${param.image}|icon>`));
     return new DownDetector().run()
     .then(record => record.map(res => sender(res)))
     .then(() => new Weather().run())
@@ -66,12 +66,13 @@ class App {
   }
   async send(env, stack) {
     const slack = new Slack(env);
-    for (data of stack) {
+    // eslint-disable-next-line
+    for (const data of stack) {
       await slack.send(data);
     }
   }
   start() {
-    return new PromiseAll([this.fetchEnv(), this.routine()])
+    return new Promise.All([this.fetchEnv(), this.routine()])
     .then(args => this.send(...args));
   }
 }
