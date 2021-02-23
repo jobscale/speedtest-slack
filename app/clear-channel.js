@@ -9,14 +9,6 @@ const conf = {
 if (process.env.NODE_ENV === 'LOCAL') {
   conf.host = 'https://jsx.jp:3443';
 }
-const template = {
-  icon_emoji: ':email:',
-  username: 'Speed',
-  text: '',
-  attachments: [{
-    fallback: '',
-  }],
-};
 
 const delay = 1000;
 
@@ -34,7 +26,7 @@ class App {
     ).slack);
   }
   delayRemove(ts, slack, client) {
-    new Promise(resolve => {
+    return new Promise(resolve => {
       setTimeout(() => {
         resolve(client.chat.delete({
           channel: slack.channel,

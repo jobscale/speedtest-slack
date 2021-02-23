@@ -51,26 +51,28 @@ class App {
       Buffer.from(res.env.replace(...pattern), pattern[2]).toString(),
     ).slack);
   }
-  routine(env) {
-    let delay = 1;
-    const slack = new Slack(env);
-    const sender = param => setTimeout(
-      data => slack.send(data), (delay++) * 6000, this.getData(`${param.caption} - <${param.image}|icon>`),
-    );
-    let text;
-    new DownDetector().run()
+  routine() {
+    const stack = [];
+    const sender = param => stack.push(this.getData(`${param.caption} - <${param.image}|icon>`))
+    return new DownDetector().run()
     .then(record => record.map(res => sender(res)))
     .then(() => new Weather().run())
-    .then(res => sender(res))
-    .then(() => new Shell().spawn('curl', ['-s', 'ifconfig.io']))
-    .then(res => slack.send(this.getData(res)))
+    .then(res => logger.info(res) || sender(res))
+    .then(() => new Shell().spawn('curl', ['-s', 'https://inet-ip.info/ip']))
+    .then(res => logger.info(res) || sender(res))
     .then(() => new SpeedTest().run())
-    .then(res => slack.send(this.getData(text = res)))
-    .then(() => logger.info(text));
+    .then(res => logger.info(res) || sender(res))
+    .then(() => stack);
+  }
+  async send(env, stack) {
+    const slack = new Slack(env);
+    for (data of stack) {
+      await slack.send(data);
+    }
   }
   start() {
-    return this.fetchEnv()
-    .then(env => this.routine(env));
+    return new PromiseAll([this.fetchEnv(), this.routine()])
+    .then(args => this.send(...args));
   }
 }
 
